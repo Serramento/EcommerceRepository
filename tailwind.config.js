@@ -3,14 +3,16 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     colors: {
-      blue: "#2D8BC0",
+      bluex: "#23A6F0",
     },
     fontFamily: {
       montserrat: ["Montserrat"],
-      lato: ["Lato"],
-      garamond: ["Garamond"],
     },
-    extend: {},
+    extend: {
+      screens: {
+        lg: "1024px",
+      },
+    },
   },
   plugins: [],
 };
