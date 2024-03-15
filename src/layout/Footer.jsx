@@ -4,22 +4,22 @@ function Footer() {
   return (
     <div className="font-montserrat">
       <div className="bg-[#FAFAFA] flex flex-col lg:flex-row lg:justify-between lg:pr-10">
-        <h3 class="text-[#252B42] text-2xl font-extrabold w-36 pb-8 pt-16 pl-10">
+        <h3 class="text-[#252B42] text-2xl font-extrabold w-36 pb-8 pt-16 pl-10 lg:pt-12">
           DressForDay
         </h3>
-        <div className="text-bluex pb-16 w-36 flex justify-between pl-10">
+        <div className="text-bluex pb-16 w-36 flex justify-between pl-10 lg:pt-16 lg:items-center">
           <i class="fa-brands fa-facebook fa-xl"></i>
           <i class="fa-brands fa-instagram fa-xl"></i>
           <i class="fa-brands fa-twitter fa-xl"></i>
         </div>
       </div>
 
-      <div className="flex flex-col lg:flex-row lg:mt-5">
+      <div className="flex flex-col lg:flex-row lg:mt-5 lg:justify-center">
         <div className="text-left pl-10 max-[1023px]:pt-20 lg:pt-10">
           <h3 className="font-bold text-lg text-[#252B42] lg:text-base">
             Company Info
           </h3>
-          <div className="flex flex-col lg:text-sm">
+          <div className="flex flex-col lg:text-sm ">
             <a className="text-[#737373] pt-5 font-semibold">About Us</a>
             <a className="text-[#737373] pt-3 font-semibold">Carrier</a>
             <a className="text-[#737373] pt-3 font-semibold">We are hiring</a>
@@ -31,7 +31,7 @@ function Footer() {
           <h3 className="font-bold text-lg text-[#252B42] lg:text-base">
             Legal
           </h3>
-          <div className="flex flex-col lg:text-sm">
+          <div className="flex flex-col lg:text-sm ">
             <a className="text-[#737373] pt-5 font-semibold">About Us</a>
             <a className="text-[#737373] pt-3 font-semibold">Carrier</a>
             <a className="text-[#737373] pt-3 font-semibold">We are hiring</a>
