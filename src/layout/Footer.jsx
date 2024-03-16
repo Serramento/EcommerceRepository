@@ -77,7 +77,7 @@ function Footer() {
               placeholder="Your Email"
               className=" pl-7 pt-6 pb-6 bg-[#F9F9F9] text-[#737373]  border border-[#E6E6E6] rounded-l-lg lg:pt-4 lg:pb-4 lg:text-sm lg:w-44 font-semibold"
             ></input>
-            <button className="bg-bluex text-[#FFFFFF] pt-6 pb-6 rounded-none rounded-r-lg border border-[#E6E6E6] lg:pt-4 lg:pb-4 lg:text-sm font-semibold">
+            <button className="bg-bluex text-[#FFFFFF] px-3 pt-6 pb-6 rounded-none rounded-r-lg border border-[#E6E6E6] lg:pt-4 lg:pb-4 lg:text-sm font-semibold">
               Subscribe
             </button>
           </div>
