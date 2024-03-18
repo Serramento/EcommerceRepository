@@ -31,4 +31,12 @@ export const ProductData = [
     image:
       "https://s3-alpha-sig.figma.com/img/c911/6841/0dcfe4d267b32aaf7b21288f7b9656f2?Expires=1711324800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=XzQGrf~uqgnAYHiE617PqVmv7jGfNzQR72q70wLb7WaUTR1nu~TTiRycMc5e-vRg~aiAAAR5oZXM-SGvM8yvJDqgX7Mkg4J-Enlh8bPQPEjucJOuPt5JeVYImVSCX4~ZQEdgU4E4rSj2YVrUiCpMykkAltsCBEBxGmVMcS~jYpahb5JeSlok6Iag5kIBQril2ZoE5b0bWctSCyW8GbMrORTHM9qsUQ08RBNSgIYWmXwG7piAFHXOeqjvdIJZ75u3VeAr-fuGrIDZNLmB6xmX649xuIyE8UJBEPTm2bolf1pQDRKRscHRfl8nQdlPnD9udar~MhR905poCc6hpa4vtg__",
   },
+  {
+    image:
+      "https://s3-alpha-sig.figma.com/img/2305/7910/d190d178c2a7b276e896b9d38b982bf6?Expires=1711324800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=qDbz1-eF7uprsrLl8PcjCINfb~i3h~AHv8P4mBnSy0qfbwokednjkNrU9cMd5wq1PZxIwlpRR3nL83Kp7qwIjnYjGjb5HarhHGHSryrwb0Ca4DYTNoVb7UelKeeXkuGZVPaA6NHLGtdtt6Usr0riO4TgZSveBphGyX9elDe5bIza3FAN63VFtNeCqBl0vTBwLpadDGtiQj3Kf96dDMhBcH02PnbzGqkqqY8ovA2K6UMsTZRmtqd4j9SuwhYN-bZcIuikvSHwY8ah0UrzQS0WgRVfXhFDPG2nflZuioA9l6MgrlCrq~XNL2bNAuHiPIhyfhiRtBAX-o-sNm78JvUjZg__",
+  },
+  {
+    image:
+      "https://s3-alpha-sig.figma.com/img/74e6/48e4/3f346f3e64ec6890751ec33b3c7f5197?Expires=1711324800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=czzEkZh44qOZwRb~X-NdEgVvXQr-Nnwbhl4jPZ-hoqYxI3~FVeko4HRlnw8UrBYmJp5CBh-Xm~-WpcE3WiK2dV3qeaaHH4qmLtAwXoUseW0lhn~U9GNQlCkR3lqWGoCZ-9oyBs7yPIK~cEDI4zCGZOUNMfDDIGlBwZDhW7aeFNeMTKjVbeF-QJOy7UmI6XoCrGsUJeby-q4oHtRGZi2svZY6GQGtFXEEpb~pBBCPz2ReugfYh2Y4eA7OmN61ZN0UhbG5CuXapW2PAI5jEIDXDaulIS21w9sPXo54UgSsU-I45pR5mHblKGprVH~ZGrU0~abWMgtL4bxFbkoQ2WJixA__",
+  },
 ];

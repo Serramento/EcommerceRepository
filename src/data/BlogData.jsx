@@ -7,4 +7,8 @@ export const BlogData = [
     image:
       "https://s3-alpha-sig.figma.com/img/5267/1058/24e3c5c922730b2e509c49e6b03b75f8?Expires=1711324800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=G80uEFRg~RdHDWi5AOea1FQFtSh49uUDzOJPc~JSVhSfTXsc5ja-DsjNcXHFd5wkbheU94JKNDBJK2AKpZn8iN3AYpEg5WjPWto9dEUPLKV68IGGHx6cce51YuWqcuaCJRBzELU~OX5vThyZVXz58oC1QuyczOTkTkOwGtCp21uqkBVg-YPfkQS3rxUsdwDg4B1y1Y~zmrNR5tiz3dmCRJqUzNOsiSQo9TuS2DLKRgVvq8Tdn0Bifd7uh7ROqGI3H2kTffmqpE4j88aLImuBRIcOOI-LfY600GUD~ewvmz8xFTlT~BMR1y7GN41HiGTmZ7n0ZA5N1vtOl-c49xJaLg__",
   },
+  {
+    image:
+      "https://s3-alpha-sig.figma.com/img/3f46/bc27/bfdeda7c44028b59453c136c10512828?Expires=1711929600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=IXqIHSzUcUOS6UVTM7AEwonY5krvs8IPW~N6oOHvSPModNyldwk~60HTPhISZCbEGoqP4duq4iEIeUH~HKP62G8OnV1IJkfiyAQ-15Ivy~hLdpZ3mjX0Fh21cTvFUWVDK~LzYIZKFneXhpmqJdsIs5yAp53zm38mCxSyK9Van2ixy6tcgg6hOY70mRWfDwo7KggQN7ZGmDpdlToOrpJ4lqIyiCvpdbomi1VLWetMGP011S6rdzWgcsc6BcDsNR5EObNNdQ7y6mnJAFI8fdN7jOTTym76eKOFtxZb8zlWzfMLsaVGJWiN3XsPCWav0NVhnEv5Fq4x0GWYgWDTqNHCzw__",
+  },
 ];

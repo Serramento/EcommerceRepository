@@ -1,25 +1,23 @@
 import React from "react";
-import image1 from "../images/image1.png";
-import image2 from "../images/image2.png";
-import ImageSlider from "../layout/ImageSlider.jsx";
-import { SliderData } from "../SliderData.jsx";
-import ProductCard from "../layout/ProductCard.jsx";
-import { ProductData } from "../ProductData.jsx";
-import BlogContent from "../layout/BlogContent.jsx";
-import { BlogData } from "../BlogData.jsx";
+import ImageSlider from "../components/ImageSlider.jsx";
+import { SliderData } from "../data/SliderData.jsx";
+import ProductCard from "../components/ProductCard.jsx";
+import { ProductData } from "../data/ProductData.jsx";
+import BlogContent from "../components/BlogContent.jsx";
+import { BlogData } from "../data/BlogData.jsx";
 
 function HomePage() {
   return (
     <div className="font-montserrat">
       <ImageSlider slides={SliderData} />
 
-      <div className="text-[#737373] flex flex-col lg:flex-row justify-evenly py-10 lg:px-24 lg:py-16">
-        <i class="fa-brands fa-hooli fa-7x xxl:text-xl"></i>
-        <i class="fa-brands fa-lyft fa-7x max-[1023px]:pt-5 "></i>
-        <i class="fa-brands fa-pied-piper-hat fa-7x max-[1023px]:pt-5"></i>
-        <i class="fa-brands fa-stripe fa-7x max-[1023px]:pt-5"></i>
-        <i class="fa-brands fa-aws fa-7x max-[1023px]:pt-5"></i>
-        <i class="fa-brands fa-reddit-alien fa-7x max-[1023px]:pt-5"></i>
+      <div className="text-[#737373] flex flex-col lg:flex-row justify-evenly py-10 lg:px-24 lg:py-16 lg:scale-[0.6]">
+        <i class="fa-brands fa-hooli fa-7x "></i>
+        <i class="fa-brands fa-lyft fa-7x max-[1023px]:pt-5 lg:pl-24"></i>
+        <i class="fa-brands fa-pied-piper-hat fa-7x max-[1023px]:pt-5 lg:pl-24"></i>
+        <i class="fa-brands fa-stripe fa-7x max-[1023px]:pt-5 lg:pl-24"></i>
+        <i class="fa-brands fa-aws fa-7x max-[1023px]:pt-5 lg:pl-24"></i>
+        <i class="fa-brands fa-reddit-alien fa-7x max-[1023px]:pt-5 lg:pl-24"></i>
       </div>
 
       <div className="py-2 lg:flex lg:flex-row lg:justify-center">
@@ -84,31 +82,41 @@ function HomePage() {
       </div>
 
       <div className="flex flex-col items-center">
-        <div className="w-56">
-          <h3 className="text-[#252B42] text-lg font-bold mt-24 mb-3">
+        <div className="w-56 lg:w-96 mt-24">
+          <h4 className=" hidden lg:inline-flex text-[#737373] text-base font-semibold">
+            Featured Products
+          </h4>
+          <h3 className="text-[#252B42] text-lg font-bold mb-3 lg:mt-1">
             BESTSELLER PRODUCTS
           </h3>
-          <p className="text-[#737373] text-sm font-semibold mb-16">
+          <p className="text-[#737373] text-sm font-semibold mb-16 lg:mb-10">
             Problems trying to resolve the conflict between{" "}
           </p>
         </div>
-        <div>
-          <ProductCard products={ProductData} />
+        <div className="lg:hidden">
+          {ProductData.slice(0, 5).map((product) => (
+            <ProductCard product={product} />
+          ))}
         </div>
-        <button className="text-bluex font-bold text-sm py-4 px-12 outline outline-2">
+        <div className="hidden lg:flex lg:flex-wrap lg:w-[57rem] lg:justify-evenly">
+          {ProductData.map((product) => (
+            <ProductCard product={product} />
+          ))}
+        </div>
+        <button className="text-bluex font-bold text-sm py-4 px-12 outline outline-2 lg:mb-10 lg:mt-10">
           LOAD MORE PRODUCTS
         </button>
       </div>
 
       <div className="flex flex-col  py-20  lg:flex-row-reverse lg:justify-center lg:ml-10 ">
-        <div className="text-left pl-10 lg:pl-12 lg:pt-40">
+        <div className="text-left pl-16 lg:pl-12 lg:pt-24">
           <h5 className="text-bluex font-semibold text-sm pb-5">
             Featured Products
           </h5>
-          <h2 className="font-extrabold text-5xl pb-5 lg:text-3xl">
+          <h2 className="font-extrabold text-4xl pr-16 pb-2 lg:text-3xl">
             We love what we do
           </h2>
-          <div className="pr-16 pt-3 lg:w-96">
+          <div className="pr-20 pt-3 lg:w-96">
             <p className="font-semibold font-base text-xs text-[#737373] pb-5">
               Problems trying to resolve the conflict between the two major
               realms of Classical physics: <br /> Newtonian mechanics.
@@ -119,14 +127,22 @@ function HomePage() {
             </p>
           </div>
         </div>
-        <div className="flex flex-row justify-center pt-16 px-12 ">
-          <img src={image1} alt="image1" style={{ height: 400, width: 200 }} />
-          <img
-            src={image2}
-            alt="image2"
-            style={{ height: 400, width: 300 }}
-            className="pl-3"
-          />
+        <div className="flex flex-row justify-center max-[1023px]:pt-12">
+          <div className="w-[10rem] h-[22rem] lg:w-[12rem] lg:h-[26rem]">
+            <img
+              src="https://s3-alpha-sig.figma.com/img/7e90/2282/946c71109661dfcd96fe9458abbd0e5b?Expires=1711929600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=qvSjZtnRdRWMlmqiePnGbGlkjXRTbSHKI0zu4l-rA8q3I3W3THWiqGQklQvHy1F7C6~lNoYVgOU9vdfRjBeO~9e9xVI5f-hxCYFaYnzuekgMVLzJNtTUyQuwtP3gJTZ2e9eRKIAjuHz4MhCMkNILPWJStcTeiGbnpuLqR3tTrt5lpcFKN-SWn2gWfdNT8zZr-VUCNGhVkCUdcH7tJDzq6zpjIure5zWLMOCVkd0O9PZ61wf5d03LzF0Z9K5lLVuUZ22FvDMFRSbQ3f1icDUMu6tmFRGmacr8ZU874l7tPOzGk6b04pAt727EjEGuiBkZ6IFFrYRy2DqFjtMwAy1XxQ__"
+              alt="image1"
+              className="w-full h-full object-cover"
+            />
+          </div>
+
+          <div className="w-[14rem] h-[22rem] lg:w-[16rem] lg:h-[26rem]">
+            <img
+              src="https://s3-alpha-sig.figma.com/img/ca34/28bb/b53263f3cb265f6e0a1129f5afc25e74?Expires=1711929600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=GGjJGLvyXlzu73uL-OYm-Om3McKFMruECX6ooegDJE5eukhQcy3NmO2ep~AxLX6wejNZPVg2ZGL~5XeWcavcVTlgk~2u~VGWfRKsUj4rCr~r5G43nl6o~wgAKEMqZi0gQPkVHTC1cP40XFI1q4vfgIUtm2o30gkbOegaWEBQZKI119nnI8cQ-s4XfY4KUHPcIMIqtGnJ92K8nsYtoLP42Gq0ifGMvRCySv9j9XJjrWtHlrcN9ENWLV8CadqgMQM9yEq1VgLqvLAPJ5ZsCHnR-pPvjip4KoCzDAUsNTrU02u1H6mTwednjsjXh~2pj5JW2VW5ZrZDuuTYau5pmya3vA__"
+              alt="image2"
+              className="pl-3 w-full h-full object-cover"
+            />
+          </div>
         </div>
       </div>
 
@@ -167,9 +183,25 @@ function HomePage() {
       </div>
 
       <div className="mt-16 flex flex-col items-center">
-        <h6 className="text-bluex text-sm font-bold ">Practice Advice</h6>
-        <h2 className="font-bold text-4xl mt-3 mb-20">Featured Posts</h2>
-        <BlogContent blogs={BlogData} />
+        <div className="max-[1023px]:mb-20 ">
+          <h6 className="text-bluex text-sm font-bold ">Practice Advice</h6>
+          <h2 className="font-bold text-4xl mt-3 mb-5">Featured Posts</h2>
+          <p className="hidden lg:inline-flex  lg:text-sm lg:text-[#737373] lg:font-semibold lg:w-[30rem]">
+            Problems trying to resolve the conflict between the two major realms
+            of Classical physics: Newtonian mechanics{" "}
+          </p>
+        </div>
+
+        <div className="lg:hidden">
+          {BlogData.slice(0, 2).map((blog) => (
+            <BlogContent blog={blog} />
+          ))}
+        </div>
+        <div className="hidden lg:flex lg:flex-row lg:w-[65rem] lg:justify-evenly lg:my-20">
+          {BlogData.map((blog) => (
+            <BlogContent blog={blog} />
+          ))}
+        </div>
       </div>
     </div>
   );
