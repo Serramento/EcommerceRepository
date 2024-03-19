@@ -3,7 +3,7 @@ import React from "react";
 function Footer() {
   return (
     <div className="font-montserrat">
-      <div className="bg-[#FAFAFA] flex flex-col lg:flex-row lg:justify-between lg:pr-10">
+      <div className="bg-[#FAFAFA] flex flex-col lg:flex-row lg:justify-between lg:pr-28 lg:pl-16">
         <h3 class="text-[#252B42] text-2xl font-extrabold w-36 pb-8 pt-16 pl-10 lg:pt-12">
           DressForDay
         </h3>
@@ -15,7 +15,7 @@ function Footer() {
       </div>
 
       <div className="flex flex-col lg:flex-row lg:mt-5 lg:justify-center">
-        <div className="text-left pl-10 max-[1023px]:pt-20 lg:pt-10">
+        <div className="text-left max-[1023px]:pl-10 max-[1023px]:pt-20 lg:pt-10">
           <h3 className="font-bold text-lg text-[#252B42] lg:text-base">
             Company Info
           </h3>
@@ -27,7 +27,7 @@ function Footer() {
           </div>
         </div>
 
-        <div className="text-left pl-10 pt-10">
+        <div className="text-left pl-10 pt-10 lg:pl-12">
           <h3 className="font-bold text-lg text-[#252B42] lg:text-base">
             Legal
           </h3>
@@ -39,7 +39,7 @@ function Footer() {
           </div>
         </div>
 
-        <div className="text-left pl-10 pt-10">
+        <div className="text-left pl-10 pt-10 lg:pl-12">
           <h3 className="font-bold text-lg text-[#252B42] lg:text-base">
             Features
           </h3>
@@ -55,7 +55,7 @@ function Footer() {
           </div>
         </div>
 
-        <div className="text-left pl-10 pt-10">
+        <div className="text-left pl-10 pt-10 lg:pl-12">
           <h3 className="font-bold text-lg text-[#252B42] lg:text-base">
             Resources
           </h3>
@@ -67,7 +67,7 @@ function Footer() {
           </div>
         </div>
 
-        <div>
+        <div className="lg:pl-12">
           <h3 className="font-bold text-lg text-left pl-10 pt-10 lg:text-base">
             Get In Touch
           </h3>
@@ -84,7 +84,7 @@ function Footer() {
         </div>
       </div>
 
-      <div className="bg-[#FAFAFA] font-bold pt-10 pb-10 flex max-[1023px]:justify-center">
+      <div className="bg-[#FAFAFA] font-bold pt-10 pb-10 flex max-[1023px]:justify-center lg:pl-16">
         <h3 className="text-[#737373] w-64 lg:w-[30rem] ">
           Made With Love By Finland All Rights Reserved
         </h3>

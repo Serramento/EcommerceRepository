@@ -10,9 +10,15 @@ function Header() {
             DressForDay
           </h3>
           <div class="w-24 flex justify-between">
-            <i class="fa-solid fa-magnifying-glass fa-lg pt-2.5"></i>
-            <i class="fa-solid fa-cart-shopping fa-lg pt-2.5"></i>
-            <i class="fa-solid fa-bars fa-lg pt-2.5"></i>
+            <a>
+              <i class="fa-solid fa-magnifying-glass fa-lg pt-2.5"></i>
+            </a>
+            <a>
+              <i class="fa-solid fa-cart-shopping fa-lg pt-2.5"></i>
+            </a>
+            <a>
+              <i class="fa-solid fa-bars fa-lg pt-2.5"></i>
+            </a>
           </div>
         </div>
 
@@ -86,7 +92,7 @@ function Header() {
               </NavLink>
               <NavLink
                 to="/pages"
-                class="text-[#737373] text-xs font-bold pr-2"
+                class="text-[#737373] text-xs font-bold pr-2 "
               >
                 Pages
               </NavLink>
