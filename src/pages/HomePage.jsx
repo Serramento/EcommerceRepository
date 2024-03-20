@@ -11,7 +11,7 @@ function HomePage() {
     <div className="font-montserrat">
       <ImageSlider slides={SliderData} />
 
-      <div className="text-[#737373] flex flex-col lg:flex-row justify-evenly py-10 lg:px-24 lg:py-16 lg:scale-[0.6]">
+      <div className="text-[#737373] flex flex-col lg:flex-row justify-evenly py-32 lg:px-24 lg:py-16 lg:scale-[0.6]">
         <i class="fa-brands fa-hooli fa-7x "></i>
         <i class="fa-brands fa-lyft fa-7x max-[1023px]:pt-5 lg:pl-24"></i>
         <i class="fa-brands fa-pied-piper-hat fa-7x max-[1023px]:pt-5 lg:pl-24"></i>
@@ -20,7 +20,7 @@ function HomePage() {
         <i class="fa-brands fa-reddit-alien fa-7x max-[1023px]:pt-5 lg:pl-24"></i>
       </div>
 
-      <div className="py-2 lg:flex lg:flex-row lg:justify-center">
+      <div className="py-2 flex flex-col lg:flex-row max-[1023px]:items-center lg:justify-center">
         <div className="relative">
           <div className="w-96 h-[38rem] lg:w-[28rem] lg:h-[28rem]">
             <img
@@ -30,7 +30,7 @@ function HomePage() {
             />
           </div>
 
-          <div className=" box-content bottom-0 h-64 bg-opacity-75 w-full text-left bg-[#2D8BC0] absolute text-[#FFFFFF] font-semibold lg:h-48 lg:w-80">
+          <div className=" box-content bottom-0 h-64 bg-opacity-75 w-96 text-left bg-[#2D8BC0] absolute text-[#FFFFFF] font-semibold lg:h-48 lg:w-80">
             <h6 className="text-2xl w-60 pl-10 pt-12 opacity-100 lg:text-xl lg:pt-8 lg:w-52">
               Top Product Of the Week
             </h6>
@@ -50,7 +50,7 @@ function HomePage() {
               />
             </div>
 
-            <div className=" box-content bottom-0 h-64 bg-opacity-75 w-full text-left bg-[#2D8BC0] absolute text-[#FFFFFF] font-semibold lg:h-32 lg:w-80">
+            <div className=" box-content bottom-0 h-64 bg-opacity-75 w-96 text-left bg-[#2D8BC0] absolute text-[#FFFFFF] font-semibold lg:h-32 lg:w-80">
               <h6 className="text-2xl w-60 pl-10 pt-12 opacity-100 lg:text-lg lg:w-72 lg:pt-6">
                 Top Product Of the Week
               </h6>
@@ -69,7 +69,7 @@ function HomePage() {
               />
             </div>
 
-            <div className=" box-content bottom-0 h-64 bg-opacity-75 w-full text-left bg-[#2D8BC0] absolute text-[#FFFFFF] font-semibold lg:h-32 lg:w-80">
+            <div className=" box-content bottom-0 h-64 bg-opacity-75 w-96 text-left bg-[#2D8BC0] absolute text-[#FFFFFF] font-semibold lg:h-32 lg:w-80">
               <h6 className="text-2xl w-60 pl-10 pt-12 opacity-100 lg:text-lg lg:w-72 lg:pt-6">
                 Top Product Of the Week
               </h6>

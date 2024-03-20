@@ -5,7 +5,7 @@ function Header() {
   return (
     <div class="font-montserrat">
       <div className="lg:hidden">
-        <div class="flex justify-between px-3 pt-5">
+        <div class="flex justify-between px-8 pt-8">
           <h3 class="text-[#252B42] text-2xl mb-10 font-extrabold">
             DressForDay
           </h3>
