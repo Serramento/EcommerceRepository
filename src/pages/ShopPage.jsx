@@ -2,11 +2,30 @@ import React from "react";
 import { Link } from "react-router-dom";
 import ProductCard from "../components/ProductCard.jsx";
 import { ProductData } from "../data/ProductData.jsx";
+import ClothsCard from "../components/ClothsCard.jsx";
+import { ClothsCardData } from "../data/ClothsCardData.jsx";
 
 function ShopPage() {
   return (
     <div className="font-montserrat">
-      <div className="bg-[#FAFAFA] py-12 flex flex-col items-center">
+      <div className="text-bluex flex flex-col text-3xl ">
+        <div>
+          <i class="fa-regular fa-user "></i>
+          <a className="text-bluex pl-2">Login</a>
+          <span className="font-semibold pl-2">/</span>
+          <a className="text-bluex pl-2">Register</a>
+        </div>
+        <div className="flex flex-col h-44 justify-between mt-20 mb-20">
+          <i class="fa-solid fa-magnifying-glass fa-xl"></i>
+          <i class="fa-solid fa-cart-shopping">
+            <span className="text-sm pl-3">1</span>
+          </i>
+          <i class="fa-regular fa-heart fa-lg">
+            <span className="text-sm pl-3 font-extrabold">1</span>
+          </i>
+        </div>
+      </div>
+      <div className="bg-[#FAFAFA] pt-12 pb-5 flex flex-col items-center">
         <h3 className="font-bold text-2xl pb-20">Shop</h3>
         <div className="text-sm flex justify-between w-28">
           <Link to="/" className="font-bold ">
@@ -16,6 +35,21 @@ function ShopPage() {
           <Link to="/shop" className="text-[#737373] font-bold">
             Shop
           </Link>
+        </div>
+        <div className="mt-16 lg:hidden">
+          {ClothsCardData.map((cloths) => (
+            <ClothsCard cloths={cloths} />
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <h6>Showing all 12 results</h6>
+        <div>
+          <h6>Views:</h6>
+        </div>
+        <div>
+          <button>Filter</button>
         </div>
       </div>
 
