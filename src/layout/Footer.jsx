@@ -3,7 +3,7 @@ import React from "react";
 function Footer() {
   return (
     <div className="font-montserrat">
-      <div className="bg-[#FAFAFA] flex flex-col lg:flex-row lg:justify-between lg:pr-28 lg:pl-16">
+      <div className="bg-[#FAFAFA] flex flex-col lg:flex-row lg:justify-between lg:pr-28 lg:pl-16 ">
         <h3 class="text-[#252B42] text-2xl font-extrabold w-36 pb-8 pt-16 pl-10 lg:pt-12">
           DressForDay
         </h3>
@@ -14,7 +14,7 @@ function Footer() {
         </div>
       </div>
 
-      <div className="flex flex-col lg:flex-row lg:mt-5 lg:justify-center">
+      <div className="flex flex-col lg:flex-row lg:mt-5 lg:justify-center lg:w-[75rem]">
         <div className="text-left max-[1023px]:pl-10 max-[1023px]:pt-20 lg:pt-10">
           <h3 className="font-bold text-lg text-[#252B42] lg:text-base">
             Company Info
