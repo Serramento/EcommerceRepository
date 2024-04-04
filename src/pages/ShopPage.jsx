@@ -27,7 +27,7 @@ function ShopPage() {
         </div>
       </div>
       <div className="bg-[#FAFAFA] pt-12 pb-5 flex flex-col items-center lg:pt-10 lg:pb-10">
-        <div className="lg:flex lg:flex-row lg:w-[71rem] lg:justify-between lg:items-center">
+        <div className="lg:flex lg:flex-row lg:w-[70rem] lg:justify-between lg:items-center">
           <h3 className="font-bold text-2xl max-[1023px]:pb-20">Shop</h3>
           <div className="text-sm flex justify-between w-28 ">
             <Link to="/" className="font-bold ">
