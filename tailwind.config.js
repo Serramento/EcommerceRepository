@@ -1,8 +1,18 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./src/**/*.{html,js}"],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    colors: {
+      bluex: "#23A6F0",
+    },
+    fontFamily: {
+      montserrat: ["Montserrat"],
+    },
+    extend: {
+      screens: {
+        lg: "1024px",
+      },
+    },
   },
   plugins: [],
 };
