@@ -7,6 +7,7 @@ import BlogContent from "../components/BlogContent.jsx";
 import { BlogData } from "../data/BlogData.jsx";
 
 function HomePage() {
+  const css = "w-80 lg:w-40";
   return (
     <div className="font-montserrat">
       <ImageSlider slides={SliderData} />
@@ -95,12 +96,12 @@ function HomePage() {
         </div>
         <div className="lg:hidden">
           {ProductData.slice(0, 5).map((product) => (
-            <ProductCard product={product} />
+            <ProductCard product={product} css={css} />
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-wrap lg:w-[57rem] lg:justify-evenly">
-          {ProductData.map((product) => (
-            <ProductCard product={product} />
+          {ProductData.slice(0, 10).map((product) => (
+            <ProductCard product={product} css={css} />
           ))}
         </div>
         <button className="text-bluex font-bold text-sm py-4 px-12 outline outline-2 lg:mb-10 lg:mt-10">
