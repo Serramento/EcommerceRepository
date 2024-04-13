@@ -1,8 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const ProductCard = (props) => {
+  const { id } = props.product;
   return (
-    <a>
+    <Link to={`/productPage/${id}`}>
       <img src={props.product.image} className={props.css} />
       <div>
         <h5 className="font-bold mt-10">Graphic Design</h5>
@@ -21,7 +23,7 @@ const ProductCard = (props) => {
         <div className="h-4 w-4 rounded-lg bg-[#E77C40] mr-1.5" />
         <div className="h-4 w-4 rounded-lg bg-[#252B42]" />
       </div>
-    </a>
+    </Link>
   );
 };
 

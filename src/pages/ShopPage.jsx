@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Router } from "react-router-dom";
 import ProductCard from "../components/ProductCard.jsx";
 import { ProductData } from "../data/ProductData.jsx";
 import ClothsCard from "../components/ClothsCard.jsx";
@@ -77,12 +77,12 @@ function ShopPage() {
       <div className="flex flex-col items-center mt-28 lg:mt-16">
         <div className="lg:hidden">
           {ProductData.slice(0, 4).map((product) => (
-            <ProductCard product={product} css={css} />
+            <ProductCard key={product.id} product={product} css={css} />
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-wrap lg:w-[74rem] lg:justify-between">
           {ProductData.map((product) => (
-            <ProductCard product={product} css={css} />
+            <ProductCard key={product.id} product={product} css={css} />
           ))}
         </div>
 
