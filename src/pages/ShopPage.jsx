@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Router } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ProductCard from "../components/ProductCard.jsx";
 import { ProductData } from "../data/ProductData.jsx";
 import ClothsCard from "../components/ClothsCard.jsx";
