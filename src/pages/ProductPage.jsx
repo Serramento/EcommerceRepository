@@ -2,10 +2,12 @@ import React from "react";
 import { useParams, Link } from "react-router-dom";
 import { ProductData } from "../data/ProductData";
 import ProductCard from "../components/ProductCard.jsx";
+import ImageSlider2 from "../components/ImageSlider2.jsx";
 
 function ProductPage() {
   let { productId } = useParams();
   let thisProduct = ProductData.find((prod) => prod.id === parseInt(productId));
+
   return (
     <div>
       <div className="text-bluex flex flex-col text-3xl lg:hidden">
@@ -40,7 +42,13 @@ function ProductPage() {
         </div>
       </div>
 
-      <img src={thisProduct.image} />
+      <div className="bg-[#FAFAFA]">
+        <ImageSlider2 slides={thisProduct.image} />
+        <div className="flex flex-row w-40 h-40">
+          <img src={thisProduct.image[0]} />
+          <img src={thisProduct.image[1]} />
+        </div>
+      </div>
 
       <div className="flex flex-col items-center">
         <div className="w-56 lg:w-96 mt-24">
