@@ -3,13 +3,15 @@ import { useParams, Link } from "react-router-dom";
 import { ProductData } from "../data/ProductData";
 import ProductCard from "../components/ProductCard.jsx";
 import ImageSlider2 from "../components/ImageSlider2.jsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 function ProductPage() {
   let { productId } = useParams();
   let thisProduct = ProductData.find((prod) => prod.id === parseInt(productId));
 
   return (
-    <div>
+    <div className="font-montserrat">
       <div className="text-bluex flex flex-col text-3xl lg:hidden">
         <div>
           <i class="fa-regular fa-user "></i>
@@ -44,21 +46,136 @@ function ProductPage() {
 
       <div className="bg-[#FAFAFA]">
         <ImageSlider2 slides={thisProduct.image} />
-        <div className="flex flex-row w-40 h-40">
+        <div className="flex flex-row w-40 h-40 ml-10 mt-10 pb-10">
           <img src={thisProduct.image[0]} />
-          <img src={thisProduct.image[1]} />
+          <img src={thisProduct.image[1]} className="pl-5" />
+        </div>
+
+        <div className="flex flex-col items-start ml-10">
+          <h3 className="text-xl font-semibold mb-3">Graphic Design</h3>
+          <div className="flex flex-row text-[#F3CD03] justify-between w-[13rem]">
+            <i class="fa-solid fa-star mt-1"></i>
+            <i class="fa-solid fa-star mt-1"></i>
+            <i class="fa-solid fa-star mt-1"></i>
+            <i class="fa-solid fa-star mt-1"></i>
+            <i class="fa-regular fa-star mt-1"></i>
+            <h6 className="text-[#737373] font-bold ml-2">10 Reviews</h6>
+          </div>
+          <h5 className="font-bold mt-8 mb-3 text-2xl">
+            <span className="text-[#BDBDBD]">$16.48</span>{" "}
+            <span className="text-[#23856D]">$6.48</span>
+          </h5>
+          <h5 className="font-bold mb-10">
+            <span className="text-[#737373]">Availability : </span>{" "}
+            <span className="text-[#23A6F0]">In Stock</span>
+          </h5>
+          <p className="text-[#858585] font-semibold text-left mr-20">
+            Met minim Mollie non desert Alamo est sit cliquey dolor do met sent.
+            RELIT official consequent door ENIM RELIT Mollie. Excitation venial
+            consequent sent nostrum met.
+          </p>
+          <div className="h-[1px] w-80 bg-[#BDBDBD] my-5" />
+          <div className="flex mb-10">
+            <div className="h-8 w-8 rounded-2xl bg-[#23A6F0] mr-1.5" />
+            <div className="h-8 w-8 rounded-2xl bg-[#23856D] mr-1.5" />
+            <div className="h-8 w-8 rounded-2xl bg-[#E77C40] mr-1.5" />
+            <div className="h-8 w-8 rounded-2xl bg-[#252B42]" />
+          </div>
+
+          <div className="flex justify-between w-[20rem]">
+            <button className="bg-[#23A6F0] text-[#FFFFFF] font-semibold px-5 py-3 mb-20">
+              Select Options
+            </button>
+            <i class="fa-regular fa-heart fa-lg fa-lg bg-[#FFFFFF] w-10 h-10 rounded-3xl border-2 border-[#E8E8E8] pt-5"></i>
+            <i class="fa-solid fa-cart-shopping fa-lg bg-[#FFFFFF] w-10 h-10 rounded-3xl border-2 border-[#E8E8E8] pt-5"></i>
+            <i class="fa-solid fa-eye fa-lg bg-[#FFFFFF] w-10 h-10 rounded-3xl border-2 border-[#E8E8E8] pt-5"></i>
+          </div>
         </div>
       </div>
 
-      <div className="flex flex-col items-center">
-        <div className="w-56 lg:w-96 mt-24">
-          <h4 className=" hidden lg:inline-flex text-[#737373] text-base font-semibold">
-            Featured Products
-          </h4>
-          <h3 className="text-[#252B42] text-lg font-bold mb-3 lg:mt-1">
-            BESTSELLER PRODUCTS
-          </h3>
+      <div className="flex flex-row ml-5 mr-5 text-[#737373] justify-between text-sm mt-10 mb-16">
+        <button className="font-semibold underline">Description</button>
+        <button className="font-bold">Additional Information</button>
+        <button className="font-bold">
+          Reviews <span className="text-[#23856D]">(0)</span>
+        </button>
+      </div>
+
+      <div className="relative flex justify-center">
+        <div className="w-[22rem] h-[17rem] absolute">
+          <img
+            src="https://s3-alpha-sig.figma.com/img/812e/3845/7d0cc7c0071c4e5eb3752a437fda3d0d?Expires=1711324800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=TR8fwEcp0kk4cFLX8mxSgxAb22QPpK38cv-4tq3rZHxqtwlwBkCN9bydzBFbLvAs9ZwzY3YSKXvJmHHsPD-Dc08fzraK5p4vCqZiy-e-LJI-HKp8rvuTxXKScoZ4CftbHn0NJUOAhXgukh7u2JxlWyY4E6kmwaYPh2l7cenOrqltvSKhYB1RySTHMJakZtjcVW34WNslZAi5J~bKvIyD-vNMSI0uNoIz8ZaCmmts7OErgt3D88mQWI5fyOoyfkDF47KL8fnvYYOuVz~X6mBCcPseXpuwKQIlr9MJFUnPxKe-fvF29pOWvSXN9vJkYlfIyEb8XHoW1HS4wIDYR1cIBA__"
+            alt="Image3"
+            class="w-full h-full object-cover rounded-lg "
+          />
         </div>
+        <div className="bg-[#C4C4C4] w-[22rem] h-[17rem] rounded-lg opacity-20 ml-5 mt-2.5"></div>
+      </div>
+
+      <div className="text-left mx-10 my-20">
+        <h3 className="font-extrabold text-2xl mb-8">
+          the quick fox jumps over{" "}
+        </h3>
+        <p className="text-[#737373] font-semibold ">
+          Met minim Mollie non desert Alamo est sit cliquey dolor do met sent.
+          RELIT official consequent door ENIM RELIT Mollie. Excitation venial
+          consequent sent nostrum met. <br />
+          <br />
+          Met minim Mollie non desert Alamo est sit cliquey dolor do met sent.
+          RELIT official consequent door ENIM RELIT Mollie. Excitation venial
+          consequent sent nostrum met. <br />
+          <br />
+          Met minim Mollie non desert Alamo est sit cliquey dolor do met sent.
+          RELIT official consequent door ENIM RELIT Mollie. Excitation venial
+          consequent sent nostrum met.
+        </p>
+      </div>
+
+      <div className="text-left ml-10 mb-10">
+        <h3 className="font-extrabold text-2xl mb-8">
+          the quick fox jumps over{" "}
+        </h3>
+        {Array.from(Array(4), (_, i) => (
+          <div key={i}>
+            <div className="flex flex-row mt-4">
+              <FontAwesomeIcon
+                icon={faChevronRight}
+                className="text-[#737373]"
+                size="lg"
+              />
+              <h6 className="text-[#737373] font-bold ml-3">
+                the quick fox jumps over the lazy dog
+              </h6>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="text-left ml-10 mb-10">
+        <h3 className="font-extrabold text-2xl mb-8">
+          the quick fox jumps over{" "}
+        </h3>
+        {Array.from(Array(3), (_, i) => (
+          <div key={i}>
+            <div className="flex flex-row mt-4">
+              <FontAwesomeIcon
+                icon={faChevronRight}
+                className="text-[#737373]"
+                size="lg"
+              />
+              <h6 className="text-[#737373] font-bold ml-3">
+                the quick fox jumps over the lazy dog
+              </h6>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="flex flex-col items-center bg-[#FAFAFA] pt-10">
+        <h3 className="text-[#252B42] w-96 lg:w-96 text-2xl font-bold mb-7 lg:mt-1">
+          BESTSELLER PRODUCTS
+        </h3>
+        <div className="h-[1px] w-[22.5rem] mb-8 bg-[#ECECEC]" />
         <div className="lg:hidden">
           {ProductData.slice(0, 4).map((product) => (
             <ProductCard product={product} />
@@ -71,7 +188,7 @@ function ProductPage() {
         </div>
       </div>
 
-      <div className="text-[#737373]  py-24 lg:py-16 bg-[#FAFAFA] mb-5">
+      <div className="text-[#737373]  py-24 lg:py-16 mb-5">
         <div className="flex flex-col lg:flex-row justify-between lg:scale-[0.8]">
           <i class="fa-brands fa-hooli fa-7x"></i>
           <i class="fa-brands fa-lyft fa-7x max-[1023px]:pt-5"></i>
