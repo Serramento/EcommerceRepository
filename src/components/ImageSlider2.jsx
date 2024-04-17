@@ -34,7 +34,7 @@ const ImageSlider2 = ({ slides }) => {
         return (
           <div key={index}>
             {index === current && (
-              <div className="lg:h-[30rem] lg:w-[70rem]">
+              <div className="">
                 <img
                   src={slide}
                   alt="travel image"
