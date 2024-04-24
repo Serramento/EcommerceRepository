@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { SliderData } from "../data/SliderData.jsx";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronLeft,
@@ -47,9 +45,9 @@ const ImageSlider = ({ slides }) => {
         </button>
       </div>
 
-      {SliderData.map((slide, index) => {
+      {slides.map((slide, index) => {
         return (
-          <div className=" " key={index}>
+          <div key={index}>
             {index === current && (
               <div className="lg:h-[30rem] lg:w-[70rem]">
                 <img
