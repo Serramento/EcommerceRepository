@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
@@ -20,7 +21,9 @@ function Footer() {
             Company Info
           </h3>
           <div className="flex flex-col lg:text-sm ">
-            <a className="text-[#737373] pt-5 font-semibold">About Us</a>
+            <Link to="/about" className="text-[#737373] pt-5 font-semibold">
+              About Us
+            </Link>
             <a className="text-[#737373] pt-3 font-semibold">Carrier</a>
             <a className="text-[#737373] pt-3 font-semibold">We are hiring</a>
             <a className="text-[#737373] pt-3 font-semibold">Blog</a>
@@ -32,7 +35,9 @@ function Footer() {
             Legal
           </h3>
           <div className="flex flex-col lg:text-sm ">
-            <a className="text-[#737373] pt-5 font-semibold">About Us</a>
+            <Link to="/about" className="text-[#737373] pt-5 font-semibold">
+              About Us
+            </Link>
             <a className="text-[#737373] pt-3 font-semibold">Carrier</a>
             <a className="text-[#737373] pt-3 font-semibold">We are hiring</a>
             <a className="text-[#737373] pt-3 font-semibold">Blog</a>
