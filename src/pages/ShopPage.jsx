@@ -14,7 +14,9 @@ function ShopPage() {
           <i class="fa-regular fa-user "></i>
           <a className="text-bluex pl-2">Login</a>
           <span className="font-semibold pl-2">/</span>
-          <a className="text-bluex pl-2">Register</a>
+          <Link to="/signup" className="text-bluex pl-2">
+            Register
+          </Link>
         </div>
         <div className="flex flex-col h-44 justify-between mt-20 mb-20">
           <i class="fa-solid fa-magnifying-glass fa-xl"></i>

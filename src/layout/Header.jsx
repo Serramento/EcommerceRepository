@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 function Header() {
   return (
@@ -104,7 +104,9 @@ function Header() {
               <i class="fa-regular fa-user "></i>
               <a className="text-bluex font-bold pl-1">Login</a>
               <span className="font-bold pl-1">/</span>
-              <a className="text-bluex font-bold pl-1">Register</a>
+              <Link to="/signup" className="text-bluex font-bold pl-1">
+                Register
+              </Link>
             </div>
             <i class="fa-solid fa-magnifying-glass pl-7"></i>
             <i class="fa-solid fa-cart-shopping pl-5"></i>
