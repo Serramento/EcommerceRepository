@@ -7,18 +7,17 @@ import BlogContent from "../components/BlogContent.jsx";
 import { BlogData } from "../data/BlogData.jsx";
 
 function HomePage() {
-  const css = "w-80 lg:w-40";
   return (
     <div className="font-montserrat">
       <ImageSlider slides={SliderData} />
 
       <div className="text-[#737373] flex flex-col lg:flex-row justify-evenly py-32 lg:px-24 lg:py-16 lg:scale-[0.6]">
-        <i class="fa-brands fa-hooli fa-7x "></i>
-        <i class="fa-brands fa-lyft fa-7x max-[1023px]:pt-5 lg:pl-24"></i>
-        <i class="fa-brands fa-pied-piper-hat fa-7x max-[1023px]:pt-5 lg:pl-24"></i>
-        <i class="fa-brands fa-stripe fa-7x max-[1023px]:pt-5 lg:pl-24"></i>
-        <i class="fa-brands fa-aws fa-7x max-[1023px]:pt-5 lg:pl-24"></i>
-        <i class="fa-brands fa-reddit-alien fa-7x max-[1023px]:pt-5 lg:pl-24"></i>
+        <i className="fa-brands fa-hooli fa-7x "></i>
+        <i className="fa-brands fa-lyft fa-7x max-[1023px]:pt-5 lg:pl-24"></i>
+        <i className="fa-brands fa-pied-piper-hat fa-7x max-[1023px]:pt-5 lg:pl-24"></i>
+        <i className="fa-brands fa-stripe fa-7x max-[1023px]:pt-5 lg:pl-24"></i>
+        <i className="fa-brands fa-aws fa-7x max-[1023px]:pt-5 lg:pl-24"></i>
+        <i className="fa-brands fa-reddit-alien fa-7x max-[1023px]:pt-5 lg:pl-24"></i>
       </div>
 
       <div className="py-2 flex flex-col lg:flex-row max-[1023px]:items-center lg:justify-center">
@@ -27,7 +26,7 @@ function HomePage() {
             <img
               src="https://s3-alpha-sig.figma.com/img/812e/3845/7d0cc7c0071c4e5eb3752a437fda3d0d?Expires=1711324800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=TR8fwEcp0kk4cFLX8mxSgxAb22QPpK38cv-4tq3rZHxqtwlwBkCN9bydzBFbLvAs9ZwzY3YSKXvJmHHsPD-Dc08fzraK5p4vCqZiy-e-LJI-HKp8rvuTxXKScoZ4CftbHn0NJUOAhXgukh7u2JxlWyY4E6kmwaYPh2l7cenOrqltvSKhYB1RySTHMJakZtjcVW34WNslZAi5J~bKvIyD-vNMSI0uNoIz8ZaCmmts7OErgt3D88mQWI5fyOoyfkDF47KL8fnvYYOuVz~X6mBCcPseXpuwKQIlr9MJFUnPxKe-fvF29pOWvSXN9vJkYlfIyEb8XHoW1HS4wIDYR1cIBA__"
               alt="Image3"
-              class="w-full h-full object-cover"
+              className="w-full h-full object-cover"
             />
           </div>
 
@@ -47,7 +46,7 @@ function HomePage() {
               <img
                 src="https://s3-alpha-sig.figma.com/img/4587/86e9/d5e9865170a32e0687f0a17d8581b9c8?Expires=1711324800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=R56gWRsJCUqe2H5IbwCBk9VuLffXBuqRRs7S32yUfXmwKG88JCMT6E2s6b8yINBfq-aR4C~DmJiuas8ZPirTgPhM1paGMRgK5so1HgdWab~OSMI7xNMjW3DwDCf2w9tzMsRQKd507pmTRSqG-V7g1YhTioOZeAjrWwkmedk4T8kEfqJVfBnpEAbedbBzW7ifNs6fFujjFEWFEY4KqG-QQWEEmAn8zF1LHT41JriqQkcVQTPx6jFnMC9RlO4INv75ED4UdR36IN3wWjYoWAEWdo0rsU395VmAaoYRcMmv584jYhFCdyUxFStTm2I5h~jQ4vt6Nbej7cKuSVMXpiXdbQ__"
                 alt="Image4"
-                class="max-[1023px]:pt-5 w-full h-full object-cover"
+                className="max-[1023px]:pt-5 w-full h-full object-cover"
               />
             </div>
 
@@ -96,12 +95,12 @@ function HomePage() {
         </div>
         <div className="lg:hidden">
           {ProductData.slice(0, 5).map((product) => (
-            <ProductCard product={product} css={css} />
+            <ProductCard product={product} additionalClass="lg:w-40" />
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-wrap lg:w-[57rem] lg:justify-evenly">
           {ProductData.slice(0, 10).map((product) => (
-            <ProductCard product={product} css={css} />
+            <ProductCard product={product} additionalClass="lg:w-40" />
           ))}
         </div>
         <button className="text-bluex font-bold text-sm py-4 px-12 outline outline-2 lg:mb-10 lg:mt-10">
@@ -159,14 +158,14 @@ function HomePage() {
         </div>
         <div className="flex flex-col items-center py-28 lg:flex-row lg:justify-center">
           <div>
-            <i class="fa-solid fa-book-open-reader text-bluex fa-3x"></i>
+            <i className="fa-solid fa-book-open-reader text-bluex fa-3x"></i>
             <h3 className="font-bold text-xl pt-5">Easy Wins</h3>
             <p className="text-[#737373] text-sm font-semibold w-56 pt-5">
               Get your best looking smile now!
             </p>
           </div>
           <div className="max-[1023px]:pt-20 lg:pl-16">
-            <i class="fa-solid fa-book-open text-bluex fa-3x"></i>
+            <i className="fa-solid fa-book-open text-bluex fa-3x"></i>
             <h3 className="font-bold text-xl pt-5">Concrete</h3>
             <p className="text-[#737373] text-sm font-semibold w-56 pt-5">
               Defalcate is most focused in helping you discover your most
@@ -174,7 +173,7 @@ function HomePage() {
             </p>
           </div>
           <div className="max-[1023px]:pt-20 lg:pl-16">
-            <i class="fa-solid fa-arrow-trend-up text-bluex fa-3x"></i>
+            <i className="fa-solid fa-arrow-trend-up text-bluex fa-3x"></i>
             <h3 className="font-bold text-xl pt-5">Hack Growth</h3>
             <p className="text-[#737373] text-sm font-semibold w-56 pt-5">
               Overcame any hurdle or any other problem.

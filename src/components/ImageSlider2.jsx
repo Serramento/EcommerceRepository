@@ -10,11 +10,11 @@ const ImageSlider2 = ({ slides }) => {
   const length = slides.length;
 
   const nextSlide = () => {
-    setCurrent(current === length - 1 ? 0 : current + 1);
+    setCurrent((current + 1) % length);
   };
 
   const prevSlide = () => {
-    setCurrent(current === 0 ? length - 1 : current - 1);
+    setCurrent((current - 1 + length) % length);
   };
 
   if (!Array.isArray(slides) || slides.length <= 0) {
@@ -30,21 +30,15 @@ const ImageSlider2 = ({ slides }) => {
         onClick={prevSlide}
       />
 
-      {slides.map((slide, index) => {
-        return (
-          <div key={index}>
-            {index === current && (
-              <div className="">
-                <img
-                  src={slide}
-                  alt="travel image"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            )}
-          </div>
-        );
-      })}
+      {slides.length > 0 && (
+        <div key={current}>
+          <img
+            src={slides[current]}
+            alt="travel image"
+            className="w-full h-full object-cover"
+          />
+        </div>
+      )}
 
       <FontAwesomeIcon
         icon={faChevronRight}

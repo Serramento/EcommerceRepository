@@ -5,7 +5,10 @@ const ProductCard = (props) => {
   const { id } = props.product;
   return (
     <Link to={`/productPage/${id}`}>
-      <img src={props.product.image[0]} className={props.css} />
+      <img
+        src={props.product.image[0]}
+        className={`w-80 ${props.additionalClass}`}
+      />
       <div>
         <h5 className="font-bold mt-10">Graphic Design</h5>
         <h6 className="font-bold text-sm text-[#737373] mt-3">

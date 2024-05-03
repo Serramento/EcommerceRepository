@@ -1,6 +1,18 @@
 import React from "react";
 
 function ContactPage() {
+  const ContactBlock = ({ icon, email1, email2, title, buttonText }) => (
+    <div className="bg-[#FAFAFA] text-[#252B42] w-80 h-96 flex flex-col justify-center items-center font-bold mb-10">
+      <i className={icon + " text-[#23A6F0] fa-4x mb-7"}></i>
+      <h6 className="text-sm mb-1">{email1}</h6>
+      <h6 className="text-sm">{email2}</h6>
+      <h5 className="font-extrabold mt-5">{title}</h5>
+      <button className="text-[#23A6F0] border-[#23A6F0] px-5 py-3 mt-5">
+        {buttonText}
+      </button>
+    </div>
+  );
+
   return (
     <div className="font-montserrat">
       <div className="bg-[#FAFAFA] text-[#252B42] pb-5 flex flex-col lg:flex-row lg:pl-16">
@@ -23,10 +35,10 @@ function ContactPage() {
               Fax : +451 215 215
             </h3>
             <div className="w-72 flex justify-evenly lg:justify-between lg:w-56">
-              <i class="fa-brands fa-twitter fa-2xl"></i>
-              <i class="fa-brands fa-square-facebook fa-2xl"></i>
-              <i class="fa-brands fa-instagram fa-2xl"></i>
-              <i class="fa-brands fa-linkedin fa-2xl"></i>
+              <i className="fa-brands fa-twitter fa-2xl"></i>
+              <i className="fa-brands fa-square-facebook fa-2xl"></i>
+              <i className="fa-brands fa-instagram fa-2xl"></i>
+              <i className="fa-brands fa-linkedin fa-2xl"></i>
             </div>
           </div>
         </div>
@@ -35,7 +47,7 @@ function ContactPage() {
           <img
             src="https://s3-alpha-sig.figma.com/img/0bec/d76f/b529bdb1f9ac06ee979d8665aade6757?Expires=1714348800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=B3PWjjtzZLW0~qOzRdm4Ue5lx9hmjJ85yqwtCYdCRgi7ImMCLkfSYUXYTlIX4QWRc~GPS9GqLKbcPA4ZeZkMz04ZrZHtxfQU5wEKw6GJaT~QH0Yh3xpz08cbKTu61ispmfl3fEsCElZEmOq8etm6g5BZElVffTcHWOc266hdB2wLwyXgPkn~YtoSSGei2Y08QQM9qO4GvkxfccQ4Logi5wxKHgTflqYsv4bGrxpZwiB2r5b-5myApzgacRmTY8kh8o821lUSASrnaMPuMUnoDYAUeEl9Wc01J3bTmsQeK8HUnEzegPBnbv8Lt8p4NNLP4s4S-lDmLdIWpP2xIZWTPQ__"
             alt="ContactImage"
-            class="w-full h-full object-cover absolute"
+            className="w-full h-full object-cover absolute"
           />
           <div className="lg:ml-32">
             <svg height="50" width="50" className="ml-10">
@@ -58,17 +70,15 @@ function ContactPage() {
           We help small businesses with big ideas
         </h2>
         <div className="lg:flex lg:justify-center lg:items-center lg:my-20">
-          <div className="bg-[#FAFAFA] text-[#252B42] w-80 h-96 flex flex-col justify-center items-center font-bold mb-10">
-            <i class="fa-solid fa-phone text-[#23A6F0] fa-4x mb-7"></i>
-            <h6 className="text-sm mb-1">georgia.young@example.com</h6>
-            <h6 className="text-sm">georgia.young@ple.com</h6>
-            <h5 className="font-extrabold mt-5">Get Support</h5>
-            <button className="text-[#23A6F0] border-[#23A6F0] px-5 py-3 mt-5">
-              Submit Request
-            </button>
-          </div>
+          <ContactBlock
+            icon="fa-solid fa-phone"
+            email1="georgia.young@example.com"
+            email2="georgia.young@ple.com"
+            title="Get Support"
+            buttonText="Submit Request"
+          />
           <div className="bg-[#252B42] text-[#FFFFFF] w-80 h-96 flex flex-col justify-center items-center font-bold mb-10">
-            <i class="fa-solid fa-location-dot text-[#23A6F0] fa-4x mb-7"></i>
+            <i className="fa-solid fa-location-dot text-[#23A6F0] fa-4x mb-7"></i>
             <h6 className="text-sm mb-1">georgia.young@example.com</h6>
             <h6 className="text-sm">georgia.young@ple.com</h6>
             <h5 className="font-extrabold mt-5">Get Support</h5>
@@ -76,19 +86,17 @@ function ContactPage() {
               Submit Request
             </button>
           </div>
-          <div className="bg-[#FAFAFA] text-[#252B42] w-80 h-96 flex flex-col justify-center items-center font-bold mb-10">
-            <i class="fa-regular fa-paper-plane text-[#23A6F0] fa-4x mb-7"></i>
-            <h6 className="text-sm mb-1">georgia.young@example.com</h6>
-            <h6 className="text-sm">georgia.young@ple.com</h6>
-            <h5 className="font-extrabold mt-5">Get Support</h5>
-            <button className="text-[#23A6F0] border-[#23A6F0] px-5 py-3 mt-5">
-              Submit Request
-            </button>
-          </div>
+          <ContactBlock
+            icon="fa-regular fa-paper-plane"
+            email1="georgia.young@example.com"
+            email2="georgia.young@ple.com"
+            title="Get Support"
+            buttonText="Submit Request"
+          />
         </div>
       </div>
       <div className="text-[#252B42] bg-[#FAFAFA] mb-10 h-[30rem] flex flex-col justify-center items-center font-bold">
-        <i class="fa-solid fa-arrow-turn-down fa-4x text-[#23A6F0] mb-5"></i>
+        <i className="fa-solid fa-arrow-turn-down fa-4x text-[#23A6F0] mb-5"></i>
         <h5 className="text-sm mb-10">WE Can't WAIT TO MEET YOU</h5>
         <h1 className="text-5xl mb-8">Let’s Talk</h1>
         <button className="bg-[#23A6F0] text-[#FFFFFF] px-5 py-3">

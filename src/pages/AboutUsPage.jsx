@@ -22,7 +22,7 @@ function AboutUsPage() {
           <img
             src="https://s3-alpha-sig.figma.com/img/7466/f015/45eb1f33b39fa1e1f6b0ddf5bb703345?Expires=1715558400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=BssUUP6qPrE2PI0ox9y~Ch3cid5eWM9xGlsLKwkMbb3R-TI0fsasVwNBd5JX0Tgm~KdvSCZnvs~HGqWntS~mQ~qJyWdiv1PClJmrNPEvNInnncQNaOK-3GTCgsAVovVH37P3uaBjI2c-vvla9U4hJykSz~0kp-AWuThKprhARFvON1zUDDO1L5HLqpftg8ZDfif8XYK92OD6rsBugCZfLixYg8B7IVgAGvcfSfolN7g6IhczZNnSe~neEoAUz2nG75l-j6c~ZSBBqrY8~GVF5vjUMLiZI~AIqEcPF-6FRG7MP8Q7TFYQVKHTuedTSNbsoKZNToa4L9k0ydGc4~tjOA__"
             alt="Image"
-            class="w-full h-full object-cover absolute"
+            className="w-full h-full object-cover absolute"
           />
           <div className="lg:ml-32">
             <svg height="60" width="60" className="ml-10">
@@ -80,12 +80,12 @@ function AboutUsPage() {
           <img
             src="https://s3-alpha-sig.figma.com/img/bf53/61f3/08dd0c5a04f10121bc68f6cb9ff0d63d?Expires=1715558400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=StJyfuyzbEdiEg0CRxmxqWQjpWU2DDwQABBKxXs8f0S3sEvJLsna5WjaO8khAz3yXCt4rWbSMnDbEpEOzifyMvBLiWcync6S3gwfTD3aMGlPmvgWdNOXbd8zH1ep062P1~UvZb-POwNzy4T9hbfMJdywKMAm2kJTslE~VzBmv642ydR2eEfM1hanWiVwegi3tfaQ1YtvJ1d8WyxdC30PTI0uf5SckjZShB46QrnxqXX2WSJs-2ujto8bncaCntXHjLMRPGkfGIl~wtyVqKCY0h6~grjlogL4hMx4YZqI~o0~9te0GSNelgq8DyAz7NzY0tbrjf8hPKC-Bes4fnBC0Q__"
             alt="Image"
-            class="w-full h-full object-cover rounded-xl"
+            className="w-full h-full object-cover rounded-xl"
           />
         </div>
         <div className="w-80 h-80 bg-[#383838] opacity-50 rounded-xl lg:w-[60rem] lg:h-[30rem]"></div>
         <button className="text-[#FFFFFF] bg-[#23A6F0] absolute w-16 h-16 rounded-full">
-          <i class="fa-solid fa-play"></i>
+          <i className="fa-solid fa-play"></i>
         </button>
       </div>
 
@@ -103,15 +103,15 @@ function AboutUsPage() {
               <img
                 src="https://media.licdn.com/dms/image/D4D03AQHHikjSDQq9xw/profile-displayphoto-shrink_800_800/0/1708951317641?e=1720051200&v=beta&t=rerI4IakEFrJmiHVx6AWgjZsdUaNYbujGVbeMHTOWzA"
                 alt="Image"
-                class="w-full h-full object-cover object-top"
+                className="w-full h-full object-cover object-top"
               />
             </div>
             <h5 className="mt-8">Erhan Fırat</h5>
             <h6 className="text-sm text-[#737373] mt-2">Project Owner</h6>
             <div className="w-32 mx-auto flex justify-between mt-8 mb-20">
-              <i class="fa-brands fa-facebook text-[#335BF5] fa-2xl"></i>
-              <i class="fa-brands fa-instagram text-[#E51F5A] fa-2xl"></i>
-              <i class="fa-brands fa-twitter text-[#21A6DF] fa-2xl"></i>
+              <i className="fa-brands fa-facebook text-[#335BF5] fa-2xl"></i>
+              <i className="fa-brands fa-instagram text-[#E51F5A] fa-2xl"></i>
+              <i className="fa-brands fa-twitter text-[#21A6DF] fa-2xl"></i>
             </div>
           </div>
 
@@ -120,15 +120,15 @@ function AboutUsPage() {
               <img
                 src="https://media.licdn.com/dms/image/C4D03AQE8uHbxXDXfmw/profile-displayphoto-shrink_800_800/0/1635783306921?e=1720051200&v=beta&t=w060HP238w-3WSIwE7hT4n-zKVbltmFpGClbX0-DNLM"
                 alt="Image"
-                class="w-full h-full object-cover object-top"
+                className="w-full h-full object-cover object-top"
               />
             </div>
             <h5 className="mt-8">Gökhan Özdemir</h5>
             <h6 className="text-sm text-[#737373] mt-2">Scrum Master</h6>
             <div className="w-32 mx-auto flex justify-between mt-8 mb-20">
-              <i class="fa-brands fa-facebook text-[#335BF5] fa-2xl"></i>
-              <i class="fa-brands fa-instagram text-[#E51F5A] fa-2xl"></i>
-              <i class="fa-brands fa-twitter text-[#21A6DF] fa-2xl"></i>
+              <i className="fa-brands fa-facebook text-[#335BF5] fa-2xl"></i>
+              <i className="fa-brands fa-instagram text-[#E51F5A] fa-2xl"></i>
+              <i className="fa-brands fa-twitter text-[#21A6DF] fa-2xl"></i>
             </div>
           </div>
 
@@ -137,7 +137,7 @@ function AboutUsPage() {
               <img
                 src="https://media.licdn.com/dms/image/D5603AQFzcOw99FEhQg/profile-displayphoto-shrink_800_800/0/1642683767630?e=1720051200&v=beta&t=O-DqOTIZrFmNDQIjE_La9TRSgaFX9kMBAnrBY6nXljQ"
                 alt="Image"
-                class="w-full h-full object-cover object-top"
+                className="w-full h-full object-cover object-top"
               />
             </div>
             <h5 className="mt-8">Serra Sarıhasan</h5>
@@ -145,9 +145,9 @@ function AboutUsPage() {
               Full Stack Developer
             </h6>
             <div className="w-32 mx-auto flex justify-between mt-8 mb-20">
-              <i class="fa-brands fa-facebook text-[#335BF5] fa-2xl"></i>
-              <i class="fa-brands fa-instagram text-[#E51F5A] fa-2xl"></i>
-              <i class="fa-brands fa-twitter text-[#21A6DF] fa-2xl"></i>
+              <i className="fa-brands fa-facebook text-[#335BF5] fa-2xl"></i>
+              <i className="fa-brands fa-instagram text-[#E51F5A] fa-2xl"></i>
+              <i className="fa-brands fa-twitter text-[#21A6DF] fa-2xl"></i>
             </div>
           </div>
         </div>
@@ -162,12 +162,12 @@ function AboutUsPage() {
           of Classical physics: Newtonian mechanics{" "}
         </p>
         <div className="text-[#737373] flex flex-col lg:flex-row justify-evenly pb-32 lg:pb-24 lg:scale-[0.8]">
-          <i class="fa-brands fa-hooli fa-7x "></i>
-          <i class="fa-brands fa-lyft fa-7x max-[1023px]:pt-5 lg:pl-24"></i>
-          <i class="fa-brands fa-pied-piper-hat fa-7x max-[1023px]:pt-5 lg:pl-24"></i>
-          <i class="fa-brands fa-stripe fa-7x max-[1023px]:pt-5 lg:pl-24"></i>
-          <i class="fa-brands fa-aws fa-7x max-[1023px]:pt-5 lg:pl-24"></i>
-          <i class="fa-brands fa-reddit-alien fa-7x max-[1023px]:pt-5 lg:pl-24"></i>
+          <i className="fa-brands fa-hooli fa-7x "></i>
+          <i className="fa-brands fa-lyft fa-7x max-[1023px]:pt-5 lg:pl-24"></i>
+          <i className="fa-brands fa-pied-piper-hat fa-7x max-[1023px]:pt-5 lg:pl-24"></i>
+          <i className="fa-brands fa-stripe fa-7x max-[1023px]:pt-5 lg:pl-24"></i>
+          <i className="fa-brands fa-aws fa-7x max-[1023px]:pt-5 lg:pl-24"></i>
+          <i className="fa-brands fa-reddit-alien fa-7x max-[1023px]:pt-5 lg:pl-24"></i>
         </div>
       </div>
 
@@ -187,7 +187,7 @@ function AboutUsPage() {
           <img
             src="https://s3-alpha-sig.figma.com/img/a014/4955/2eeaef7ecedd3954687aefbdb6236bb6?Expires=1715558400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=QweUqTU-qn4jry5Bn7aG460r8bqtuq3qh0K9mUX86DOBLHRfBdJ25HHOTnqd6TUuoss~5fkb5SMLH8IGJhv~PeH2d4wXtQAqG3IKwPD-dk5CRsLr1weVwCWekBPaL2UwVn~yC6Zs2CL8HYDuotVzlvytKI-HsMe7kzI6BBSUnBVQYiUCJdH7cdDYWJAvk18FCB8-0EErZKiDcRWi8nmfgiph-sGgLabMIqSPTFAkVhBFqogrGStLjs58V2FDTuD7osOWMm9YBHgYTx4ucahqEkAX9C88MG8nsAtmBxyV0WHm5wzlqmd~ZfMXV2lOMRg8l1YW9Sdc7f4vZytsjPPYSA__"
             alt="Image"
-            class="w-full h-full object-cover"
+            className="w-full h-full object-cover"
           />
         </div>
       </div>
