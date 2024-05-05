@@ -11,7 +11,7 @@ function HomePage() {
     <div className="font-montserrat">
       <ImageSlider slides={SliderData} />
 
-      <div className="text-[#737373] flex flex-col lg:flex-row justify-evenly py-32 lg:px-24 lg:py-16 lg:scale-[0.6]">
+      <div className="text-[#737373] flex flex-col lg:flex-row justify-evenly py-32 lg:pr-24 lg:py-16 lg:scale-[0.6]">
         <i className="fa-brands fa-hooli fa-7x "></i>
         <i className="fa-brands fa-lyft fa-7x max-[1023px]:pt-5 lg:pl-24"></i>
         <i className="fa-brands fa-pied-piper-hat fa-7x max-[1023px]:pt-5 lg:pl-24"></i>
