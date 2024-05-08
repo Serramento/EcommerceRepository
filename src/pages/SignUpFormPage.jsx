@@ -17,6 +17,7 @@ function SignUpFormPage() {
 
   const {
     register,
+    getValues,
     handleSubmit,
     formState: { errors, isValid },
   } = useForm({
@@ -32,7 +33,7 @@ function SignUpFormPage() {
         email: "",
         password: "",
         roleId: nanoid(5),
-        store: { name: "", phone: "", tax_no: "", bank_account: "" },
+        store: { storeName: "", storePhone: "", tax_no: "", bank_account: "" },
       },
     },
     mode: "onChange",
@@ -41,10 +42,6 @@ function SignUpFormPage() {
   const handleCustomer = (event) => {
     const { value } = event.target;
     value === "store" ? setCustomer(false) : setCustomer(true);
-  };
-
-  const validateName = (value) => {
-    return value.trim().length >= 3 || "İsim en az 3 karakter olmalıdır.";
   };
 
   return (
@@ -59,9 +56,17 @@ function SignUpFormPage() {
             placeholder="Full Name *"
             id="name"
             type="text"
-            {...register("name", { validate: validateName })}
+            {...register("name", {
+              required: true,
+              minLength: {
+                value: 3,
+                message: "Name must be at least 3 characters",
+              },
+            })}
           />
-          <p>{errors.name?.message}</p>
+          <p className="text-[#737373] text-sm text-left pl-2">
+            {errors.name?.message}
+          </p>
         </div>
         <div>
           <input
@@ -69,9 +74,17 @@ function SignUpFormPage() {
             placeholder="E-mail *"
             id="email"
             type="email"
-            {...register("email", { validate: validateName })}
+            {...register("email", {
+              required: true,
+              pattern: {
+                value: /\S+@\S+\.\S+/,
+                message: "Entered value does not match email format",
+              },
+            })}
           />
-          <p>{errors.email?.message}</p>
+          <p className="text-[#737373] text-sm text-left pl-2">
+            {errors.email?.message}
+          </p>
         </div>
         <div>
           <input
@@ -79,19 +92,37 @@ function SignUpFormPage() {
             placeholder="Password *"
             id="password"
             type="password"
-            {...register("password", { validate: validateName })}
+            {...register("password", {
+              required: true,
+              pattern: {
+                value:
+                  /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/,
+                message:
+                  "Password must be at least 8 characters and contain a number, a lower case, an upper case, a special character",
+              },
+            })}
           />
-          <p>{errors.password?.message}</p>
+          <p className="text-[#737373] text-sm text-left pl-2 w-80 lg:w-96">
+            {errors.password?.message}
+          </p>
         </div>
         <div>
           <input
             className="w-80 lg:w-96 h-16 pl-5 bg-[#F9F9F9] border-[2px] border-[#E6E6E6] rounded-md placeholder-[#737373] mb-8"
             placeholder="Enter Password Again *"
             id="passwordValidation"
-            type="text"
-            {...register("password", { validate: validateName })}
+            type="password"
+            {...register("passwordValidation", {
+              required: true,
+              validate: (value) => {
+                const password = getValues("password");
+                return value === password || "The passwords do not match";
+              },
+            })}
           />
-          <p>{errors.passwordValidation?.message}</p>
+          <p className="text-[#737373] text-sm text-left pl-2">
+            {errors.passwordValidation?.message}
+          </p>
         </div>
 
         <div>
@@ -116,39 +147,77 @@ function SignUpFormPage() {
                 placeholder="Store Name"
                 id="storeName"
                 type="text"
-                {...register("storeName", { validate: validateName })}
+                {...register("storeName", {
+                  required: true,
+                  minLength: {
+                    value: 3,
+                    message: "Store name must be at least 3 characters",
+                  },
+                })}
               />
-              <p>{errors.name?.message}</p>
+              <p className="text-[#737373] text-sm text-left pl-2">
+                {errors.storeName?.message}
+              </p>
             </div>
-            <div>
-              <input
-                className="w-80 lg:w-96 h-16 pl-5 bg-[#F9F9F9] border-[2px] border-[#E6E6E6] rounded-md placeholder-[#737373] mb-8"
-                placeholder="Store Phone"
-                id="phone"
-                type="text"
-                {...register("phone", { validate: validateName })}
-              />
-              <p>{errors.name?.message}</p>
+            <div className="flex flex-row">
+              <div className="w-10 lg:w-16 h-16 bg-[#F9F9F9] border-y-[2px] flex justify-center items-center border-l-[2px] border-[#E6E6E6] rounded-l-md text-[#737373] mb-8">
+                +90
+              </div>
+              <div>
+                <input
+                  className="w-70 lg:w-80 h-16 pl-5 bg-[#F9F9F9] border-[2px] border-y-[2px] border-r-[2px] border-[#E6E6E6] rounded-r-md placeholder-[#737373] mb-8"
+                  placeholder="Store Phone"
+                  id="phone"
+                  type="digit"
+                  {...register("storePhone", {
+                    required: true,
+                    pattern: {
+                      value:
+                        /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/i,
+                      message: "Please enter a valid number",
+                    },
+                  })}
+                />
+                <p className="text-[#737373] text-sm text-left pl-2">
+                  {errors.storePhone?.message}
+                </p>
+              </div>
             </div>
             <div>
               <input
                 className="w-80 lg:w-96 h-16 pl-5 bg-[#F9F9F9] border-[2px] border-[#E6E6E6] rounded-md placeholder-[#737373] mb-8"
                 placeholder="Tax Id"
                 id="tax_no"
-                type="text"
-                {...register("tax_no", { validate: validateName })}
+                type="digit"
+                {...register("tax_no", {
+                  required: true,
+                  minLength: {
+                    value: 3,
+                    message: "Tax number must be at least 3 characters",
+                  },
+                })}
               />
-              <p>{errors.name?.message}</p>
+              <p className="text-[#737373] text-sm text-left pl-2">
+                {errors.tax_no?.message}
+              </p>
             </div>
             <div>
               <input
                 className="w-80 lg:w-96 h-16 pl-5 bg-[#F9F9F9] border-[2px] border-[#E6E6E6] rounded-md placeholder-[#737373] mb-8"
                 placeholder="Bank Account"
                 id="bank_account"
-                type="text"
-                {...register("bank_account", { validate: validateName })}
+                type="digit"
+                {...register("bank_account", {
+                  required: true,
+                  min: {
+                    value: 26,
+                    message: "Please enter a valid bank account number",
+                  },
+                })}
               />
-              <p>{errors.name?.message}</p>
+              <p className="text-[#737373] text-sm text-left pl-2">
+                {errors.bank_account?.message}
+              </p>
             </div>
           </div>
         )}
