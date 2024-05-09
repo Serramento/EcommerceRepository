@@ -1,19 +1,23 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import { nanoid } from "nanoid";
 
 function SignUpFormPage() {
+  const [formDatas, setFormDatas] = useState([]);
   const [customer, setCustomer] = useState(true);
 
-  const instance = axios.create({
+  const axiosInstance = axios.create({
     baseURL: " https://workintech-fe-ecommerce.onrender.com",
-    timeout: 1000,
-    headers: {
-      MyCustomHeader1: "1",
-      MyCustomHeader2: "2",
-    },
   });
+
+  axiosInstance
+    .get("/roles/${roleId}")
+    .then((response) => {
+      console.log(response.data);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 
   const {
     register,
@@ -26,18 +30,23 @@ function SignUpFormPage() {
         name: "",
         email: "",
         password: "",
-        roleId: nanoid(5),
+        roleId: "",
       },
       store: {
         name: "",
         email: "",
         password: "",
-        roleId: nanoid(5),
+        roleId: "",
         store: { storeName: "", storePhone: "", tax_no: "", bank_account: "" },
       },
     },
     mode: "onChange",
   });
+
+  function submitHandler(newFormData, event) {
+    setFormDatas([newFormData, ...formDatas]);
+    event.target.reset();
+  }
 
   const handleCustomer = (event) => {
     const { value } = event.target;
@@ -45,7 +54,10 @@ function SignUpFormPage() {
   };
 
   return (
-    <form className="font-montserrat text-xl w-[26.5rem] lg:w-[80rem]">
+    <form
+      onSubmit={handleSubmit(submitHandler)}
+      className="font-montserrat text-xl w-[26.5rem] lg:w-[80rem]"
+    >
       <h2 className="text-[#252B42] text-4xl font-bold my-10 w-96 text-left max-[1023px]:pl-16 leading-snug lg:w-[40rem] lg:mx-auto lg:text-center">
         Create Your Account
       </h2>
@@ -191,9 +203,9 @@ function SignUpFormPage() {
                 type="digit"
                 {...register("tax_no", {
                   required: true,
-                  minLength: {
-                    value: 3,
-                    message: "Tax number must be at least 3 characters",
+                  pattern: {
+                    value: /^T.*\d{4}\V.*\d{6}$/i,
+                    message: "Please enter a valid tax account number",
                   },
                 })}
               />
@@ -209,8 +221,8 @@ function SignUpFormPage() {
                 type="digit"
                 {...register("bank_account", {
                   required: true,
-                  min: {
-                    value: 26,
+                  pattern: {
+                    value: /^TR.*\d{26}$/i,
                     message: "Please enter a valid bank account number",
                   },
                 })}
