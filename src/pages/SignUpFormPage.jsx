@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useHistory } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 
 function SignUpFormPage() {
   const [formDatas, setFormDatas] = useState([]);
   const [customer, setCustomer] = useState(true);
+
+  /*const history = useHistory();*/
 
   const axiosInstance = axios.create({
     baseURL: " https://workintech-fe-ecommerce.onrender.com",
@@ -23,7 +25,7 @@ function SignUpFormPage() {
     register,
     getValues,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors, isValid, isSubmitting },
   } = useForm({
     defaultValues: {
       customerAdmin: {
@@ -43,9 +45,17 @@ function SignUpFormPage() {
     mode: "onChange",
   });
 
-  function submitHandler(newFormData, event) {
-    setFormDatas([newFormData, ...formDatas]);
-    event.target.reset();
+  function submitHandler(data, event) {
+    event.preventDefault();
+    axiosInstance
+      .post("/signup", data)
+      .then((res) => {
+        setFormDatas([data, ...formDatas]);
+        history.goBack();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   const handleCustomer = (event) => {
@@ -239,6 +249,7 @@ function SignUpFormPage() {
         type="register"
         disabled={!isValid}
       >
+        {isSubmitting && <i class="fa fa-spinner fa-spin mr-3"></i>}
         Register
       </button>
     </form>
