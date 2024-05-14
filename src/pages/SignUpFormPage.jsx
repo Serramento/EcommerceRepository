@@ -1,30 +1,22 @@
-import React, { useState, useHistory } from "react";
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 
 function SignUpFormPage() {
-  const [formDatas, setFormDatas] = useState([]);
-  const [customer, setCustomer] = useState(true);
+  const [customer, setCustomer] = useState("customer");
 
-  /*const history = useHistory();*/
+  const history = useHistory();
 
   const axiosInstance = axios.create({
     baseURL: " https://workintech-fe-ecommerce.onrender.com",
   });
 
-  axiosInstance
-    .get("/roles/${roleId}")
-    .then((response) => {
-      console.log(response.data);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-
   const {
     register,
     getValues,
     handleSubmit,
+    setValue,
     formState: { errors, isValid, isSubmitting },
   } = useForm({
     defaultValues: {
@@ -45,22 +37,41 @@ function SignUpFormPage() {
     mode: "onChange",
   });
 
-  function submitHandler(data, event) {
+  useEffect(() => {
+    axiosInstance
+      .get(`/roles`)
+      .then((response) => {
+        const array = response.data;
+        for (let i = 0; i <= array.length; i++) {
+          if (array[i].code === customer) {
+            setValue({ roleId: array[i].id });
+          }
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  const submitHandler = (data, event) => {
     event.preventDefault();
     axiosInstance
       .post("/signup", data)
-      .then((res) => {
-        setFormDatas([data, ...formDatas]);
-        history.goBack();
+      .then((response) => {
+        console.log(response.data);
+        event.target.reset();
+        messageSubmit(
+          "You need to click link in email to activate your account!"
+        );
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        console.error(error.data);
       });
-  }
+  };
 
   const handleCustomer = (event) => {
     const { value } = event.target;
-    value === "store" ? setCustomer(false) : setCustomer(true);
+    setCustomer(value);
   };
 
   return (
@@ -161,7 +172,7 @@ function SignUpFormPage() {
           </select>
         </div>
 
-        {customer === false && (
+        {customer === "store" && (
           <div>
             <div>
               <input
@@ -248,6 +259,7 @@ function SignUpFormPage() {
         className="w-80 lg:w-96 h-16 bg-[#23A6F0] rounded-md text-[#FFFFFF] mb-20"
         type="register"
         disabled={!isValid}
+        onClick={() => history.goBack(-1)}
       >
         {isSubmitting && <i class="fa fa-spinner fa-spin mr-3"></i>}
         Register
