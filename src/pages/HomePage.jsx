@@ -65,7 +65,7 @@ function HomePage() {
               <img
                 src="https://s3-alpha-sig.figma.com/img/81b4/0a6b/ad298edf330ec5747ae93edc6118ce4a?Expires=1711324800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=XRuxMoJZk5nzO8wU1zPqjCt8ZmpLL50fRbuoIgqr3oNxugUWOuyAliTYpNbpL1E9r6lpO8qom9~ddFvd4BmIPbJPheBmiF6eOipfdT52VUGMYqmhko6c0-tBvbq-~hU6nzZrsLYgPO8iMHxUpAn92sji5hAePLHp1IRrPYSXzWUNJaItGA6Hf6efnUxoLHSF8JBUgOB7tr-GhJXEJaiibqLM-Dvmof1FkDAJncS5Fis3J10W8BNwZRdRWxEqDQdSkQwTg2bR-1Zft8xwc3fTaDIbNLrv87qvG1mf5hY-TyI85NHr-04YUVGgKLShLP5Pa045IRE3TbkfxFkpbl~2qw__"
                 alt="Image5"
-                class="pt-5 w-full h-full object-cover"
+                className="pt-5 w-full h-full object-cover"
               />
             </div>
 

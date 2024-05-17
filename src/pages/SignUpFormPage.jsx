@@ -9,7 +9,7 @@ function SignUpFormPage() {
   const history = useHistory();
 
   const axiosInstance = axios.create({
-    baseURL: " https://workintech-fe-ecommerce.onrender.com",
+    baseURL: "https://workintech-fe-ecommerce.onrender.com",
   });
 
   const {
@@ -17,6 +17,7 @@ function SignUpFormPage() {
     getValues,
     handleSubmit,
     setValue,
+    reset,
     formState: { errors, isValid, isSubmitting },
   } = useForm({
     defaultValues: {
@@ -39,30 +40,33 @@ function SignUpFormPage() {
 
   useEffect(() => {
     axiosInstance
-      .get(`/roles`)
+      .get("/roles")
       .then((response) => {
         const array = response.data;
-        for (let i = 0; i <= array.length; i++) {
+        for (let i = 0; i < array.length; i++) {
           if (array[i].code === customer) {
-            setValue({ roleId: array[i].id });
+            setValue(
+              customer === "customer" ? "customerAdmin.roleId" : "store.roleId",
+              array[i].id,
+              {
+                shouldValidate: true,
+              }
+            );
+            break;
           }
         }
       })
       .catch((error) => {
-        console.error(error);
+        console.error("Error fetching roles:", error);
       });
-  }, []);
+  }, [axiosInstance, customer, setValue]);
 
-  const submitHandler = (data, event) => {
-    event.preventDefault();
+  const submitHandler = (data) => {
     axiosInstance
       .post("/signup", data)
       .then((response) => {
         console.log(response.data);
-        event.target.reset();
-        messageSubmit(
-          "You need to click link in email to activate your account!"
-        );
+        reset();
       })
       .catch((error) => {
         console.error(error.data);
@@ -89,16 +93,21 @@ function SignUpFormPage() {
             placeholder="Full Name *"
             id="name"
             type="text"
-            {...register("name", {
-              required: true,
-              minLength: {
-                value: 3,
-                message: "Name must be at least 3 characters",
-              },
-            })}
+            {...register(
+              customer === "customer" ? "customerAdmin.name" : "store.name",
+              {
+                required: true,
+                minLength: {
+                  value: 3,
+                  message: "Name must be at least 3 characters",
+                },
+              }
+            )}
           />
           <p className="text-[#737373] text-sm text-left pl-2">
-            {errors.name?.message}
+            {customer === "customer"
+              ? errors.customerAdmin?.name?.message
+              : errors.store?.name?.message}
           </p>
         </div>
         <div>
@@ -107,16 +116,21 @@ function SignUpFormPage() {
             placeholder="E-mail *"
             id="email"
             type="email"
-            {...register("email", {
-              required: true,
-              pattern: {
-                value: /\S+@\S+\.\S+/,
-                message: "Entered value does not match email format",
-              },
-            })}
+            {...register(
+              customer === "customer" ? "customerAdmin.email" : "store.email",
+              {
+                required: true,
+                pattern: {
+                  value: /\S+@\S+\.\S+/,
+                  message: "Entered value does not match email format",
+                },
+              }
+            )}
           />
           <p className="text-[#737373] text-sm text-left pl-2">
-            {errors.email?.message}
+            {customer === "customer"
+              ? errors.customerAdmin?.email?.message
+              : errors.store?.email?.message}
           </p>
         </div>
         <div>
@@ -125,18 +139,25 @@ function SignUpFormPage() {
             placeholder="Password *"
             id="password"
             type="password"
-            {...register("password", {
-              required: true,
-              pattern: {
-                value:
-                  /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/,
-                message:
-                  "Password must be at least 8 characters and contain a number, a lower case, an upper case, a special character",
-              },
-            })}
+            {...register(
+              customer === "customer"
+                ? "customerAdmin.password"
+                : "store.password",
+              {
+                required: true,
+                pattern: {
+                  value:
+                    /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/,
+                  message:
+                    "Password must be at least 8 characters and contain a number, a lower case, an upper case, a special character",
+                },
+              }
+            )}
           />
           <p className="text-[#737373] text-sm text-left pl-2 w-80 lg:w-96">
-            {errors.password?.message}
+            {customer === "customer"
+              ? errors.customerAdmin?.password?.message
+              : errors.store?.password?.message}
           </p>
         </div>
         <div>
@@ -148,7 +169,11 @@ function SignUpFormPage() {
             {...register("passwordValidation", {
               required: true,
               validate: (value) => {
-                const password = getValues("password");
+                const password = getValues(
+                  customer === "customer"
+                    ? "customerAdmin.password"
+                    : "store.password"
+                );
                 return value === password || "The passwords do not match";
               },
             })}
@@ -160,7 +185,7 @@ function SignUpFormPage() {
 
         <div>
           <select
-            onChange={handleCustomer}
+            onChange={() => handleCustomer()}
             className="w-80 lg:w-96 h-16 pl-5 bg-[#F9F9F9] border-[2px] border-[#E6E6E6] rounded-md text-[#737373] mb-8"
           >
             <option value="customer" className="bg-[#F9F9F9]">
@@ -180,7 +205,7 @@ function SignUpFormPage() {
                 placeholder="Store Name"
                 id="storeName"
                 type="text"
-                {...register("storeName", {
+                {...register("store.store.storeName", {
                   required: true,
                   minLength: {
                     value: 3,
@@ -189,11 +214,11 @@ function SignUpFormPage() {
                 })}
               />
               <p className="text-[#737373] text-sm text-left pl-2">
-                {errors.storeName?.message}
+                {errors.store?.store?.storeName?.message}
               </p>
             </div>
-            <div className="flex flex-row">
-              <div className="w-10 lg:w-16 h-16 bg-[#F9F9F9] border-y-[2px] flex justify-center items-center border-l-[2px] border-[#E6E6E6] rounded-l-md text-[#737373] mb-8">
+            <div className="flex flex-row max-[1023px]:ml-12">
+              <div className="w-16 lg:w-16 h-16 bg-[#F9F9F9] border-y-[2px] flex justify-center items-center border-l-[2px] border-[#E6E6E6] rounded-l-md text-[#737373] mb-8">
                 +90
               </div>
               <div>
@@ -202,7 +227,7 @@ function SignUpFormPage() {
                   placeholder="Store Phone"
                   id="phone"
                   type="digit"
-                  {...register("storePhone", {
+                  {...register("store.store.storePhone", {
                     required: true,
                     pattern: {
                       value:
@@ -212,7 +237,7 @@ function SignUpFormPage() {
                   })}
                 />
                 <p className="text-[#737373] text-sm text-left pl-2">
-                  {errors.storePhone?.message}
+                  {errors.store?.store?.storePhone?.message}
                 </p>
               </div>
             </div>
@@ -222,7 +247,7 @@ function SignUpFormPage() {
                 placeholder="Tax Id"
                 id="tax_no"
                 type="digit"
-                {...register("tax_no", {
+                {...register("store.store.tax_no", {
                   required: true,
                   pattern: {
                     value: /^T.*\d{4}\V.*\d{6}$/i,
@@ -231,7 +256,7 @@ function SignUpFormPage() {
                 })}
               />
               <p className="text-[#737373] text-sm text-left pl-2">
-                {errors.tax_no?.message}
+                {errors.store?.store?.tax_no?.message}
               </p>
             </div>
             <div>
@@ -240,7 +265,7 @@ function SignUpFormPage() {
                 placeholder="Bank Account"
                 id="bank_account"
                 type="digit"
-                {...register("bank_account", {
+                {...register("store.store.bank_account", {
                   required: true,
                   pattern: {
                     value: /^TR.*\d{26}$/i,
@@ -249,7 +274,7 @@ function SignUpFormPage() {
                 })}
               />
               <p className="text-[#737373] text-sm text-left pl-2">
-                {errors.bank_account?.message}
+                {errors.store?.store?.bank_account?.message}
               </p>
             </div>
           </div>
@@ -259,9 +284,9 @@ function SignUpFormPage() {
         className="w-80 lg:w-96 h-16 bg-[#23A6F0] rounded-md text-[#FFFFFF] mb-20"
         type="register"
         disabled={!isValid}
-        onClick={() => history.goBack(-1)}
+        onClick={() => history.goBack()}
       >
-        {isSubmitting && <i class="fa fa-spinner fa-spin mr-3"></i>}
+        {isSubmitting && <i className="fa fa-spinner fa-spin mr-3"></i>}
         Register
       </button>
     </form>
