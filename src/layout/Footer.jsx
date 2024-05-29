@@ -16,7 +16,7 @@ function Footer() {
       </div>
 
       <div className="flex flex-col lg:flex-row lg:mt-5 lg:justify-center lg:w-[75rem]">
-        <div className="text-left max-[1023px]:pl-10 max-[1023px]:pt-20 lg:pt-10">
+        <div className="text-left max-[639px]:pl-10 max-[639px]:pt-20 lg:pt-10">
           <h3 className="font-bold text-lg text-[#252B42] lg:text-base">
             Company Info
           </h3>
@@ -91,7 +91,7 @@ function Footer() {
         </div>
       </div>
 
-      <div className="bg-[#FAFAFA] font-bold pt-10 pb-10 flex max-[1023px]:justify-center lg:pl-16">
+      <div className="bg-[#FAFAFA] font-bold pt-10 pb-10 flex max-[639px]:justify-center lg:pl-16">
         <h3 className="text-[#737373] w-64 lg:w-[30rem] ">
           Made With Love By Finland All Rights Reserved
         </h3>

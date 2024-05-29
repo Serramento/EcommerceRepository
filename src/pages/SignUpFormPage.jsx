@@ -81,9 +81,9 @@ function SignUpFormPage() {
   return (
     <form
       onSubmit={handleSubmit(submitHandler)}
-      className="font-montserrat text-xl w-[26.5rem] lg:w-[80rem]"
+      className="font-montserrat flex flex-col text-xl w-[26.5rem] lg:w-[80rem]"
     >
-      <h2 className="text-[#252B42] text-4xl font-bold my-10 w-96 text-left max-[1023px]:pl-16 leading-snug lg:w-[40rem] lg:mx-auto lg:text-center">
+      <h2 className="text-[#252B42] text-4xl font-bold my-10 w-96 text-left max-[639px]:pl-16 leading-snug lg:w-[40rem] lg:mx-auto lg:text-center">
         Create Your Account
       </h2>
       <div className="lg:w-[55rem] lg:flex lg:flex-wrap lg:justify-evenly lg:mx-auto">
@@ -185,7 +185,7 @@ function SignUpFormPage() {
 
         <div>
           <select
-            onChange={() => handleCustomer()}
+            onChange={handleCustomer}
             className="w-80 lg:w-96 h-16 pl-5 bg-[#F9F9F9] border-[2px] border-[#E6E6E6] rounded-md text-[#737373] mb-8"
           >
             <option value="customer" className="bg-[#F9F9F9]">
@@ -217,7 +217,7 @@ function SignUpFormPage() {
                 {errors.store?.store?.storeName?.message}
               </p>
             </div>
-            <div className="flex flex-row max-[1023px]:ml-12">
+            <div className="flex flex-row max-[639px]:ml-12">
               <div className="w-16 lg:w-16 h-16 bg-[#F9F9F9] border-y-[2px] flex justify-center items-center border-l-[2px] border-[#E6E6E6] rounded-l-md text-[#737373] mb-8">
                 +90
               </div>
@@ -281,7 +281,7 @@ function SignUpFormPage() {
         )}
       </div>
       <button
-        className="w-80 lg:w-96 h-16 bg-[#23A6F0] rounded-md text-[#FFFFFF] mb-20"
+        className="w-80 mx-auto lg:w-96 h-16 bg-[#23A6F0] rounded-md text-[#FFFFFF] mb-20"
         type="register"
         disabled={!isValid}
         onClick={() => history.goBack()}

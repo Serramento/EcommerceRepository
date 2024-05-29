@@ -4,7 +4,7 @@ import { ClothsCardData } from "../data/ClothsCardData";
 
 function TeamPage() {
   return (
-    <div className="font-montserrat">
+    <div className="font-montserrat flex flex-col">
       <div className="py-20 px-10 font-bold bg-[#FAFAFA]">
         <h5 className="text-[#737373]">WHAT WE DO</h5>
         <h2 className="w-80 mx-auto text-4xl mt-5 leading-snug lg:w-[45rem] lg:text-5xl">
@@ -21,8 +21,8 @@ function TeamPage() {
         </div>
       </div>
 
-      <div className="bg-[#FAFAFA] lg:flex">
-        <div className="h-[34rem] lg:w-[50rem] lg:h-[28.5rem] lg:mr-2.5 lg:mt-2">
+      <div className="bg-[#FAFAFA] lg:flex max-[639px]:mx-auto">
+        <div className="h-[34rem] w-[26.5rem] lg:w-[50rem] lg:h-[28.5rem] lg:mr-2.5 lg:mt-2">
           <img
             src="https://s3-alpha-sig.figma.com/img/e98c/6914/973e6a41dfef7ffabf70f468edcc4107?Expires=1714953600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=X6HKsNW7wqMUkyB2rg3delSVbEbSJUnY8WzlQBIhiNiR31Ht~T8a67dz~xfsP0ITqtEdV6mqO2TPYcrz-aMZr5XV1nKlBDUTNdKgVvyRcx4i6xZtsyd1HdbHPLCbNf7LO-3At1EjaSIpG3RnIDSnQxIa3YlbG4ZWV7MRfFybgD-G2fxOIp66CaFO~rkwGZulqQqYE3cLV34szokRxCT3qL6uZnCQ66b6xvdc8xajgvRxK6Rk6IZ-bZDpU0cjhipC1LJZLazFJaUTLvQO53Oj-tLRV53cQGicN2UhZXq5VKq~QCv7YJzQ1VOk2dQ4aG6UsCrC5Nw5nLDQzhMbeFwCJw__"
             alt="Image"
@@ -30,12 +30,12 @@ function TeamPage() {
           />
         </div>
 
-        <div className="flex flex-wrap justify-between lg:w-[55rem] ">
+        <div className="flex flex-wrap justify-between w-[26.5rem] lg:w-[55rem] ">
           {ClothsCardData.slice(0, 4).map((cloths) => (
             <div className="w-52 h-72 lg:w-[20.5rem] lg:h-[14.5rem] lg:pt-2">
               <img
                 src={cloths.image}
-                className="w-full h-full object-cover max-[1023px]:pt-2.5"
+                className="w-full h-full object-cover max-[639px]:pt-2.5"
               />
             </div>
           ))}
@@ -106,7 +106,7 @@ function TeamPage() {
         <h2 className="w-96 mx-auto font-bold text-4xl mb-10 lg:w-[50rem]">
           Start your 14 days free trial
         </h2>
-        <p className="font-semibold text-sm text-[#737373] mx-10 mb-8 lg:w-96 lg:mx-auto">
+        <p className="font-semibold text-sm text-[#737373] mb-8 w-72 lg:w-96 mx-auto">
           Met minim Mollie non desert Alamo est sit cliquey dolor do met sent.
           RELIT official consequent.
         </p>

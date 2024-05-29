@@ -7,31 +7,10 @@ import { ClothsCardData } from "../data/ClothsCardData.jsx";
 
 function ShopPage() {
   return (
-    <div className="font-montserrat">
-      <div className="text-bluex flex flex-col text-3xl lg:hidden">
-        <div>
-          <i className="fa-regular fa-user "></i>
-          <Link to="/login" className="text-bluex pl-2">
-            Login
-          </Link>
-          <span className="font-semibold pl-2">/</span>
-          <Link to="/signup" className="text-bluex pl-2">
-            Register
-          </Link>
-        </div>
-        <div className="flex flex-col h-44 justify-between mt-20 mb-20">
-          <i className="fa-solid fa-magnifying-glass fa-xl"></i>
-          <i className="fa-solid fa-cart-shopping">
-            <span className="text-sm pl-3">1</span>
-          </i>
-          <i className="fa-regular fa-heart fa-lg">
-            <span className="text-sm pl-3 font-extrabold">1</span>
-          </i>
-        </div>
-      </div>
+    <div className="font-montserrat flex flex-col">
       <div className="bg-[#FAFAFA] pt-12 pb-5 flex flex-col items-center lg:pt-10 lg:pb-10">
         <div className="lg:flex lg:flex-row lg:w-[80rem] lg:justify-between lg:px-10 lg:items-center">
-          <h3 className="font-bold text-2xl max-[1023px]:pb-20">Shop</h3>
+          <h3 className="font-bold text-2xl max-[639px]:pb-20">Shop</h3>
           <div className="text-sm flex justify-between w-28 ">
             <Link to="/" className="font-bold ">
               Home
@@ -51,10 +30,10 @@ function ShopPage() {
       </div>
 
       <div className="flex flex-col items-center my-10 lg:flex-row lg:justify-between lg:mx-10">
-        <h6 className="text-[#737373] font-bold text-base max-[1023px]:mb-6">
+        <h6 className="text-[#737373] font-bold text-base max-[639px]:mb-6">
           Showing all 12 results
         </h6>
-        <div className="flex flex-row items-center max-[1023px]:mb-6 w-48 justify-between">
+        <div className="flex flex-row items-center max-[639px]:mb-6 w-48 justify-between">
           <h6 className="text-[#737373] font-bold text-base">Views:</h6>
           <div className="text-[#252B42]">
             <Link to="/filter">
@@ -119,11 +98,11 @@ function ShopPage() {
       <div className="text-[#737373]  py-24 lg:py-16 bg-[#FAFAFA] mb-5">
         <div className="flex flex-col lg:flex-row justify-between lg:scale-[0.8]">
           <i className="fa-brands fa-hooli fa-7x"></i>
-          <i className="fa-brands fa-lyft fa-7x max-[1023px]:pt-5"></i>
-          <i className="fa-brands fa-pied-piper-hat fa-7x max-[1023px]:pt-5"></i>
-          <i className="fa-brands fa-stripe fa-7x max-[1023px]:pt-5"></i>
-          <i className="fa-brands fa-aws fa-7x max-[1023px]:pt-5"></i>
-          <i className="fa-brands fa-reddit-alien fa-7x max-[1023px]:pt-5"></i>
+          <i className="fa-brands fa-lyft fa-7x max-[639px]:pt-5"></i>
+          <i className="fa-brands fa-pied-piper-hat fa-7x max-[639px]:pt-5"></i>
+          <i className="fa-brands fa-stripe fa-7x max-[639px]:pt-5"></i>
+          <i className="fa-brands fa-aws fa-7x max-[639px]:pt-5"></i>
+          <i className="fa-brands fa-reddit-alien fa-7x max-[639px]:pt-5"></i>
         </div>
       </div>
     </div>

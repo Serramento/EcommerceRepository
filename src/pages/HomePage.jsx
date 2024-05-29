@@ -8,19 +8,19 @@ import { BlogData } from "../data/BlogData.jsx";
 
 function HomePage() {
   return (
-    <div className="font-montserrat">
+    <div className="font-montserrat flex flex-col">
       <ImageSlider slides={SliderData} />
 
       <div className="text-[#737373] flex flex-col lg:flex-row justify-evenly py-32 lg:pr-24 lg:py-16 lg:scale-[0.6]">
         <i className="fa-brands fa-hooli fa-7x "></i>
-        <i className="fa-brands fa-lyft fa-7x max-[1023px]:pt-5 lg:pl-24"></i>
-        <i className="fa-brands fa-pied-piper-hat fa-7x max-[1023px]:pt-5 lg:pl-24"></i>
-        <i className="fa-brands fa-stripe fa-7x max-[1023px]:pt-5 lg:pl-24"></i>
-        <i className="fa-brands fa-aws fa-7x max-[1023px]:pt-5 lg:pl-24"></i>
-        <i className="fa-brands fa-reddit-alien fa-7x max-[1023px]:pt-5 lg:pl-24"></i>
+        <i className="fa-brands fa-lyft fa-7x max-[639px]:pt-5 lg:pl-24"></i>
+        <i className="fa-brands fa-pied-piper-hat fa-7x max-[639px]:pt-5 lg:pl-24"></i>
+        <i className="fa-brands fa-stripe fa-7x max-[639px]:pt-5 lg:pl-24"></i>
+        <i className="fa-brands fa-aws fa-7x max-[639px]:pt-5 lg:pl-24"></i>
+        <i className="fa-brands fa-reddit-alien fa-7x max-[639px]:pt-5 lg:pl-24"></i>
       </div>
 
-      <div className="py-2 flex flex-col lg:flex-row max-[1023px]:items-center lg:justify-center">
+      <div className="py-2 flex flex-col lg:flex-row max-[639px]:items-center lg:justify-center">
         <div className="relative">
           <div className="w-96 h-[38rem] lg:w-[28rem] lg:h-[28rem]">
             <img
@@ -46,7 +46,7 @@ function HomePage() {
               <img
                 src="https://s3-alpha-sig.figma.com/img/4587/86e9/d5e9865170a32e0687f0a17d8581b9c8?Expires=1711324800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=R56gWRsJCUqe2H5IbwCBk9VuLffXBuqRRs7S32yUfXmwKG88JCMT6E2s6b8yINBfq-aR4C~DmJiuas8ZPirTgPhM1paGMRgK5so1HgdWab~OSMI7xNMjW3DwDCf2w9tzMsRQKd507pmTRSqG-V7g1YhTioOZeAjrWwkmedk4T8kEfqJVfBnpEAbedbBzW7ifNs6fFujjFEWFEY4KqG-QQWEEmAn8zF1LHT41JriqQkcVQTPx6jFnMC9RlO4INv75ED4UdR36IN3wWjYoWAEWdo0rsU395VmAaoYRcMmv584jYhFCdyUxFStTm2I5h~jQ4vt6Nbej7cKuSVMXpiXdbQ__"
                 alt="Image4"
-                className="max-[1023px]:pt-5 w-full h-full object-cover"
+                className="max-[639px]:pt-5 w-full h-full object-cover"
               />
             </div>
 
@@ -108,15 +108,15 @@ function HomePage() {
         </button>
       </div>
 
-      <div className="flex flex-col  py-20  lg:flex-row-reverse lg:justify-center lg:ml-10 ">
-        <div className="text-left pl-16 lg:pl-12 lg:pt-24">
+      <div className="flex flex-col py-20 lg:flex-row-reverse lg:w-[58rem] lg:mx-auto">
+        <div className="text-left w-80 mx-auto lg:pt-24">
           <h5 className="text-bluex font-semibold text-sm pb-5">
             Featured Products
           </h5>
-          <h2 className="font-extrabold text-4xl pr-16 pb-2 lg:text-3xl">
+          <h2 className="font-extrabold text-4xl pb-2 lg:text-3xl">
             We love what we do
           </h2>
-          <div className="pr-20 pt-3 lg:w-96">
+          <div className="pt-3 w-64">
             <p className="font-semibold font-base text-xs text-[#737373] pb-5">
               Problems trying to resolve the conflict between the two major
               realms of Classical physics: <br /> Newtonian mechanics.
@@ -127,7 +127,7 @@ function HomePage() {
             </p>
           </div>
         </div>
-        <div className="flex flex-row justify-center max-[1023px]:pt-12">
+        <div className="flex flex-row justify-center max-[639px]:pt-12">
           <div className="w-[10rem] h-[22rem] lg:w-[12rem] lg:h-[26rem]">
             <img
               src="https://s3-alpha-sig.figma.com/img/7e90/2282/946c71109661dfcd96fe9458abbd0e5b?Expires=1711929600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=qvSjZtnRdRWMlmqiePnGbGlkjXRTbSHKI0zu4l-rA8q3I3W3THWiqGQklQvHy1F7C6~lNoYVgOU9vdfRjBeO~9e9xVI5f-hxCYFaYnzuekgMVLzJNtTUyQuwtP3gJTZ2e9eRKIAjuHz4MhCMkNILPWJStcTeiGbnpuLqR3tTrt5lpcFKN-SWn2gWfdNT8zZr-VUCNGhVkCUdcH7tJDzq6zpjIure5zWLMOCVkd0O9PZ61wf5d03LzF0Z9K5lLVuUZ22FvDMFRSbQ3f1icDUMu6tmFRGmacr8ZU874l7tPOzGk6b04pAt727EjEGuiBkZ6IFFrYRy2DqFjtMwAy1XxQ__"
@@ -164,7 +164,7 @@ function HomePage() {
               Get your best looking smile now!
             </p>
           </div>
-          <div className="max-[1023px]:pt-20 lg:pl-16">
+          <div className="max-[639px]:pt-20 lg:pl-16">
             <i className="fa-solid fa-book-open text-bluex fa-3x"></i>
             <h3 className="font-bold text-xl pt-5">Concrete</h3>
             <p className="text-[#737373] text-sm font-semibold w-56 pt-5">
@@ -172,7 +172,7 @@ function HomePage() {
               beautiful smile
             </p>
           </div>
-          <div className="max-[1023px]:pt-20 lg:pl-16">
+          <div className="max-[639px]:pt-20 lg:pl-16">
             <i className="fa-solid fa-arrow-trend-up text-bluex fa-3x"></i>
             <h3 className="font-bold text-xl pt-5">Hack Growth</h3>
             <p className="text-[#737373] text-sm font-semibold w-56 pt-5">
@@ -183,7 +183,7 @@ function HomePage() {
       </div>
 
       <div className="mt-16 flex flex-col items-center">
-        <div className="max-[1023px]:mb-20 ">
+        <div className="max-[639px]:mb-20 ">
           <h6 className="text-bluex text-sm font-bold ">Practice Advice</h6>
           <h2 className="font-bold text-4xl mt-3 mb-5">Featured Posts</h2>
           <p className="hidden lg:inline-flex  lg:text-sm lg:text-[#737373] lg:font-semibold lg:w-[30rem]">

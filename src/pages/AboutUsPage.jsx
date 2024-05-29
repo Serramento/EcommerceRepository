@@ -2,14 +2,14 @@ import React from "react";
 
 function AboutUsPage() {
   return (
-    <div className="font-montserrat">
+    <div className="font-montserrat flex flex-col">
       <div className="bg-[#FAFAFA] lg:flex">
         <div className="pt-28 lg:text-left lg:mt-10">
           <h5 className="hidden lg:flex lg:text-sm lg:font-extrabold lg:mb-12 lg:ml-40">
             ABOUT COMPANY
           </h5>
-          <h2 className="text-4xl font-bold mb-10 lg:mx-40">ABOUT US</h2>
-          <h4 className="font-semibold text-[#737373] mx-24 mb-10 lg:ml-40 lg:mr-0">
+          <h2 className="text-4xl font-bold mb-10 lg:ml-40">ABOUT US</h2>
+          <h4 className="font-semibold text-[#737373] w-60 mx-auto mb-10 lg:w-96 lg:ml-40 lg:mr-0">
             We know how large objects will act, but things on a small scale just
             do not act that way.
           </h4>
@@ -18,7 +18,7 @@ function AboutUsPage() {
           </button>
         </div>
 
-        <div className="mt-20 w-[25rem] h-[27rem] relative lg:w-[45rem] lg:h-[35rem] lg:mt-8 lg:mr-32">
+        <div className="mt-20 w-[25rem] h-[27rem] relative mx-auto lg:w-[45rem] lg:h-[35rem] lg:mt-8 lg:mr-32">
           <img
             src="https://s3-alpha-sig.figma.com/img/7466/f015/45eb1f33b39fa1e1f6b0ddf5bb703345?Expires=1715558400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=BssUUP6qPrE2PI0ox9y~Ch3cid5eWM9xGlsLKwkMbb3R-TI0fsasVwNBd5JX0Tgm~KdvSCZnvs~HGqWntS~mQ~qJyWdiv1PClJmrNPEvNInnncQNaOK-3GTCgsAVovVH37P3uaBjI2c-vvla9U4hJykSz~0kp-AWuThKprhARFvON1zUDDO1L5HLqpftg8ZDfif8XYK92OD6rsBugCZfLixYg8B7IVgAGvcfSfolN7g6IhczZNnSe~neEoAUz2nG75l-j6c~ZSBBqrY8~GVF5vjUMLiZI~AIqEcPF-6FRG7MP8Q7TFYQVKHTuedTSNbsoKZNToa4L9k0ydGc4~tjOA__"
             alt="Image"
@@ -93,7 +93,7 @@ function AboutUsPage() {
         <h2 className="font-bold text-4xl mt-20 mb-5 w-72 lg:w-96 lg:mb-5 lg:mt-28">
           Meet Our Team
         </h2>
-        <p className="text-sm font-semibold text-[#737373] mx-20 mb-12 lg:w-[35rem] lg:mb-20">
+        <p className="text-sm font-semibold text-[#737373] mx-20 mb-12 w-60 lg:w-[35rem] lg:mb-20">
           Problems trying to resolve the conflict between the two major realms
           of Classical physics: Newtonian mechanics{" "}
         </p>
@@ -163,19 +163,21 @@ function AboutUsPage() {
         </p>
         <div className="text-[#737373] flex flex-col lg:flex-row justify-evenly pb-32 lg:pb-24 lg:scale-[0.8]">
           <i className="fa-brands fa-hooli fa-7x "></i>
-          <i className="fa-brands fa-lyft fa-7x max-[1023px]:pt-5 lg:pl-24"></i>
-          <i className="fa-brands fa-pied-piper-hat fa-7x max-[1023px]:pt-5 lg:pl-24"></i>
-          <i className="fa-brands fa-stripe fa-7x max-[1023px]:pt-5 lg:pl-24"></i>
-          <i className="fa-brands fa-aws fa-7x max-[1023px]:pt-5 lg:pl-24"></i>
-          <i className="fa-brands fa-reddit-alien fa-7x max-[1023px]:pt-5 lg:pl-24"></i>
+          <i className="fa-brands fa-lyft fa-7x max-[639px]:pt-5 lg:pl-24"></i>
+          <i className="fa-brands fa-pied-piper-hat fa-7x max-[639px]:pt-5 lg:pl-24"></i>
+          <i className="fa-brands fa-stripe fa-7x max-[639px]:pt-5 lg:pl-24"></i>
+          <i className="fa-brands fa-aws fa-7x max-[639px]:pt-5 lg:pl-24"></i>
+          <i className="fa-brands fa-reddit-alien fa-7x max-[639px]:pt-5 lg:pl-24"></i>
         </div>
       </div>
 
       <div className="lg:flex">
         <div className="bg-[#23A6F0] text-[#FFFFFF] font-bold py-28 px-24 lg:text-left lg:w-[45rem] lg:flex lg:flex-col lg:justify-center">
           <h5 className="text-sm mb-8">WORK WITH US</h5>
-          <h2 className="text-4xl mb-8">Now Let’s grow Yours</h2>
-          <p className="text-sm font-semibold mb-8 lg:w-[28rem]">
+          <h2 className="text-4xl mb-8 mx-auto w-60 lg:w-[40rem]">
+            Now Let’s grow Yours
+          </h2>
+          <p className="text-sm font-semibold mb-8 mx-auto w-60 lg:w-[28rem]">
             The gradual accumulation of information about atomic and small-scale
             behavior during the first quarter of the 20th{" "}
           </p>

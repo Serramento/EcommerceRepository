@@ -22,7 +22,7 @@ const ImageSlider2 = ({ slides }) => {
   }
 
   return (
-    <section className="font-montserrat relative h-full flex justify-center items-center max-[1023px]:pt-8 ">
+    <section className="font-montserrat relative h-full flex justify-center items-center max-[639px]:pt-8 ">
       <FontAwesomeIcon
         icon={faChevronLeft}
         size="xl"

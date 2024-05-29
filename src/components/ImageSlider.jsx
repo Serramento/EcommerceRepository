@@ -31,7 +31,7 @@ const ImageSlider = ({ slides }) => {
   );
 
   return (
-    <section className="font-montserrat relative h-full flex justify-center items-center max-[1023px]:pt-8">
+    <section className="font-montserrat relative h-full flex justify-center items-center max-[639px]:pt-8">
       <ArrowButton direction="left" handleClick={prevSlide} />
 
       <div className="absolute w-60 mt-36 lg:w-[50rem] lg:text-left lg:mt-10">

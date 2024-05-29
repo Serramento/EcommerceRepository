@@ -4,8 +4,8 @@ import { Link, NavLink } from "react-router-dom";
 function Header() {
   return (
     <div className="font-montserrat">
-      <div className="lg:hidden">
-        <div className="flex justify-between px-8 pt-8">
+      <div className="flex flex-col lg:hidden">
+        <div className="flex w-[26.5rem] mx-auto justify-between px-8 pt-8">
           <h3 className="text-[#252B42] text-2xl mb-10 font-extrabold">
             DressForDay
           </h3>
@@ -22,20 +22,47 @@ function Header() {
           </div>
         </div>
 
-        <nav className="flex items-center flex-col h-96">
+        <nav className="flex items-center flex-col h-[34rem]">
           <NavLink to="/" exact className="text-[#737373] mt-20 text-3xl">
             Home
           </NavLink>
           <NavLink to="/shop" className="text-[#737373] mt-7 text-3xl">
-            Product
+            Shop
           </NavLink>
-          <NavLink to="/pricing" className="text-[#737373] mt-7 text-3xl">
-            Pricing
+          <NavLink to="/about" className="text-[#737373] mt-7 text-3xl">
+            About
           </NavLink>
-          <NavLink to="/contact" className="text-[#737373] mt-7 mb-20 text-3xl">
+          <NavLink to="/blog" className="text-[#737373] mt-7 text-3xl">
+            Blog
+          </NavLink>
+          <NavLink to="/contact" className="text-[#737373] mt-7 text-3xl">
             Contact
           </NavLink>
+          <NavLink to="/team" className="text-[#737373] mt-7 mb-20 text-3xl">
+            Team
+          </NavLink>
         </nav>
+        <div className="text-bluex flex flex-col text-3xl">
+          <div>
+            <i className="fa-regular fa-user "></i>
+            <Link to="/login" className="text-bluex pl-2">
+              Login
+            </Link>
+            <span className="font-semibold pl-2">/</span>
+            <Link to="/signup" className="text-bluex pl-2">
+              Register
+            </Link>
+          </div>
+          <div className="flex flex-col h-44 justify-between mt-20 mb-20">
+            <i className="fa-solid fa-magnifying-glass fa-xl"></i>
+            <i className="fa-solid fa-cart-shopping">
+              <span className="text-sm pl-3">1</span>
+            </i>
+            <i className="fa-regular fa-heart fa-lg">
+              <span className="text-sm pl-3 font-extrabold">1</span>
+            </i>
+          </div>
+        </div>
       </div>
 
       <div className="hidden lg:flex lg:flex-col">
@@ -102,7 +129,7 @@ function Header() {
                 to="/team"
                 className="text-[#737373] text-xs font-bold pr-2 "
               >
-                Pages
+                Team
               </NavLink>
             </nav>
           </div>
