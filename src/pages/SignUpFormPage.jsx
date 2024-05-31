@@ -18,7 +18,7 @@ function SignUpFormPage() {
     handleSubmit,
     setValue,
     reset,
-    formState: { errors, isValid, isSubmitting },
+    formState: { errors, isSubmitting },
   } = useForm({
     defaultValues: {
       customerAdmin: {
@@ -66,10 +66,12 @@ function SignUpFormPage() {
       .post("/signup", data)
       .then((response) => {
         console.log(response.data);
+        alert("You need to click link in email to activate your account!");
         reset();
       })
       .catch((error) => {
-        console.error(error.data);
+        console.error(error.response.message);
+        alert("There is an error");
       });
   };
 
@@ -283,7 +285,7 @@ function SignUpFormPage() {
       <button
         className="w-80 mx-auto lg:w-96 h-16 bg-[#23A6F0] rounded-md text-[#FFFFFF] mb-20"
         type="register"
-        disabled={!isValid}
+        disabled={isSubmitting}
         onClick={() => history.goBack()}
       >
         {isSubmitting && <i className="fa fa-spinner fa-spin mr-3"></i>}
