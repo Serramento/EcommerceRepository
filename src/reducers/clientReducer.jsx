@@ -4,37 +4,42 @@ import {
   SET_THEME,
   SET_LANGUAGE,
 } from "../actions/clientReducerActions.jsx";
-import movies from "../data.js";
 
 const initialState = {
-  movies: movies,
-  appTitle: "IMDB Movie Database",
+  user: {},
+  addressList: [],
+  creditCards: [],
+  roles: [],
+  theme: "",
+  language: "",
 };
 
-const reducer = (state = initialState, action) => {
+const clientReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_USER:
       return {
         ...state,
-        movies: state.movies.filter((item) => action.payload !== item.id),
+        user: action.payload,
+        addressList: [...state.addressList, action.payload],
+        creditCards: [...state.creditCards, action.payload],
       };
 
     case SET_ROLES:
       return {
         ...state,
-        movies: [...state.movies, action.payload],
+        roles: [...state.roles, action.payload],
       };
 
     case SET_THEME:
       return {
         ...state,
-        movies: [...state.movies, action.payload],
+        theme: action.payload,
       };
 
     case SET_LANGUAGE:
       return {
         ...state,
-        movies: [...state.movies, action.payload],
+        language: action.payload,
       };
 
     default:
@@ -42,4 +47,4 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-export default reducer;
+export default clientReducer;

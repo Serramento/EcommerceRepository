@@ -6,44 +6,51 @@ export const SET_LIMIT = "SET_LIMIT";
 export const SET_OFFSET = "SET_OFFSET";
 export const SET_FILTER = "SET_FILTER";
 
-export const setCategories = () => {
+export const setCategories = (category) => {
   return {
     type: SET_CATEGORIES,
+    payload: category,
   };
 };
 
-export const setProductList = () => {
+export const setProductList = (productList) => {
   return {
     type: SET_PRODUCTLIST,
+    payload: productList,
   };
 };
 
-export const setTotal = () => {
+export const setTotal = (total) => {
   return {
     type: SET_TOTAL,
+    payload: total,
   };
 };
 
-export const setFetchState = () => {
+export const setFetchState = (fetchState) => {
   return {
     type: SET_FETCHSTATE,
+    payload: fetchState,
   };
 };
 
-export const setLimit = () => {
+export const setLimit = (limit) => {
   return {
     type: SET_LIMIT,
+    payload: limit,
   };
 };
 
-export const setOffset = () => {
+export const setOffset = (offset) => {
   return {
     type: SET_OFFSET,
+    payload: offset,
   };
 };
 
-export const setFilter = () => {
+export const setFilter = (filter) => {
   return {
     type: SET_FILTER,
+    payload: filter,
   };
 };
