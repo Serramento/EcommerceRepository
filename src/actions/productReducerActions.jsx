@@ -20,10 +20,9 @@ export const setProductList = (productList) => {
   };
 };
 
-export const setTotal = (total) => {
+export const setTotal = () => {
   return {
     type: SET_TOTAL,
-    payload: total,
   };
 };
 
@@ -34,17 +33,15 @@ export const setFetchState = (fetchState) => {
   };
 };
 
-export const setLimit = (limit) => {
+export const setLimit = () => {
   return {
     type: SET_LIMIT,
-    payload: limit,
   };
 };
 
-export const setOffset = (offset) => {
+export const setOffset = () => {
   return {
     type: SET_OFFSET,
-    payload: offset,
   };
 };
 

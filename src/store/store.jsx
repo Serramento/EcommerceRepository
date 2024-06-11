@@ -1,7 +1,9 @@
 import { applyMiddleware, legacy_createStore as createStore } from "redux";
-import clientreducer from "../reducers/clientReducer";
-import productReducer from "../reducers/productReducer";
-import shoppingCartReducer from "../reducers/shoppingCartReducer";
-import logger from "redux-logger";
+import { clientreducer } from "../reducers/clientReducer";
+import thunk from "redux-thunk";
+import { composeWithDevTools } from "redux-devtools-extension";
 
-export const store = createStore(clientreducer, applyMiddleware(logger));
+export const store = createStore(
+  clientreducer,
+  composeWithDevTools(applyMiddleware(thunk))
+);

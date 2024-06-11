@@ -19,9 +19,13 @@ const clientReducer = (state = initialState, action) => {
     case SET_USER:
       return {
         ...state,
-        user: action.payload,
-        addressList: [...state.addressList, action.payload],
-        creditCards: [...state.creditCards, action.payload],
+        user: {
+          addressList: [...state.addressList, action.payload.addressList],
+          creditCards: [...state.creditCards, action.payload.creditCards],
+          roles: state.roles,
+          theme: state.theme,
+          language: state.language,
+        },
       };
 
     case SET_ROLES:

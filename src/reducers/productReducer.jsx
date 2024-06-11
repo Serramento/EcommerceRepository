@@ -11,7 +11,7 @@ import {
 const initialState = {
   categories: [],
   productList: [],
-  total: "",
+  total: null,
   limit: 25,
   offset: 0,
   filter: "",
@@ -35,31 +35,31 @@ const productReducer = (state = initialState, action) => {
     case SET_TOTAL:
       return {
         ...state,
-        total: action.payload,
-      };
-
-    case SET_FETCHSTATE:
-      return {
-        ...state,
-        fetchState: action.payload,
+        total: state.productList.length,
       };
 
     case SET_LIMIT:
       return {
         ...state,
-        limit: action.payload,
+        limit: state.productList.length < 25 ? state.productList.length : 25,
       };
 
     case SET_OFFSET:
       return {
         ...state,
-        offset: action.payload,
+        offset: Math.ceil(state.productList.length / 25),
       };
 
     case SET_FILTER:
       return {
         ...state,
         filter: action.payload,
+      };
+
+    case SET_FETCHSTATE:
+      return {
+        ...state,
+        fetchState: action.payload,
       };
 
     default:
