@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { setRoles } from "../actions/clientReducerActions";
 
 function SignUpFormPage() {
   const [customer, setCustomer] = useState("customer");
@@ -11,6 +13,8 @@ function SignUpFormPage() {
   const axiosInstance = axios.create({
     baseURL: "https://workintech-fe-ecommerce.onrender.com",
   });
+
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -54,6 +58,7 @@ function SignUpFormPage() {
             );
             break;
           }
+          dispatch(setRoles(customer));
         }
       })
       .catch((error) => {
@@ -63,7 +68,9 @@ function SignUpFormPage() {
 
   const submitHandler = (data) => {
     axiosInstance
-      .post("/signup", data)
+      .post("/signup", JSON.stringify(data), {
+        headers: { "Content-Type": "application/json" },
+      })
       .then((response) => {
         console.log(response.data);
         alert("You need to click link in email to activate your account!");

@@ -26,10 +26,23 @@ export const setTotal = () => {
   };
 };
 
-export const setFetchState = (fetchState) => {
-  return {
-    type: SET_FETCHSTATE,
-    payload: fetchState,
+export const setFetchState = () => {
+  return async (dispatch) => {
+    dispatch({
+      type: SET_FETCHSTATE,
+      payload: "FETCHING",
+    });
+    try {
+      dispatch({
+        type: SET_FETCHSTATE,
+        payload: "FETCHED",
+      });
+    } catch (error) {
+      dispatch({
+        type: SET_FETCHSTATE,
+        payload: "FAILED",
+      });
+    }
   };
 };
 

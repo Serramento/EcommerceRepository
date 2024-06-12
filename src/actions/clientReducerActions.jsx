@@ -1,5 +1,3 @@
-import axios from "axios";
-
 export const SET_USER = "SET_USER";
 export const SET_ROLES = "SET_ROLES";
 export const SET_THEME = "SET_THEME";
@@ -30,15 +28,4 @@ export const setLanguage = (language) => {
     type: SET_LANGUAGE,
     payload: language,
   };
-};
-
-export const fetchRoles = () => (dispatch) => {
-  axios
-    .get("https://workintech-fe-ecommerce.onrender.com/roles")
-    .then((res) => {
-      return dispatch(setRoles(res.data));
-    })
-    .catch((err) => {
-      return console.error("Error fetching roles:", err);
-    });
 };
