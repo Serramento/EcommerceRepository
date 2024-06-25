@@ -25,17 +25,16 @@ function SignUpFormPage() {
     formState: { errors, isSubmitting },
   } = useForm({
     defaultValues: {
-      customerAdmin: {
-        name: "",
-        email: "",
-        password: "",
-        roleId: "",
-      },
+      name: "",
+      email: "",
+      password: "",
+      role_id: "",
+
       store: {
         name: "",
         email: "",
         password: "",
-        roleId: "",
+        role_id: "",
         store: { storeName: "", storePhone: "", tax_no: "", bank_account: "" },
       },
     },
@@ -50,7 +49,7 @@ function SignUpFormPage() {
         for (let i = 0; i < array.length; i++) {
           if (array[i].code === customer) {
             setValue(
-              customer === "customer" ? "customerAdmin.roleId" : "store.roleId",
+              customer === "3" ? "role_id" : "store.role_id",
               array[i].id,
               {
                 shouldValidate: true,
@@ -67,8 +66,28 @@ function SignUpFormPage() {
   }, [axiosInstance, customer, setValue]);
 
   const submitHandler = (data) => {
+    const sentData =
+      customer === "3"
+        ? {
+            name: data.name,
+            email: data.email,
+            password: data.password,
+            role_id: "3",
+          }
+        : {
+            name: data.store.name,
+            email: data.store.email,
+            password: data.store.password,
+            role_id: "2",
+            store: {
+              storeName: data.store.store.storeName,
+              storePhone: data.store.store.storePhone,
+              tax_no: data.store.store.tax_no,
+              bank_account: data.store.store.bank_account,
+            },
+          };
     axiosInstance
-      .post("/signup", JSON.stringify(data), {
+      .post("/signup", JSON.stringify(sentData), {
         headers: { "Content-Type": "application/json" },
       })
       .then((response) => {
@@ -78,7 +97,7 @@ function SignUpFormPage() {
       })
       .catch((error) => {
         console.error(error.response.message);
-        alert("There is an error");
+        alert("Failed to verify email!");
       });
   };
 
@@ -102,20 +121,17 @@ function SignUpFormPage() {
             placeholder="Full Name *"
             id="name"
             type="text"
-            {...register(
-              customer === "customer" ? "customerAdmin.name" : "store.name",
-              {
-                required: true,
-                minLength: {
-                  value: 3,
-                  message: "Name must be at least 3 characters",
-                },
-              }
-            )}
+            {...register(customer === "3" ? "name" : "store.name", {
+              required: true,
+              minLength: {
+                value: 3,
+                message: "Name must be at least 3 characters",
+              },
+            })}
           />
           <p className="text-[#737373] text-sm text-left pl-2">
-            {customer === "customer"
-              ? errors.customerAdmin?.name?.message
+            {customer === "3"
+              ? errors.name?.message
               : errors.store?.name?.message}
           </p>
         </div>
@@ -125,20 +141,17 @@ function SignUpFormPage() {
             placeholder="E-mail *"
             id="email"
             type="email"
-            {...register(
-              customer === "customer" ? "customerAdmin.email" : "store.email",
-              {
-                required: true,
-                pattern: {
-                  value: /\S+@\S+\.\S+/,
-                  message: "Entered value does not match email format",
-                },
-              }
-            )}
+            {...register(customer === "3" ? "email" : "store.email", {
+              required: true,
+              pattern: {
+                value: /\S+@\S+\.\S+/,
+                message: "Entered value does not match email format",
+              },
+            })}
           />
           <p className="text-[#737373] text-sm text-left pl-2">
-            {customer === "customer"
-              ? errors.customerAdmin?.email?.message
+            {customer === "3"
+              ? errors.email?.message
               : errors.store?.email?.message}
           </p>
         </div>
@@ -148,24 +161,19 @@ function SignUpFormPage() {
             placeholder="Password *"
             id="password"
             type="password"
-            {...register(
-              customer === "customer"
-                ? "customerAdmin.password"
-                : "store.password",
-              {
-                required: true,
-                pattern: {
-                  value:
-                    /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/,
-                  message:
-                    "Password must be at least 8 characters and contain a number, a lower case, an upper case, a special character",
-                },
-              }
-            )}
+            {...register(customer === "3" ? "password" : "store.password", {
+              required: true,
+              pattern: {
+                value:
+                  /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/,
+                message:
+                  "Password must be at least 8 characters and contain a number, a lower case, an upper case, a special character",
+              },
+            })}
           />
           <p className="text-[#737373] text-sm text-left pl-2 w-80 lg:w-96">
-            {customer === "customer"
-              ? errors.customerAdmin?.password?.message
+            {customer === "3"
+              ? errors.password?.message
               : errors.store?.password?.message}
           </p>
         </div>
@@ -179,9 +187,7 @@ function SignUpFormPage() {
               required: true,
               validate: (value) => {
                 const password = getValues(
-                  customer === "customer"
-                    ? "customerAdmin.password"
-                    : "store.password"
+                  customer === "3" ? "password" : "store.password"
                 );
                 return value === password || "The passwords do not match";
               },
@@ -197,16 +203,16 @@ function SignUpFormPage() {
             onChange={handleCustomer}
             className="w-80 lg:w-96 h-16 pl-5 bg-[#F9F9F9] border-[2px] border-[#E6E6E6] rounded-md text-[#737373] mb-8"
           >
-            <option value="customer" className="bg-[#F9F9F9]">
+            <option value="3" className="bg-[#F9F9F9]">
               Customer
             </option>
-            <option value="store" className="bg-[#F9F9F9]">
+            <option value="2" className="bg-[#F9F9F9]">
               Store
             </option>
           </select>
         </div>
 
-        {customer === "store" && (
+        {customer === "2" && (
           <div>
             <div>
               <input
