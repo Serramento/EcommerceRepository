@@ -91,7 +91,7 @@ function Header() {
                 Contact
               </NavLink>
               <NavLink
-                to="/pages"
+                to="/team"
                 class="text-[#737373] text-xs font-bold pr-2 "
               >
                 Pages
