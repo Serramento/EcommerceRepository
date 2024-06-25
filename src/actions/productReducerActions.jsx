@@ -6,15 +6,17 @@ export const SET_LIMIT = "SET_LIMIT";
 export const SET_OFFSET = "SET_OFFSET";
 export const SET_FILTER = "SET_FILTER";
 
-export const setCategories = () => {
+export const setCategories = (category) => {
   return {
     type: SET_CATEGORIES,
+    payload: category,
   };
 };
 
-export const setProductList = () => {
+export const setProductList = (productList) => {
   return {
     type: SET_PRODUCTLIST,
+    payload: productList,
   };
 };
 
@@ -25,8 +27,22 @@ export const setTotal = () => {
 };
 
 export const setFetchState = () => {
-  return {
-    type: SET_FETCHSTATE,
+  return async (dispatch) => {
+    dispatch({
+      type: SET_FETCHSTATE,
+      payload: "FETCHING",
+    });
+    try {
+      dispatch({
+        type: SET_FETCHSTATE,
+        payload: "FETCHED",
+      });
+    } catch (error) {
+      dispatch({
+        type: SET_FETCHSTATE,
+        payload: "FAILED",
+      });
+    }
   };
 };
 
@@ -42,8 +58,9 @@ export const setOffset = () => {
   };
 };
 
-export const setFilter = () => {
+export const setFilter = (filter) => {
   return {
     type: SET_FILTER,
+    payload: filter,
   };
 };
