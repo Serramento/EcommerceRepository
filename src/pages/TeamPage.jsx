@@ -5,7 +5,7 @@ import { ClothsCardData } from "../data/ClothsCardData";
 function TeamPage() {
   return (
     <div className="font-montserrat">
-      <div className="py-20 px-10 font-bold bg-[#F6F6F6]">
+      <div className="py-20 px-10 font-bold bg-[#FAFAFA]">
         <h5 className="text-[#737373]">WHAT WE DO</h5>
         <h2 className="w-80 mx-auto text-4xl mt-5 leading-snug lg:w-[45rem] lg:text-5xl">
           Innovation tailored for you
@@ -21,7 +21,7 @@ function TeamPage() {
         </div>
       </div>
 
-      <div className="bg-[#F6F6F6] lg:flex">
+      <div className="bg-[#FAFAFA] lg:flex">
         <div className="h-[34rem] lg:w-[50rem] lg:h-[28.5rem] lg:mr-2.5 lg:mt-2">
           <img
             src="https://s3-alpha-sig.figma.com/img/e98c/6914/973e6a41dfef7ffabf70f468edcc4107?Expires=1714953600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=X6HKsNW7wqMUkyB2rg3delSVbEbSJUnY8WzlQBIhiNiR31Ht~T8a67dz~xfsP0ITqtEdV6mqO2TPYcrz-aMZr5XV1nKlBDUTNdKgVvyRcx4i6xZtsyd1HdbHPLCbNf7LO-3At1EjaSIpG3RnIDSnQxIa3YlbG4ZWV7MRfFybgD-G2fxOIp66CaFO~rkwGZulqQqYE3cLV34szokRxCT3qL6uZnCQ66b6xvdc8xajgvRxK6Rk6IZ-bZDpU0cjhipC1LJZLazFJaUTLvQO53Oj-tLRV53cQGicN2UhZXq5VKq~QCv7YJzQ1VOk2dQ4aG6UsCrC5Nw5nLDQzhMbeFwCJw__"
@@ -42,7 +42,7 @@ function TeamPage() {
         </div>
       </div>
 
-      <div className="flex flex-col items-center justify-center bg-[#F6F6F6]">
+      <div className="flex flex-col items-center justify-center bg-[#FAFAFA]">
         <h2 className="font-bold text-4xl mt-20 mb-12 w-72 lg:w-96 lg:mb-20 lg:mt-28">
           Meet Our Team
         </h2>
