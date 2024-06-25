@@ -21,14 +21,18 @@ const ImageSlider = ({ slides }) => {
     return null;
   }
 
+  const ArrowButton = ({ direction, handleClick }) => (
+    <FontAwesomeIcon
+      icon={direction === "left" ? faChevronLeft : faChevronRight}
+      size="xl"
+      className="hover:text-[#737373]"
+      onClick={handleClick}
+    />
+  );
+
   return (
-    <section className="font-montserrat relative h-full flex justify-center items-center max-[1023px]:pt-8">
-      <FontAwesomeIcon
-        icon={faChevronLeft}
-        size="xl"
-        className="hover:text-[#737373]"
-        onClick={prevSlide}
-      />
+    <section className="font-montserrat relative h-full flex justify-center items-center max-[639px]:pt-8">
+      <ArrowButton direction="left" handleClick={prevSlide} />
 
       <div className="absolute w-60 mt-36 lg:w-[50rem] lg:text-left lg:mt-10">
         <h5 className="text-[#2A7CC7] font-semibold text-xs lg:font-bold lg:text-sm">
@@ -61,12 +65,7 @@ const ImageSlider = ({ slides }) => {
         );
       })}
 
-      <FontAwesomeIcon
-        icon={faChevronRight}
-        className="hover:text-[#737373]"
-        size="xl"
-        onClick={nextSlide}
-      />
+      <ArrowButton direction="right" handleClick={nextSlide} />
     </section>
   );
 };

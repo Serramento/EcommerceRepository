@@ -1,9 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const BlogContent = (props) => {
   return (
     <div className="shadow-md w-80 lg:w-65">
-      <a>
+      <Link to="/blog">
         <div className="h-80 lg:h-65 relative">
           <h6 className="text-[#FFFFFF] font-bold text-sm bg-[#E74040] absolute ml-3 mt-3 px-3 py-1">
             NEW
@@ -25,13 +26,13 @@ const BlogContent = (props) => {
           </p>
           <div className="flex flex-row justify-between mt-7">
             <div className="flex flex-row text-bluex">
-              <i class="fa-regular fa-clock"></i>
+              <i className="fa-regular fa-clock"></i>
               <p className="text-[#737373] text-xs font-semibold pl-1">
                 22 April 2021
               </p>
             </div>
             <div className="flex flex-row text-[#23856D]">
-              <i class="fa-solid fa-chart-line"></i>
+              <i className="fa-solid fa-chart-line"></i>
               <p className="text-[#737373] text-xs font-semibold pl-1">
                 10 comments
               </p>
@@ -41,10 +42,10 @@ const BlogContent = (props) => {
             <button className="text-[#737373] font-bold text-sm mt-7 pr-1 mb-10 lg:mb-3">
               Learn More
             </button>
-            <i class="fa-solid fa-chevron-right fa-lg"></i>
+            <i className="fa-solid fa-chevron-right fa-lg"></i>
           </div>
         </div>
-      </a>
+      </Link>
     </div>
   );
 };
