@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { setUser } from "../actions/clientReducerActions";
@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 function LoginPage() {
   const dispatch = useDispatch();
   const history = useHistory();
+  const location = useLocation();
   const historyExist = location.key !== "default";
 
   const {
@@ -57,29 +58,51 @@ function LoginPage() {
         Login
       </h2>
 
-      <div>
+      <div className="mb-8">
         <input
-          className="w-80 lg:w-96 h-16 pl-5 bg-[#F9F9F9] border-[2px] border-[#E6E6E6] rounded-md placeholder-[#737373] mb-8"
+          className="w-80 lg:w-96 h-16 pl-5 bg-[#F9F9F9] border-[2px] border-[#E6E6E6] rounded-md placeholder-[#737373]"
           placeholder="E-mail *"
           id="email"
           type="email"
           {...register("email", {
-            required: true,
+            required: {
+              value: true,
+              message: "Email is required",
+            },
           })}
         />
+        <p className="text-[#cd3434] text-lg font-semibold mt-2 w-80 lg:w-96 mx-auto text-left pl-3">
+          {errors.email?.message}
+        </p>
       </div>
 
-      <div>
+      <div className="mb-8">
         <input
-          className="w-80 lg:w-96 h-16 pl-5 bg-[#F9F9F9] border-[2px] border-[#E6E6E6] rounded-md placeholder-[#737373] mb-8"
+          className="w-80 lg:w-96 h-16 pl-5 bg-[#F9F9F9] border-[2px] border-[#E6E6E6] rounded-md placeholder-[#737373]"
           placeholder="Password *"
           id="password"
           type="password"
           {...register("password", {
-            required: true,
+            required: {
+              value: true,
+              message: "Password is required",
+            },
+            validate: {
+              minLength: (value) =>
+                value.length >= 8 ||
+                "Password should has more than 8 characters",
+              isCapitalLetter: (value) =>
+                /[A-Z]/.test(value) ||
+                "Password should has at least one capital letter",
+              isLowerCaseLetter: (value) =>
+                /[a-z]/.test(value) ||
+                "Password should has at least one lower case letter",
+              isContainNumber: (value) =>
+                /\d/.test(value) || "Password should has at least one number",
+            },
           })}
         />
-        <p className="text-[#737373] text-sm text-left pl-2 w-80 lg:w-96">
+        <p className="text-[#cd3434] text-lg font-semibold mt-2 w-80 lg:w-96 mx-auto text-left pl-3">
           {errors.password?.message}
         </p>
       </div>
