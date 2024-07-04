@@ -1,16 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { setUser } from "../actions/clientReducerActions";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useLocalStorage } from "../hooks/UseLocalStorage";
 
 function LoginPage() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const location = useLocation();
-  const historyExist = location.key !== "default";
+  const [authUser, setAuthUser] = useLocalStorage("token", {});
+  const [rememberMe, setRememberMe] = useState(false);
 
   const {
     register,
@@ -36,17 +37,24 @@ function LoginPage() {
       .then((res) => {
         console.log(res.data);
         dispatch(setUser(data));
-        toast.success("Successfully logged in!");
-        if (historyExist) {
+        if (rememberMe === true) {
+          setAuthUser(res.data);
+        }
+        if (history.go(-1)) {
           history.go(-1);
         } else {
           history.push("/");
         }
+        toast.success("Successfully logged in!");
       })
       .catch((err) => {
         toast.error("There is an error in the login info, please check again!");
         console.error(err.response.message);
       });
+  };
+
+  const handleRememberMe = () => {
+    setRememberMe(!rememberMe);
   };
 
   return (
@@ -87,7 +95,7 @@ function LoginPage() {
               value: true,
               message: "Password is required",
             },
-            validate: {
+            /*validate: {
               minLength: (value) =>
                 value.length >= 8 ||
                 "Password should has more than 8 characters",
@@ -99,7 +107,7 @@ function LoginPage() {
                 "Password should has at least one lower case letter",
               isContainNumber: (value) =>
                 /\d/.test(value) || "Password should has at least one number",
-            },
+            },*/
           })}
         />
         <p className="text-[#cd3434] text-lg font-semibold mt-2 w-80 lg:w-96 mx-auto text-left pl-3">
@@ -108,7 +116,11 @@ function LoginPage() {
       </div>
 
       <div className="w-80 lg:w-96 text-left mx-auto mb-12 pl-3">
-        <input className="text-[#737373] mr-2" type="checkbox" />
+        <input
+          className="text-[#737373] mr-2"
+          type="checkbox"
+          onClick={handleRememberMe}
+        />
         <label className="text-[#737373] text-lg font-semibold">
           Remember Me
         </label>
