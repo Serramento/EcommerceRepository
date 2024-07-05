@@ -3,16 +3,15 @@ import React from "react";
 import Header from "./layout/Header";
 import PageContent from "./layout/PageContent";
 import Footer from "./layout/Footer";
-import AuthContextProvider from "./contexts/AuthContext";
+import { useSelector } from "react-redux";
 
 function App() {
+  const userInfo = useSelector((store) => store.clientReducer.user);
   return (
     <div>
-      <AuthContextProvider>
-        <Header />
-        <PageContent />
-        <Footer />
-      </AuthContextProvider>
+      <Header user={userInfo} />
+      <PageContent />
+      <Footer />
     </div>
   );
 }
