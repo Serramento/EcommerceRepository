@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { setUser } from "../actions/clientReducerActions";
@@ -24,6 +24,30 @@ function LoginPage() {
     },
     mode: "onChange",
   });
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("token"));
+    axios
+      .get("https://workintech-fe-ecommerce.onrender.com/verify", {
+        headers:
+          user && user.token
+            ? {
+                Authorization: user.token,
+              }
+            : {},
+      })
+      .then((res) => {
+        console.log(res.data);
+        dispatch(setUser(data));
+        axios.defaults.headers.common["Authorization"] = user.token;
+        localStorage.setItem("token", user.token);
+      })
+      .catch((err) => {
+        delete axios.defaults.headers.common["Authorization"];
+        localStorage.removeItem("token");
+        console.error(err.response.message);
+      });
+  }, [dispatch]);
 
   const submitHandler = (data) => {
     axios
