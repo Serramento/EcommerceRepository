@@ -29,22 +29,19 @@ function LoginPage() {
     const user = JSON.parse(localStorage.getItem("token"));
     axios
       .get("https://workintech-fe-ecommerce.onrender.com/verify", {
-        headers:
-          user && user.token
-            ? {
-                Authorization: user.token,
-              }
-            : {},
+        headers: {
+          Authorization: user.token,
+        },
       })
       .then((res) => {
         console.log(res.data);
-        dispatch(setUser(data));
-        axios.defaults.headers.common["Authorization"] = user.token;
+        dispatch(setUser(user));
         localStorage.setItem("token", user.token);
+        axios.defaults.headers.common["Authorization"] = user.token;
       })
       .catch((err) => {
-        delete axios.defaults.headers.common["Authorization"];
         localStorage.removeItem("token");
+        delete axios.defaults.headers.common["Authorization"];
         console.error(err.response.message);
       });
   }, [dispatch]);
