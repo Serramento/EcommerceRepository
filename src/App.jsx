@@ -10,7 +10,7 @@ function App() {
   return (
     <div>
       <Header user={userInfo} />
-      <PageContent user={userInfo} />
+      <PageContent />
       <Footer />
     </div>
   );

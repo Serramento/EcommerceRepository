@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import HomePage from "../pages/HomePage";
 import { Route, Switch } from "react-router-dom";
 import ShopPage from "../pages/ShopPage";
