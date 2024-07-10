@@ -26,18 +26,17 @@ function LoginPage() {
   });
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("token"));
     axios
       .get("https://workintech-fe-ecommerce.onrender.com/verify", {
         headers: {
-          Authorization: user.token,
+          Authorization: authUser.token,
         },
       })
       .then((res) => {
         console.log(res.data);
-        dispatch(setUser(user));
-        localStorage.setItem("token", user.token);
-        axios.defaults.headers.common["Authorization"] = user.token;
+        dispatch(setUser(authUser));
+        localStorage.setItem("token", authUser.token);
+        axios.defaults.headers.common["Authorization"] = authUser.token;
       })
       .catch((err) => {
         localStorage.removeItem("token");

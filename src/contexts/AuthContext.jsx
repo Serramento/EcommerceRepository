@@ -3,22 +3,35 @@ import { createContext, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useLocalStorage } from "../hooks/UseLocalStorage";
 
 const AuthContextProvider = ({ children }) => {
+  const [authUser, setAuthUser] = useLocalStorage("token", {});
+  const [rememberMe, setRememberMe] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const [loggedIn, setLoggedIn] = useState(false);
+  let isLoggedIn = authUser && authUser.token;
+
+  const handleRememberMe = () => {
+    setRememberMe(!rememberMe);
+  };
 
   const authenticate = (loginInfo) => {
     axios
-      .post("https://workintech-fe-ecommerce.onrender.com/login", loginInfo, {
-        headers: { "Content-Type": "application/json" },
-      })
+      .post(
+        "https://workintech-fe-ecommerce.onrender.com/login",
+        JSON.stringify(loginInfo),
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      )
       .then((res) => {
         console.log(res.data);
         dispatch(setUser(loginInfo));
-        setLoggedIn(true);
+        if (rememberMe === true) {
+          setAuthUser(res.data);
+        }
         if (history.go(-1)) {
           history.go(-1);
         } else {
@@ -33,7 +46,9 @@ const AuthContextProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ authenticate, loggedIn }}>
+    <AuthContext.Provider
+      value={{ authenticate, isLoggedIn, handleRememberMe, authUser }}
+    >
       {children}
     </AuthContext.Provider>
   );
