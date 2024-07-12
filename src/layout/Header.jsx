@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import Gravatar from "react-gravatar";
+import { useDispatch } from "react-redux";
+import { setCategories } from "../actions/productReducerActions";
 
 function Header(props) {
   const userInfo = props.user;
+  const categories = props.categories;
   const [user, setUser] = useState();
 
   useEffect(() => {
@@ -11,6 +14,29 @@ function Header(props) {
     if (user) {
       setUser(user);
     }
+  }, []);
+
+  const [isDropdownVisible, setDropdownVisible] = useState(false);
+
+  const handleMouseEnter = () => {
+    setDropdownVisible(true);
+  };
+
+  const handleMouseLeave = () => {
+    setDropdownVisible(false);
+  };
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    fetch("https://workintech-fe-ecommerce.onrender.com/categories")
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        dispatch(setCategories(data));
+      });
   }, []);
 
   return (
@@ -38,7 +64,20 @@ function Header(props) {
             Home
           </NavLink>
           <NavLink to="/shop" className="text-[#737373] mt-7 text-3xl">
-            Shop
+            <div
+              className=""
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <button>Shop</button>
+              {categories.map((category, index) => {
+                return (
+                  <li key={index}>
+                    <Link to="/shop">{category.title}</Link>
+                  </li>
+                );
+              })}
+            </div>
           </NavLink>
           <NavLink to="/about" className="text-[#737373] mt-7 text-3xl">
             About
@@ -130,7 +169,20 @@ function Header(props) {
                 to="/shop"
                 className="text-[#737373] text-xs font-bold pr-2"
               >
-                Shop
+                <div
+                  className=""
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <button>Shop</button>
+                  {categories.map((category, index) => {
+                    return (
+                      <li key={index}>
+                        <Link to="/">{category.title}</Link>
+                      </li>
+                    );
+                  })}
+                </div>
               </NavLink>
               <NavLink
                 to="/about"
