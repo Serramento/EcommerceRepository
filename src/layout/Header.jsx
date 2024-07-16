@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import Gravatar from "react-gravatar";
 import { useDispatch } from "react-redux";
 import { setCategories } from "../actions/productReducerActions";
+import Navbar from "../components/NavBar";
 
 function Header(props) {
   const userInfo = props.user;
@@ -63,22 +64,16 @@ function Header(props) {
           <NavLink to="/" exact className="text-[#737373] mt-20 text-3xl">
             Home
           </NavLink>
-          <NavLink to="/shop" className="text-[#737373] mt-7 text-3xl">
-            <div
-              className=""
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
-              <button>Shop</button>
-              {categories.map((category, index) => {
-                return (
-                  <li key={index}>
-                    <Link to="/shop">{category.title}</Link>
-                  </li>
-                );
-              })}
-            </div>
-          </NavLink>
+
+          <div
+            className="text-[#737373] mt-7 text-3xl"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            <button>Shop</button>
+            {isDropdownVisible && <Navbar categories={categories} />}
+          </div>
+
           <NavLink to="/about" className="text-[#737373] mt-7 text-3xl">
             About
           </NavLink>
@@ -165,25 +160,16 @@ function Header(props) {
               >
                 Home
               </NavLink>
-              <NavLink
-                to="/shop"
+
+              <div
                 className="text-[#737373] text-xs font-bold pr-2"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
               >
-                <div
-                  className=""
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  <button>Shop</button>
-                  {categories.map((category, index) => {
-                    return (
-                      <li key={index}>
-                        <Link to="/">{category.title}</Link>
-                      </li>
-                    );
-                  })}
-                </div>
-              </NavLink>
+                <button>Shop</button>
+                {isDropdownVisible && <Navbar categories={categories} />}
+              </div>
+
               <NavLink
                 to="/about"
                 className="text-[#737373]  text-xs font-bold pr-2"
