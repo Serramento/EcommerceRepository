@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import MenuItems from "./MenuItems";
 
-const Navbar = ({ categories }) => {
+const Navbar = () => {
   const [isDropdownVisible, setDropdownVisible] = useState(false);
+  const [isDropdownVisible2, setDropdownVisible2] = useState(false);
 
   const handleMouseEnter = () => {
     setDropdownVisible(true);
@@ -12,18 +13,26 @@ const Navbar = ({ categories }) => {
     setDropdownVisible(false);
   };
 
+  const handleMouseEnter2 = () => {
+    setDropdownVisible2(true);
+  };
+
+  const handleMouseLeave2 = () => {
+    setDropdownVisible2(false);
+  };
+
   return (
     <nav>
       <ul>
-        <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+        <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
           <button>Kadın</button>
-          {isDropdownVisible && <MenuItems categories={categories} />}
-        </div>
+          {isDropdownVisible && <MenuItems value="k" />}
+        </li>
 
-        <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+        <li onMouseEnter={handleMouseEnter2} onMouseLeave={handleMouseLeave2}>
           <button>Erkek</button>
-          {isDropdownVisible && <MenuItems categories={categories} />}
-        </div>
+          {isDropdownVisible2 && <MenuItems value="e" />}
+        </li>
       </ul>
     </nav>
   );

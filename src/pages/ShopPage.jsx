@@ -3,9 +3,16 @@ import { Link } from "react-router-dom";
 import ProductCard from "../components/ProductCard.jsx";
 import { ProductData } from "../data/ProductData.jsx";
 import ClothsCard from "../components/ClothsCard.jsx";
-import { ClothsCardData } from "../data/ClothsCardData.jsx";
+import { useSelector } from "react-redux";
 
 function ShopPage() {
+  const categories = useSelector((store) => store.productReducer.categories);
+  const topFive = categories
+    .sort(function (a, b) {
+      return b - a;
+    })
+    .slice(0, 5);
+
   return (
     <div className="font-montserrat flex flex-col">
       <div className="bg-[#FAFAFA] pt-12 pb-5 flex flex-col items-center lg:pt-10 lg:pb-10">
@@ -23,8 +30,8 @@ function ShopPage() {
         </div>
 
         <div className="mt-16 lg:flex lg:flex-row lg:justify-between lg:pl-5 lg:mt-10">
-          {ClothsCardData.map((cloths) => (
-            <ClothsCard cloths={cloths} />
+          {topFive.map((category) => (
+            <ClothsCard category={category} />
           ))}
         </div>
       </div>

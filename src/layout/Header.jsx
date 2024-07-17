@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import Gravatar from "react-gravatar";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setCategories } from "../actions/productReducerActions";
 import Navbar from "../components/NavBar";
 
-function Header(props) {
-  const userInfo = props.user;
-  const categories = props.categories;
+function Header() {
+  const userInfo = useSelector((store) => store.clientReducer.user);
   const [user, setUser] = useState();
 
   useEffect(() => {
@@ -71,7 +70,7 @@ function Header(props) {
             onMouseLeave={handleMouseLeave}
           >
             <button>Shop</button>
-            {isDropdownVisible && <Navbar categories={categories} />}
+            {isDropdownVisible && <Navbar />}
           </div>
 
           <NavLink to="/about" className="text-[#737373] mt-7 text-3xl">
@@ -167,7 +166,7 @@ function Header(props) {
                 onMouseLeave={handleMouseLeave}
               >
                 <button>Shop</button>
-                {isDropdownVisible && <Navbar categories={categories} />}
+                {isDropdownVisible && <Navbar />}
               </div>
 
               <NavLink
