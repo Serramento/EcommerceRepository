@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import Gravatar from "react-gravatar";
 import { useDispatch, useSelector } from "react-redux";
 import { setCategories } from "../actions/productReducerActions";
-import Navbar from "../components/NavBar";
+import NavBar from "../components/NavBar";
 
 function Header() {
   const userInfo = useSelector((store) => store.clientReducer.user);
@@ -59,18 +59,18 @@ function Header() {
           </div>
         </div>
 
-        <nav className="flex items-center flex-col h-[34rem]">
+        <nav className="flex items-center flex-col relative">
           <NavLink to="/" exact className="text-[#737373] mt-20 text-3xl">
             Home
           </NavLink>
 
           <div
-            className="text-[#737373] mt-7 text-3xl"
+            className="text-[#737373] mt-7 text-3xl relative inline-block"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
             <button>Shop</button>
-            {isDropdownVisible && <Navbar />}
+            {isDropdownVisible && <NavBar className="absolute" />}
           </div>
 
           <NavLink to="/about" className="text-[#737373] mt-7 text-3xl">
@@ -161,12 +161,12 @@ function Header() {
               </NavLink>
 
               <div
-                className="text-[#737373] text-xs font-bold pr-2"
+                className="text-[#737373] text-xs font-bold pr-2 relative"
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
               >
                 <button>Shop</button>
-                {isDropdownVisible && <Navbar />}
+                {isDropdownVisible && <NavBar className="absolute" />}
               </div>
 
               <NavLink

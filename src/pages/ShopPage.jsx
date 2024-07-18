@@ -7,9 +7,9 @@ import { useSelector } from "react-redux";
 
 function ShopPage() {
   const categories = useSelector((store) => store.productReducer.categories);
-  const topFive = categories
-    .sort(function (a, b) {
-      return b - a;
+  const topFive = categories[0]
+    .sort((a, b) => {
+      return b.rating - a.rating;
     })
     .slice(0, 5);
 
