@@ -69,7 +69,9 @@ function Header() {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
-            <NavLink to="/shop">Shop</NavLink>
+            <NavLink to="/shop" className="text-[#737373] mt-20 text-3xl">
+              Shop
+            </NavLink>
             {isDropdownVisible && <NavBar className="absolute" />}
           </div>
 
@@ -161,11 +163,16 @@ function Header() {
               </NavLink>
 
               <div
-                className="text-[#737373] text-xs font-bold pr-2 h-5 relative"
+                className="text-[#737373] text-xs font-bold mt-1 pr-2 h-5 relative z-[9999]"
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
               >
-                <NavLink to="/shop">Shop</NavLink>
+                <NavLink
+                  to="/shop"
+                  className="text-[#737373] text-xs font-bold"
+                >
+                  Shop
+                </NavLink>
                 {isDropdownVisible && <NavBar className="absolute" />}
               </div>
 
