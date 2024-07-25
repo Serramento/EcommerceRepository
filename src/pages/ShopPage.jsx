@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import ProductCard from "../components/ProductCard.jsx";
 import { ProductData } from "../data/ProductData.jsx";
 import ClothsCard from "../components/ClothsCard.jsx";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setProductList } from "../actions/productReducerActions.jsx";
 
 function ShopPage() {
   const categories = useSelector((store) => store.productReducer.categories);
@@ -12,6 +13,19 @@ function ShopPage() {
       return b.rating - a.rating;
     })
     .slice(0, 5);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    fetch("https://workintech-fe-ecommerce.onrender.com/products")
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        dispatch(setProductList(data));
+      });
+  }, []);
 
   return (
     <div className="font-montserrat flex flex-col">
