@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import ProductCard from "../components/ProductCard.jsx";
-import { ProductData } from "../data/ProductData.jsx";
 import ClothsCard from "../components/ClothsCard.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import { setProductList } from "../actions/productReducerActions.jsx";
+import { setProductList, setTotal } from "../actions/productReducerActions.jsx";
 
-function ShopPage() {
+function ShopPage({ productList }) {
   const categories = useSelector((store) => store.productReducer.categories);
+
   const topFive = categories[0]
     .sort((a, b) => {
       return b.rating - a.rating;
@@ -23,7 +23,8 @@ function ShopPage() {
       })
       .then((data) => {
         console.log(data);
-        dispatch(setProductList(data));
+        dispatch(setProductList(data.products));
+        dispatch(setTotal(data.total));
       });
   }, []);
 
@@ -79,7 +80,7 @@ function ShopPage() {
 
       <div className="flex flex-col items-center mt-28 lg:mt-16">
         <div className="lg:hidden">
-          {ProductData.slice(0, 4).map((product) => (
+          {productList[0].slice(0, 4).map((product) => (
             <ProductCard
               key={product.id}
               product={product}
@@ -88,7 +89,7 @@ function ShopPage() {
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-wrap lg:w-[74rem] lg:justify-between">
-          {ProductData.map((product) => (
+          {productList[0].slice(0, 12).map((product) => (
             <ProductCard
               key={product.id}
               product={product}

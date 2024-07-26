@@ -2,11 +2,10 @@ import React from "react";
 import ImageSlider from "../components/ImageSlider.jsx";
 import { SliderData } from "../data/SliderData.jsx";
 import ProductCard from "../components/ProductCard.jsx";
-import { ProductData } from "../data/ProductData.jsx";
 import BlogContent from "../components/BlogContent.jsx";
 import { BlogData } from "../data/BlogData.jsx";
 
-function HomePage() {
+function HomePage({ productList }) {
   return (
     <div className="font-montserrat flex flex-col">
       <ImageSlider slides={SliderData} />
@@ -94,12 +93,12 @@ function HomePage() {
           </p>
         </div>
         <div className="lg:hidden">
-          {ProductData.slice(0, 5).map((product) => (
+          {productList[0].slice(0, 5).map((product) => (
             <ProductCard product={product} additionalClass="lg:w-40" />
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-wrap lg:w-[57rem] lg:justify-evenly">
-          {ProductData.slice(0, 10).map((product) => (
+          {productList[0].slice(0, 10).map((product) => (
             <ProductCard product={product} additionalClass="lg:w-40" />
           ))}
         </div>
