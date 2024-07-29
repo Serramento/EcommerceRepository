@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const SET_CATEGORIES = "SET_CATEGORIES";
 export const SET_PRODUCTLIST = "SET_PRODUCTLIST";
 export const SET_TOTAL = "SET_TOTAL";
@@ -63,4 +65,13 @@ export const setFilter = (filter) => {
     type: SET_FILTER,
     payload: filter,
   };
+};
+
+const fetchProducts = () => (dispatch) => {
+  return axios
+    .get("https://workintech-fe-ecommerce.onrender.com/products")
+    .then((res) => {
+      dispatch(setProductList(res.data.products));
+      dispatch(setTotal(res.data.total));
+    });
 };
