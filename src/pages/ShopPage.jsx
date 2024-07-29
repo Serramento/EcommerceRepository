@@ -28,6 +28,10 @@ function ShopPage({ productList }) {
       });
   }, []);
 
+  function handleFetchProducts() {
+    dispatch(fetchProducts());
+  }
+
   return (
     <div className="font-montserrat flex flex-col">
       <div className="bg-[#FAFAFA] pt-12 pb-5 flex flex-col items-center lg:pt-10 lg:pb-10">
