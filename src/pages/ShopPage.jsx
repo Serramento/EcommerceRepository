@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import ProductCard from "../components/ProductCard.jsx";
 import ClothsCard from "../components/ClothsCard.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import { setProductList, setTotal } from "../actions/productReducerActions.jsx";
+import { fetchProducts } from "../actions/productReducerActions.jsx";
 
 function ShopPage({ productList }) {
   const categories = useSelector((store) => store.productReducer.categories);
 
-  const topFive = categories[0]
+  const topFive = categories
     .sort((a, b) => {
       return b.rating - a.rating;
     })
@@ -17,20 +17,8 @@ function ShopPage({ productList }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetch("https://workintech-fe-ecommerce.onrender.com/products")
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        console.log(data);
-        dispatch(setProductList(data.products));
-        dispatch(setTotal(data.total));
-      });
-  }, []);
-
-  function handleFetchProducts() {
     dispatch(fetchProducts());
-  }
+  }, []);
 
   return (
     <div className="font-montserrat flex flex-col">
@@ -84,7 +72,7 @@ function ShopPage({ productList }) {
 
       <div className="flex flex-col items-center mt-28 lg:mt-16">
         <div className="lg:hidden">
-          {productList[0].slice(0, 4).map((product) => (
+          {productList.slice(0, 4).map((product) => (
             <ProductCard
               key={product.id}
               product={product}
@@ -93,7 +81,7 @@ function ShopPage({ productList }) {
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-wrap lg:w-[74rem] lg:justify-between">
-          {productList[0].slice(0, 12).map((product) => (
+          {productList.slice(0, 12).map((product) => (
             <ProductCard
               key={product.id}
               product={product}

@@ -93,12 +93,12 @@ function HomePage({ productList }) {
           </p>
         </div>
         <div className="lg:hidden">
-          {productList[0].slice(0, 5).map((product) => (
+          {productList.slice(0, 5).map((product) => (
             <ProductCard product={product} additionalClass="lg:w-40" />
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-wrap lg:w-[57rem] lg:justify-evenly">
-          {productList[0].slice(0, 10).map((product) => (
+          {productList.slice(0, 10).map((product) => (
             <ProductCard product={product} additionalClass="lg:w-40" />
           ))}
         </div>

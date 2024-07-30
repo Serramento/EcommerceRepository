@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const MenuItems = ({ value }) => {
   const categories = useSelector((store) => store.productReducer.categories);
-  const categoriesArray = categories[0].filter((category) =>
+  const categoriesArray = categories.filter((category) =>
     category.code.startsWith(value)
   );
 

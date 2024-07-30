@@ -67,8 +67,16 @@ export const setFilter = (filter) => {
   };
 };
 
-const fetchProducts = () => (dispatch) => {
-  return axios
+export const fetchCategories = () => (dispatch) => {
+  axios
+    .get("https://workintech-fe-ecommerce.onrender.com/categories")
+    .then((res) => {
+      dispatch(setCategories(res.data));
+    });
+};
+
+export const fetchProducts = () => (dispatch) => {
+  axios
     .get("https://workintech-fe-ecommerce.onrender.com/products")
     .then((res) => {
       dispatch(setProductList(res.data.products));
