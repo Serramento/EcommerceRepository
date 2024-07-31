@@ -28,23 +28,10 @@ export const setTotal = () => {
   };
 };
 
-export const setFetchState = () => {
-  return async (dispatch) => {
-    dispatch({
-      type: SET_FETCHSTATE,
-      payload: "FETCHING",
-    });
-    try {
-      dispatch({
-        type: SET_FETCHSTATE,
-        payload: "FETCHED",
-      });
-    } catch (error) {
-      dispatch({
-        type: SET_FETCHSTATE,
-        payload: "FAILED",
-      });
-    }
+export const setFetchState = (state) => {
+  return {
+    type: SET_FETCHSTATE,
+    payload: state,
   };
 };
 
@@ -76,10 +63,16 @@ export const fetchCategories = () => (dispatch) => {
 };
 
 export const fetchProducts = () => (dispatch) => {
+  dispatch(setFetchState("FETCHING"));
   axios
     .get("https://workintech-fe-ecommerce.onrender.com/products")
     .then((res) => {
       dispatch(setProductList(res.data.products));
       dispatch(setTotal(res.data.total));
+      dispatch(setFetchState("FETCHED"));
+    })
+    .catch((err) => {
+      console.log(err.response.message);
+      dispatch(setFetchState("FAILED"));
     });
 };

@@ -7,6 +7,7 @@ import { fetchProducts } from "../actions/productReducerActions.jsx";
 
 function ShopPage({ productList }) {
   const categories = useSelector((store) => store.productReducer.categories);
+  const fetchState = useSelector((store) => store.productReducer.fetchState);
 
   const topFive = categories
     .sort((a, b) => {
@@ -69,6 +70,10 @@ function ShopPage({ productList }) {
           </button>
         </div>
       </div>
+
+      {fetchState === "FETCHING" ? (
+        <i className="fa fa-spinner fa-spin fa-4x my-20 text-[#737373]"></i>
+      ) : null}
 
       <div className="flex flex-col items-center mt-28 lg:mt-16">
         <div className="lg:hidden">
