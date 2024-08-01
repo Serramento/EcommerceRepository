@@ -2,10 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import Gravatar from "react-gravatar";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  fetchCategories,
-  setCategories,
-} from "../actions/productReducerActions";
+import { fetchCategories } from "../actions/productReducerActions";
 import NavBar from "../components/NavBar";
 
 function Header() {

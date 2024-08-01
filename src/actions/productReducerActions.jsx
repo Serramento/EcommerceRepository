@@ -58,6 +58,7 @@ export const fetchCategories = () => (dispatch) => {
   axios
     .get("https://workintech-fe-ecommerce.onrender.com/categories")
     .then((res) => {
+      console.log(res.data);
       dispatch(setCategories(res.data));
     });
 };
@@ -67,6 +68,7 @@ export const fetchProducts = () => (dispatch) => {
   axios
     .get("https://workintech-fe-ecommerce.onrender.com/products")
     .then((res) => {
+      console.log(res.data);
       dispatch(setProductList(res.data.products));
       dispatch(setTotal(res.data.total));
       dispatch(setFetchState("FETCHED"));
@@ -74,5 +76,20 @@ export const fetchProducts = () => (dispatch) => {
     .catch((err) => {
       console.log(err.response.message);
       dispatch(setFetchState("FAILED"));
+    });
+};
+
+export const fetchFilteredProducts = (value) => (dispatch) => {
+  axios
+    .get(
+      "https://workintech-fe-ecommerce.onrender.com/products?filter=" +
+        { value }
+    )
+    .then((res) => {
+      console.log(res.data);
+      dispatch(setFilter(value));
+    })
+    .catch((err) => {
+      console.log(err.response.message);
     });
 };

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ProductCard from "../components/ProductCard.jsx";
 import ClothsCard from "../components/ClothsCard.jsx";
@@ -6,6 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../actions/productReducerActions.jsx";
 
 function ShopPage({ productList }) {
+  const [sort, setSort] = useState();
+  const [filter, setFilter] = useState();
+
   const categories = useSelector((store) => store.productReducer.categories);
   const fetchState = useSelector((store) => store.productReducer.fetchState);
 
@@ -38,8 +41,8 @@ function ShopPage({ productList }) {
         </div>
 
         <div className="mt-16 lg:flex lg:flex-row lg:justify-between lg:pl-5 lg:mt-10">
-          {topFive.map((category) => (
-            <ClothsCard category={category} />
+          {topFive.map((category, index) => (
+            <ClothsCard key={index} category={category} />
           ))}
         </div>
       </div>
