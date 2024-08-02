@@ -7,9 +7,10 @@ import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 function ProductPage({ productList }) {
   let { productId } = useParams();
-  let thisProduct = productList[0].find(
-    (prod) => prod.id === parseInt(productId)
-  );
+  let thisProduct = productList.find((prod) => prod.id === parseInt(productId));
+  const consoleX = () => {
+    console.log(thisProduct);
+  };
 
   return (
     <div className="font-montserrat flex flex-col">
@@ -26,10 +27,13 @@ function ProductPage({ productList }) {
       </div>
 
       <div className="bg-[#FAFAFA] lg:flex lg:flex-row lg:justify-center">
-        <ImageSlider2 slides={thisProduct.image} />
-        <div className="flex flex-row lg:flex-col w-40 h-40 ml-10 mt-10 pb-10 lg:mt-1 lg:w-20 lg:h-20 lg:mr-10">
-          <img src={thisProduct.images[0]} className="lg:pl-1" />
-          <img src={thisProduct.images[1]} className="pl-5 lg:mt-5 lg:pl-1" />
+        <ImageSlider2 slides={thisProduct.images} />
+        <div className="flex flex-row lg:flex-col w-60 h-60 ml-10 mt-10 pb-10 lg:mt-1 lg:w-20 lg:h-20 lg:mr-10">
+          <img src={thisProduct.images[0].url} className="lg:pl-1" />
+          <img
+            src={thisProduct.images[0].url}
+            className="pl-5 lg:mt-5 lg:pl-1"
+          />
         </div>
 
         <div className="flex flex-col items-start w-80 max-[639px]:mx-auto lg:w-[35rem]">
@@ -42,6 +46,7 @@ function ProductPage({ productList }) {
             <i className="fa-regular fa-star mt-1"></i>
             <h6 className="text-[#737373] font-bold ml-2">10 Reviews</h6>
           </div>
+          <div>{consoleX()}</div>
           <h5 className="font-bold mt-8 mb-3 text-2xl">
             <span className="text-[#BDBDBD]">$16.48</span>{" "}
             <span className="text-[#23856D]">$6.48</span>
@@ -166,13 +171,21 @@ function ProductPage({ productList }) {
         </h3>
         <div className="h-[1px] w-[20rem] mb-8 bg-[#ECECEC] lg:w-[70rem]" />
         <div className="lg:hidden">
-          {productList[0].slice(0, 4).map((product) => (
-            <ProductCard product={product} additionalClass="lg:w-[15rem]" />
+          {productList.slice(0, 4).map((product, index) => (
+            <ProductCard
+              key={index}
+              product={product}
+              additionalClass="lg:w-[15rem]"
+            />
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-wrap lg:w-[70rem] lg:justify-between">
-          {productList[0].slice(0, 8).map((product) => (
-            <ProductCard product={product} additionalClass="lg:w-[15rem]" />
+          {productList.slice(0, 8).map((product, index) => (
+            <ProductCard
+              key={index}
+              product={product}
+              additionalClass="lg:w-[15rem]"
+            />
           ))}
         </div>
       </div>

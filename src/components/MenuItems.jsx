@@ -1,17 +1,13 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const MenuItems = ({ value }) => {
-  const [categoryId, setCategoryId] = useState();
-
   const categories = useSelector((store) => store.productReducer.categories);
-  const productList = useSelector((store) => store.productReducer.productList);
+
   const categoriesArray = categories.filter((category) =>
     category.code.startsWith(value)
   );
-
-  const dispatch = useDispatch();
 
   return (
     <ul>

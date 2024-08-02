@@ -79,6 +79,21 @@ export const fetchProducts = () => (dispatch) => {
     });
 };
 
+export const fetchSelectedCategory = (value) => (dispatch) => {
+  axios
+    .get(
+      "https://workintech-fe-ecommerce.onrender.com/products?category=" +
+        { value }
+    )
+    .then((res) => {
+      console.log(res.data);
+      dispatch(setFilter(value));
+    })
+    .catch((err) => {
+      console.log(err.response.message);
+    });
+};
+
 export const fetchFilteredProducts = (value) => (dispatch) => {
   axios
     .get(

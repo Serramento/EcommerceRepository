@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
 import ProductCard from "../components/ProductCard.jsx";
 import ClothsCard from "../components/ClothsCard.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../actions/productReducerActions.jsx";
 
 function ShopPage({ productList }) {
-  const [sort, setSort] = useState();
-  const [filter, setFilter] = useState();
+  let { categoryId } = useParams();
+  let thisProduct = productList.find(
+    (prod) => prod.id === parseInt(categoryId)
+  );
 
   const categories = useSelector((store) => store.productReducer.categories);
   const fetchState = useSelector((store) => store.productReducer.fetchState);
@@ -80,18 +82,18 @@ function ShopPage({ productList }) {
 
       <div className="flex flex-col items-center mt-28 lg:mt-16">
         <div className="lg:hidden">
-          {productList.slice(0, 4).map((product) => (
+          {productList.slice(0, 4).map((product, index) => (
             <ProductCard
-              key={product.id}
+              key={index}
               product={product}
               additionalClass="lg:w-60"
             />
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-wrap lg:w-[74rem] lg:justify-between">
-          {productList.slice(0, 12).map((product) => (
+          {productList.slice(0, 12).map((product, index) => (
             <ProductCard
-              key={product.id}
+              key={index}
               product={product}
               additionalClass="lg:w-60"
             />
