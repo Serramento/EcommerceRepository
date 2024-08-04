@@ -87,7 +87,7 @@ export const fetchSelectedCategory = (value) => (dispatch) => {
     )
     .then((res) => {
       console.log(res.data);
-      dispatch(setFilter(value));
+      dispatch(setLimit(value));
     })
     .catch((err) => {
       console.log(err.response.message);

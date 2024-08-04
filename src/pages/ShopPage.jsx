@@ -4,12 +4,23 @@ import ProductCard from "../components/ProductCard.jsx";
 import ClothsCard from "../components/ClothsCard.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../actions/productReducerActions.jsx";
+import axios from "axios";
 
 function ShopPage({ productList }) {
-  let { categoryId } = useParams();
-  let thisProduct = productList.find(
-    (prod) => prod.id === parseInt(categoryId)
-  );
+  /*let { categoryId } = useParams();
+
+  useEffect(() => {
+    axios
+      .get(
+        `https://workintech-fe-ecommerce.onrender.com/categories/${categoryId}`
+      )
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  }, [categoryId]);*/
 
   const categories = useSelector((store) => store.productReducer.categories);
   const fetchState = useSelector((store) => store.productReducer.fetchState);

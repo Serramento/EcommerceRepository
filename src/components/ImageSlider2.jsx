@@ -35,7 +35,7 @@ const ImageSlider2 = ({ slides }) => {
           <img
             src={slides[current].url}
             alt="travel image"
-            className="w-72 object-cover"
+            className="w-80 object-cover"
           />
         </div>
       )}
