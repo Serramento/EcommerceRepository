@@ -8,19 +8,22 @@ import TeamPage from "../pages/TeamPage";
 import AboutUsPage from "../pages/AboutUsPage";
 import SignUpFormPage from "../pages/SignUpFormPage";
 import LoginPage from "../pages/LoginPage";
+import { useSelector } from "react-redux";
 
 function PageContent() {
+  const productList = useSelector((store) => store.productReducer.productList);
+
   return (
     <div>
       <Switch>
         <Route exact path="/">
-          <HomePage />
+          <HomePage productList={productList} />
         </Route>
         <Route path="/shop">
-          <ShopPage />
+          <ShopPage productList={productList} />
         </Route>
         <Route path="/productPage/:productId">
-          <ProductPage />
+          <ProductPage productList={productList} />
         </Route>
         <Route path="/contact">
           <ContactPage />

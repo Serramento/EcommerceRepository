@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const SET_CATEGORIES = "SET_CATEGORIES";
 export const SET_PRODUCTLIST = "SET_PRODUCTLIST";
 export const SET_TOTAL = "SET_TOTAL";
@@ -26,23 +28,10 @@ export const setTotal = () => {
   };
 };
 
-export const setFetchState = () => {
-  return async (dispatch) => {
-    dispatch({
-      type: SET_FETCHSTATE,
-      payload: "FETCHING",
-    });
-    try {
-      dispatch({
-        type: SET_FETCHSTATE,
-        payload: "FETCHED",
-      });
-    } catch (error) {
-      dispatch({
-        type: SET_FETCHSTATE,
-        payload: "FAILED",
-      });
-    }
+export const setFetchState = (state) => {
+  return {
+    type: SET_FETCHSTATE,
+    payload: state,
   };
 };
 
@@ -63,4 +52,27 @@ export const setFilter = (filter) => {
     type: SET_FILTER,
     payload: filter,
   };
+};
+
+export const fetchCategories = () => (dispatch) => {
+  axios
+    .get("https://workintech-fe-ecommerce.onrender.com/categories")
+    .then((res) => {
+      dispatch(setCategories(res.data));
+    });
+};
+
+export const fetchProducts = () => (dispatch) => {
+  dispatch(setFetchState("FETCHING"));
+  axios
+    .get("https://workintech-fe-ecommerce.onrender.com/products")
+    .then((res) => {
+      dispatch(setProductList(res.data.products));
+      dispatch(setTotal(res.data.total));
+      dispatch(setFetchState("FETCHED"));
+    })
+    .catch((err) => {
+      console.log(err.response.message);
+      dispatch(setFetchState("FAILED"));
+    });
 };
