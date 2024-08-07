@@ -7,6 +7,7 @@ import ContactPage from "../pages/ContactPage";
 import TeamPage from "../pages/TeamPage";
 import AboutUsPage from "../pages/AboutUsPage";
 import SignUpFormPage from "../pages/SignUpFormPage";
+import LoginPage from "../pages/LoginPage";
 
 function PageContent() {
   return (
@@ -32,6 +33,9 @@ function PageContent() {
         </Route>
         <Route path="/signup">
           <SignUpFormPage />
+        </Route>
+        <Route path="/login">
+          <LoginPage />
         </Route>
       </Switch>
     </div>

@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import Gravatar from "react-gravatar";
 
-function Header() {
+function Header(props) {
+  const userInfo = props.user;
+  /*const [user, setUser] = useState();
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("token"));
+    if (user) {
+      setUser(user);
+    }
+  }, []);*/
+
   return (
     <div className="font-montserrat">
       <div className="flex flex-col lg:hidden">
@@ -43,14 +54,27 @@ function Header() {
           </NavLink>
         </nav>
         <div className="text-bluex flex flex-col text-3xl">
-          <div>
-            <i className="fa-regular fa-user "></i>
-            <Link to="/login" className="text-bluex pl-2">
-              Login
-            </Link>
-            <span className="font-semibold pl-2">/</span>
-            <Link to="/signup" className="text-bluex pl-2">
-              Register
+          {!userInfo.email && (
+            <div>
+              <i className="fa-regular fa-user "></i>
+              <Link to="/login" className="text-bluex pl-2">
+                Login
+              </Link>
+              <span className="font-semibold pl-2">/</span>
+              <Link to="/signup" className="text-bluex pl-2">
+                Register
+              </Link>
+            </div>
+          )}
+
+          <div className="flex flex-row justify-center mt-5">
+            <Gravatar
+              email={userInfo.email && userInfo.email}
+              size={45}
+              style={{ margin: "10px" }}
+            />
+            <Link to="/profile" className="text-[#737373] pt-4 text-xl">
+              {userInfo.email && userInfo.email}
             </Link>
           </div>
           <div className="flex flex-col h-44 justify-between mt-20 mb-20">
@@ -135,15 +159,26 @@ function Header() {
           </div>
 
           <div className="text-bluex flex flex-row text-xs ">
-            <div>
-              <i className="fa-regular fa-user "></i>
-              <Link to="/login" className="text-bluex font-bold pl-1">
-                Login
-              </Link>
-              <span className="font-bold pl-1">/</span>
-              <Link to="/signup" className="text-bluex font-bold pl-1">
-                Register
-              </Link>
+            <div className="flex flex-row">
+              {!userInfo.email && (
+                <div>
+                  <i className="fa-regular fa-user "></i>
+                  <Link to="/login" className="text-bluex font-bold pl-1">
+                    Login
+                  </Link>
+                  <span className="font-bold pl-1">/</span>
+                  <Link to="/signup" className="text-bluex font-bold pl-1">
+                    Register
+                  </Link>
+                </div>
+              )}
+
+              <div className="flex flex-row ml-5">
+                <Gravatar email={userInfo.email && userInfo.email} size={15} />
+                <Link to="/profile" className="text-[#737373] font-bold ml-2">
+                  {userInfo.email && userInfo.email}
+                </Link>
+              </div>
             </div>
             <i className="fa-solid fa-magnifying-glass pl-7"></i>
             <i className="fa-solid fa-cart-shopping pl-5"></i>

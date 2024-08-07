@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { setRoles } from "../actions/clientReducerActions";
 
 function SignUpFormPage() {
-  const [customer, setCustomer] = useState("customer");
+  const [customer, setCustomer] = useState("");
 
   const history = useHistory();
 
