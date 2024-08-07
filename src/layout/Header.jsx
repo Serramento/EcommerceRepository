@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import Gravatar from "react-gravatar";
+import { useDispatch, useSelector } from "react-redux";
+import { setCategories } from "../actions/productReducerActions";
+import NavBar from "../components/NavBar";
 
-function Header(props) {
-  const userInfo = props.user;
+function Header() {
+  const userInfo = useSelector((store) => store.clientReducer.user);
   const [user, setUser] = useState();
 
   useEffect(() => {
@@ -11,6 +14,29 @@ function Header(props) {
     if (user) {
       setUser(user);
     }
+  }, []);
+
+  const [isDropdownVisible, setDropdownVisible] = useState(false);
+
+  const handleMouseEnter = () => {
+    setDropdownVisible(true);
+  };
+
+  const handleMouseLeave = () => {
+    setDropdownVisible(false);
+  };
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    fetch("https://workintech-fe-ecommerce.onrender.com/categories")
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        dispatch(setCategories(data));
+      });
   }, []);
 
   return (
@@ -33,13 +59,22 @@ function Header(props) {
           </div>
         </div>
 
-        <nav className="flex items-center flex-col h-[34rem]">
+        <nav className="flex items-center flex-col relative">
           <NavLink to="/" exact className="text-[#737373] mt-20 text-3xl">
             Home
           </NavLink>
-          <NavLink to="/shop" className="text-[#737373] mt-7 text-3xl">
-            Shop
-          </NavLink>
+
+          <div
+            className="text-[#737373] mt-7 text-3xl relative"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            <NavLink to="/shop" className="text-[#737373] mt-20 text-3xl">
+              Shop
+            </NavLink>
+            {isDropdownVisible && <NavBar className="absolute" />}
+          </div>
+
           <NavLink to="/about" className="text-[#737373] mt-7 text-3xl">
             About
           </NavLink>
@@ -126,12 +161,21 @@ function Header(props) {
               >
                 Home
               </NavLink>
-              <NavLink
-                to="/shop"
-                className="text-[#737373] text-xs font-bold pr-2"
+
+              <div
+                className="text-[#737373] text-xs font-bold mt-1 pr-2 h-5 relative z-[9999]"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
               >
-                Shop
-              </NavLink>
+                <NavLink
+                  to="/shop"
+                  className="text-[#737373] text-xs font-bold"
+                >
+                  Shop
+                </NavLink>
+                {isDropdownVisible && <NavBar className="absolute" />}
+              </div>
+
               <NavLink
                 to="/about"
                 className="text-[#737373]  text-xs font-bold pr-2"
