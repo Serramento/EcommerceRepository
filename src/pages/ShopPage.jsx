@@ -97,6 +97,7 @@ function ShopPage({ productList }) {
             <ProductCard
               key={index}
               product={product}
+              categories={categories}
               additionalClass="lg:w-60"
             />
           ))}
@@ -106,6 +107,7 @@ function ShopPage({ productList }) {
             <ProductCard
               key={index}
               product={product}
+              categories={categories}
               additionalClass="lg:w-60"
             />
           ))}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
@@ -296,7 +296,7 @@ function SignUpFormPage() {
         )}
       </div>
       <button
-        className="w-80 mx-auto lg:w-96 h-16 bg-[#23A6F0] rounded-md text-[#FFFFFF] mb-20"
+        className="w-80 mx-auto lg:w-96 h-16 bg-[#23A6F0] rounded-md text-[#FFFFFF]"
         type="register"
         disabled={isSubmitting}
         onClick={() => history.goBack()}
@@ -304,6 +304,15 @@ function SignUpFormPage() {
         {isSubmitting && <i className="fa fa-spinner fa-spin mr-3"></i>}
         Register
       </button>
+
+      <div className="text-[#737373] text-sm mb-20 mt-8 font-semibold">
+        <p>
+          Already have an account? Click to{" "}
+          <Link className="text-[#23A6F0] underline font-semibold" to="/login">
+            Login!
+          </Link>
+        </p>
+      </div>
     </form>
   );
 }
