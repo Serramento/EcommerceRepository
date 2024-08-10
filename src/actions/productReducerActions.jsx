@@ -87,14 +87,14 @@ export const fetchSelectedCategory = (value) => (dispatch) => {
     )
     .then((res) => {
       console.log(res.data);
-      dispatch(setLimit(value));
+      dispatch(setFilter({ categoryId: { value } }));
     })
     .catch((err) => {
       console.log(err.response.message);
     });
 };
 
-export const fetchFilteredProducts = (value) => (dispatch) => {
+/*export const fetchFilteredProducts = (value) => (dispatch) => {
   axios
     .get(
       "https://workintech-fe-ecommerce.onrender.com/products?filter=" +
@@ -107,4 +107,4 @@ export const fetchFilteredProducts = (value) => (dispatch) => {
     .catch((err) => {
       console.log(err.response.message);
     });
-};
+};*/

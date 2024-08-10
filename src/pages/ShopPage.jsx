@@ -3,24 +3,17 @@ import { Link, useParams } from "react-router-dom";
 import ProductCard from "../components/ProductCard.jsx";
 import ClothsCard from "../components/ClothsCard.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "../actions/productReducerActions.jsx";
-import axios from "axios";
+import {
+  fetchProducts,
+  fetchSelectedCategory,
+} from "../actions/productReducerActions.jsx";
 
 function ShopPage({ productList }) {
-  /*let { categoryId } = useParams();
+  let { categoryId } = useParams();
 
   useEffect(() => {
-    axios
-      .get(
-        `https://workintech-fe-ecommerce.onrender.com/categories/${categoryId}`
-      )
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err.response);
-      });
-  }, [categoryId]);*/
+    dispatch(fetchSelectedCategory(categoryId));
+  }, [categoryId]);
 
   const categories = useSelector((store) => store.productReducer.categories);
   const fetchState = useSelector((store) => store.productReducer.fetchState);
@@ -47,9 +40,7 @@ function ShopPage({ productList }) {
               Home
             </Link>
             <i className="fa-solid fa-chevron-right text-[#BDBDBD] pt-1"></i>
-            <Link to="/shop" className="text-[#737373] font-bold">
-              Shop
-            </Link>
+            <div className="text-[#737373] font-bold">Shop</div>
           </div>
         </div>
 
