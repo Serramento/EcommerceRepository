@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useHistory } from "react-router-dom";
 import Gravatar from "react-gravatar";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCategories } from "../actions/productReducerActions";
@@ -15,6 +15,18 @@ function Header() {
       setUser(user);
     }
   }, []);
+
+  const history = useHistory();
+
+  /*const logOut = () => {
+    axiosWithAuth()
+      .get("logout")
+      .catch((err) => console.error(err.response.message))
+      .finally(() => {
+        setUser();
+        history.push("/");
+      });
+  };*/
 
   const [isDropdownVisible, setDropdownVisible] = useState(false);
 
@@ -81,15 +93,18 @@ function Header() {
         </nav>
         <div className="text-bluex flex flex-col text-3xl">
           {userInfo.email || user ? (
-            <div className="flex flex-row justify-center mt-5">
-              <Gravatar
-                email={userInfo.email || user.email}
-                size={45}
-                style={{ margin: "10px" }}
-              />
-              <Link to="/profile" className="text-[#737373] pt-4 text-xl">
-                {userInfo.email || user.email}
-              </Link>
+            <div>
+              <div className="flex flex-row justify-center mt-5">
+                <Gravatar
+                  email={userInfo.email || user.email}
+                  size={45}
+                  style={{ margin: "10px" }}
+                />
+                <Link to="/profile" className="text-[#737373] pt-4 text-xl">
+                  {userInfo.email || user.email}
+                </Link>
+              </div>
+              <button className="text-bluex px-2 mt-7">Logout</button>
             </div>
           ) : (
             <div>
@@ -197,6 +212,9 @@ function Header() {
                   <Link to="/profile" className="text-[#737373] font-bold ml-2">
                     {userInfo.email || user.email}
                   </Link>
+                  <button className="text-bluex px-2 font-semibold">
+                    / Logout
+                  </button>
                 </div>
               ) : (
                 <div>

@@ -66,15 +66,21 @@ function ShopPage({ productList }) {
             </Link>
           </div>
         </div>
-        <div className="flex flex-row items-center justify-between w-60">
-          <label className="text-[#737373] bg-[#F9F9F9] border-2 border-[#DDDDDD] px-5 py-3 rounded-md text-sm">
-            <select className="bg-[#F9F9F9]">
-              <option value="popularity">Popularity</option>
+        <div className="flex flex-row items-center justify-between w-72">
+          <label className="text-[#737373] bg-[#F9F9F9] w-48 border-2 border-[#DDDDDD] px-1 mr-3 py-3 rounded-md text-sm">
+            <select className="bg-[#F9F9F9] hover:bg-[#c4c3c3] hover:text-[#FFFFFF] rounded-none">
+              <option value="price:asc">Price Ascending</option>
+              <option value="price:desc">Price Descending</option>
+              <option value="rating:asc">Rating Ascending</option>
+              <option value="rating:asc">Rating Descending</option>
             </select>
           </label>
-          <button className="bg-[#23A6F0] text-[#FFFFFF] text-sm font-semibold px-7 py-3 rounded-md">
-            Filter
-          </button>
+          <label>
+            <input
+              className="bg-[#23A6F0] text-[#FFFFFF] w-32 text-sm font-semibold px-7 py-3 rounded-md"
+              placeholder="Filter"
+            />
+          </label>
         </div>
       </div>
 
