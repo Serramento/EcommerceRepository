@@ -108,7 +108,7 @@ export const fetchSelectedSort = (value) => (dispatch) => {
     });
 };
 
-export const fetchFilteredProducts = (value) => (dispatch) => {
+export const fetchSelectedFilter = (value) => (dispatch) => {
   axios
     .get(
       "https://workintech-fe-ecommerce.onrender.com/products?filter=" +

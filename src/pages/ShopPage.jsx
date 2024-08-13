@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   fetchProducts,
   fetchSelectedCategory,
+  fetchSelectedFilter,
+  fetchSelectedSort,
 } from "../actions/productReducerActions.jsx";
 
 function ShopPage({ productList }) {
@@ -17,6 +19,7 @@ function ShopPage({ productList }) {
 
   const categories = useSelector((store) => store.productReducer.categories);
   const fetchState = useSelector((store) => store.productReducer.fetchState);
+  const filter = useSelector((store) => store.productReducer.filter);
 
   const topFive = categories
     .sort((a, b) => {
@@ -68,7 +71,13 @@ function ShopPage({ productList }) {
         </div>
         <div className="flex flex-row items-center justify-between w-72">
           <label className="text-[#737373] bg-[#F9F9F9] w-48 border-2 border-[#DDDDDD] px-1 mr-3 py-3 rounded-md text-sm">
-            <select className="bg-[#F9F9F9] hover:bg-[#c4c3c3] hover:text-[#FFFFFF] rounded-none">
+            <select
+              value={filter.sort}
+              onChange={(event) =>
+                dispatch(fetchSelectedSort(event.target.value))
+              }
+              className="bg-[#F9F9F9] hover:bg-[#c4c3c3] hover:text-[#FFFFFF] rounded-none"
+            >
               <option value="price:asc">Price Ascending</option>
               <option value="price:desc">Price Descending</option>
               <option value="rating:asc">Rating Ascending</option>
@@ -79,6 +88,11 @@ function ShopPage({ productList }) {
             <input
               className="bg-[#23A6F0] text-[#FFFFFF] w-32 text-sm font-semibold px-7 py-3 rounded-md"
               placeholder="Filter"
+              value={filter.filter}
+              onKeyDown={(event) => {
+                if (event.key === "Enter")
+                  dispatch(fetchSelectedFilter(event.target.value));
+              }}
             />
           </label>
         </div>
