@@ -47,10 +47,12 @@ export const setOffset = () => {
   };
 };
 
-export const setFilter = (filter) => {
+export const setFilter = (categoryId, sort, filter) => {
   return {
     type: SET_FILTER,
-    payload: filter,
+    payload: categoryId,
+    sort,
+    filter,
   };
 };
 
@@ -82,43 +84,95 @@ export const fetchProducts = () => (dispatch) => {
 export const fetchSelectedCategory = (value) => (dispatch) => {
   axios
     .get(
-      "https://workintech-fe-ecommerce.onrender.com/products?category=" +
-        { value }
+      "https://workintech-fe-ecommerce.onrender.com/products?category=" + value
     )
     .then((res) => {
       console.log(res.data);
-      dispatch(setFilter({ categoryId: { value } }));
+      dispatch(setFilter({ categoryId: value }));
+      dispatch(setProductList(res.data.products));
+      dispatch(setTotal(res.data.total));
     })
     .catch((err) => {
       console.log(err.response.message);
     });
 };
 
-export const fetchSelectedSort = (value) => (dispatch) => {
-  axios
-    .get(
-      "https://workintech-fe-ecommerce.onrender.com/products?sort=" + { value }
-    )
-    .then((res) => {
-      console.log(res.data);
-      dispatch(setFilter({ sort: { value } }));
-    })
-    .catch((err) => {
-      console.log(err.response.message);
-    });
+export const fetchSelectedSort = (value, categoryId, filter) => (dispatch) => {
+  if (filter) {
+    axios
+      .get(
+        "https://workintech-fe-ecommerce.onrender.com/products?category=" +
+          categoryId +
+          "&filter=" +
+          filter +
+          "&sort=" +
+          value
+      )
+      .then((res) => {
+        console.log(res.data);
+        dispatch(setFilter({ sort: value }));
+        dispatch(setProductList(res.data.products));
+        dispatch(setTotal(res.data.total));
+      })
+      .catch((err) => {
+        console.log(err.response.message);
+      });
+  } else {
+    axios
+      .get(
+        "https://workintech-fe-ecommerce.onrender.com/products?category=" +
+          categoryId +
+          "&sort=" +
+          value
+      )
+      .then((res) => {
+        console.log(res.data);
+        dispatch(setFilter({ sort: value }));
+        dispatch(setProductList(res.data.products));
+        dispatch(setTotal(res.data.total));
+      })
+      .catch((err) => {
+        console.log(err.response.message);
+      });
+  }
 };
 
-export const fetchSelectedFilter = (value) => (dispatch) => {
-  axios
-    .get(
-      "https://workintech-fe-ecommerce.onrender.com/products?filter=" +
-        { value }
-    )
-    .then((res) => {
-      console.log(res.data);
-      dispatch(setFilter({ filter: { value } }));
-    })
-    .catch((err) => {
-      console.log(err.response.message);
-    });
+export const fetchSelectedFilter = (value, categoryId, sort) => (dispatch) => {
+  if (sort) {
+    axios
+      .get(
+        "https://workintech-fe-ecommerce.onrender.com/products?category=" +
+          categoryId +
+          "&sort=" +
+          sort +
+          "&filter=" +
+          value
+      )
+      .then((res) => {
+        console.log(res.data);
+        dispatch(setFilter({ filter: value }));
+        dispatch(setProductList(res.data.products));
+        dispatch(setTotal(res.data.total));
+      })
+      .catch((err) => {
+        console.log(err.response.message);
+      });
+  } else {
+    axios
+      .get(
+        "https://workintech-fe-ecommerce.onrender.com/products?category=" +
+          categoryId +
+          "&filter=" +
+          value
+      )
+      .then((res) => {
+        console.log(res.data);
+        dispatch(setFilter({ filter: value }));
+        dispatch(setProductList(res.data.products));
+        dispatch(setTotal(res.data.total));
+      })
+      .catch((err) => {
+        console.log(err.response.message);
+      });
+  }
 };

@@ -4,13 +4,14 @@ import ProductCard from "../components/ProductCard.jsx";
 import ClothsCard from "../components/ClothsCard.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  fetchProducts,
   fetchSelectedCategory,
   fetchSelectedFilter,
   fetchSelectedSort,
 } from "../actions/productReducerActions.jsx";
 
 function ShopPage({ productList }) {
+  const dispatch = useDispatch();
+
   let { categoryId } = useParams();
 
   useEffect(() => {
@@ -26,12 +27,6 @@ function ShopPage({ productList }) {
       return b.rating - a.rating;
     })
     .slice(0, 5);
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchProducts());
-  }, []);
 
   return (
     <div className="font-montserrat flex flex-col">
@@ -72,26 +67,40 @@ function ShopPage({ productList }) {
         <div className="flex flex-row items-center justify-between w-72">
           <label className="text-[#737373] bg-[#F9F9F9] w-48 border-2 border-[#DDDDDD] px-1 mr-3 py-3 rounded-md text-sm">
             <select
-              value={filter.sort}
+              defaultValue={filter.sort}
               onChange={(event) =>
-                dispatch(fetchSelectedSort(event.target.value))
+                dispatch(
+                  fetchSelectedSort(
+                    event.target.value,
+                    filter.categoryId,
+                    filter.filter
+                  )
+                )
               }
               className="bg-[#F9F9F9] hover:bg-[#c4c3c3] hover:text-[#FFFFFF] rounded-none"
             >
+              <option defaultValue="">Popularity</option>
+              <option value="price:desc">Price Descending</option>
               <option value="price:asc">Price Ascending</option>
               <option value="price:desc">Price Descending</option>
               <option value="rating:asc">Rating Ascending</option>
-              <option value="rating:asc">Rating Descending</option>
+              <option value="rating:desc">Rating Descending</option>
             </select>
           </label>
           <label>
             <input
               className="bg-[#23A6F0] text-[#FFFFFF] w-32 text-sm font-semibold px-7 py-3 rounded-md"
               placeholder="Filter"
-              value={filter.filter}
+              defaultValue={filter.filter}
               onKeyDown={(event) => {
                 if (event.key === "Enter")
-                  dispatch(fetchSelectedFilter(event.target.value));
+                  dispatch(
+                    fetchSelectedFilter(
+                      event.target.value,
+                      filter.categoryId,
+                      filter.sort
+                    )
+                  );
               }}
             />
           </label>
