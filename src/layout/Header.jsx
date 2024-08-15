@@ -4,6 +4,8 @@ import Gravatar from "react-gravatar";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCategories } from "../actions/productReducerActions";
 import NavBar from "../components/NavBar";
+import { setUser } from "../actions/clientReducerActions";
+import axios from "axios";
 
 function Header() {
   const userInfo = useSelector((store) => store.clientReducer.user);
@@ -18,15 +20,27 @@ function Header() {
 
   const history = useHistory();
 
-  /*const logOut = () => {
+  const axiosWithAuth = () => {
+    return axios.create({
+      baseURL: "https://workintech-fe-ecommerce.onrender.com/",
+      headers:
+        user && user.token
+          ? {
+              Authorization: authUser.token,
+            }
+          : {},
+    });
+  };
+
+  const logOut = () => {
     axiosWithAuth()
       .get("logout")
       .catch((err) => console.error(err.response.message))
       .finally(() => {
         setUser();
-        history.push("/");
+        history.push("/login");
       });
-  };*/
+  };
 
   const [isDropdownVisible, setDropdownVisible] = useState(false);
 
@@ -104,7 +118,9 @@ function Header() {
                   {userInfo.email || user.email}
                 </Link>
               </div>
-              <button className="text-bluex px-2 mt-7">Logout</button>
+              <button onClick={() => logOut()} className="text-bluex px-2 mt-7">
+                Logout
+              </button>
             </div>
           ) : (
             <div>
@@ -212,7 +228,10 @@ function Header() {
                   <Link to="/profile" className="text-[#737373] font-bold ml-2">
                     {userInfo.email || user.email}
                   </Link>
-                  <button className="text-bluex px-2 font-semibold">
+                  <button
+                    onClick={() => logOut()}
+                    className="text-bluex px-2 font-semibold"
+                  >
                     / Logout
                   </button>
                 </div>

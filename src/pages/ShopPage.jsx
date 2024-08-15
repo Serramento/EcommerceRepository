@@ -49,6 +49,10 @@ function ShopPage({ productList }) {
         </div>
       </div>
 
+      <div>{filter.categoryId}</div>
+      <div>{filter.sort}</div>
+      <div>{filter.filter}</div>
+
       <div className="flex flex-col items-center my-10 lg:flex-row lg:justify-between lg:mx-10">
         <h6 className="text-[#737373] font-bold text-base max-[639px]:mb-6">
           Showing all 12 results

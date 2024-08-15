@@ -47,12 +47,10 @@ export const setOffset = () => {
   };
 };
 
-export const setFilter = (categoryId, sort, filter) => {
+export const setFilter = (filter) => {
   return {
     type: SET_FILTER,
-    payload: categoryId,
-    sort,
-    filter,
+    payload: filter,
   };
 };
 
@@ -71,8 +69,6 @@ export const fetchProducts = () => (dispatch) => {
     .get("https://workintech-fe-ecommerce.onrender.com/products")
     .then((res) => {
       console.log(res.data);
-      dispatch(setProductList(res.data.products));
-      dispatch(setTotal(res.data.total));
       dispatch(setFetchState("FETCHED"));
     })
     .catch((err) => {
@@ -150,7 +146,7 @@ export const fetchSelectedFilter = (value, categoryId, sort) => (dispatch) => {
       )
       .then((res) => {
         console.log(res.data);
-        dispatch(setFilter({ filter: value }));
+        dispatch(setFilter({ filter: value.toLowerCase() }));
         dispatch(setProductList(res.data.products));
         dispatch(setTotal(res.data.total));
       })
