@@ -8,6 +8,7 @@ import {
   fetchSelectedFilter,
   fetchSelectedSort,
 } from "../actions/productReducerActions.jsx";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 function ShopPage({ productList }) {
   const dispatch = useDispatch();
@@ -21,12 +22,27 @@ function ShopPage({ productList }) {
   const categories = useSelector((store) => store.productReducer.categories);
   const fetchState = useSelector((store) => store.productReducer.fetchState);
   const filter = useSelector((store) => store.productReducer.filter);
+  const total = useSelector((store) => store.productReducer.total);
 
   const topFive = categories
     .sort((a, b) => {
       return b.rating - a.rating;
     })
     .slice(0, 5);
+
+  const fetchMoreData = () => {
+    if (total >= 500) {
+      this.setState({ hasMore: false });
+      return;
+    }
+    // a fake async api call like which sends
+    // 20 more records in .5 secs
+    setTimeout(() => {
+      this.setState({
+        items: productList.concat(Array.from({ length: 20 })),
+      });
+    }, 500);
+  };
 
   return (
     <div className="font-montserrat flex flex-col">
@@ -135,6 +151,35 @@ function ShopPage({ productList }) {
               additionalClass="lg:w-60"
             />
           ))}
+        </div>
+
+        <div
+          id="scrollableDiv"
+          style={{
+            height: 300,
+            overflow: "auto",
+            display: "flex",
+            flexDirection: "column-reverse",
+          }}
+        >
+          <InfiniteScroll
+            dataLength={total}
+            next={fetchMoreData()}
+            style={{ display: "flex", flexDirection: "column-reverse" }}
+            inverse={true}
+            hasMore={true}
+            loader={<h4>Loading...</h4>}
+            scrollableTarget="scrollableDiv"
+          >
+            {productList.slice(0, 12).map((product, index) => (
+              <ProductCard
+                key={index}
+                product={product}
+                categories={categories}
+                additionalClass="lg:w-60"
+              />
+            ))}
+          </InfiniteScroll>
         </div>
 
         <div className="rounded-lg border-2 border-[#BDBDBD] mb-20 mt-3 text-sm font-bold">
