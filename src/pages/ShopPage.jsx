@@ -153,35 +153,6 @@ function ShopPage({ productList }) {
           ))}
         </div>
 
-        <div
-          id="scrollableDiv"
-          style={{
-            height: 300,
-            overflow: "auto",
-            display: "flex",
-            flexDirection: "column-reverse",
-          }}
-        >
-          <InfiniteScroll
-            dataLength={total}
-            next={fetchMoreData()}
-            style={{ display: "flex", flexDirection: "column-reverse" }}
-            inverse={true}
-            hasMore={true}
-            loader={<h4>Loading...</h4>}
-            scrollableTarget="scrollableDiv"
-          >
-            {productList.slice(0, 12).map((product, index) => (
-              <ProductCard
-                key={index}
-                product={product}
-                categories={categories}
-                additionalClass="lg:w-60"
-              />
-            ))}
-          </InfiniteScroll>
-        </div>
-
         <div className="rounded-lg border-2 border-[#BDBDBD] mb-20 mt-3 text-sm font-bold">
           <button className="bg-[#F3F3F3] px-6 py-6 text-[#BDBDBD] rounded-l-lg rounded-r-none">
             First

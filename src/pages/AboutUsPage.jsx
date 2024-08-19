@@ -20,21 +20,10 @@ function AboutUsPage() {
 
         <div className="mt-20 w-[25rem] h-[27rem] relative mx-auto lg:w-[45rem] lg:h-[35rem] lg:mt-8 lg:mr-32">
           <img
-            src="https://s3-alpha-sig.figma.com/img/7466/f015/45eb1f33b39fa1e1f6b0ddf5bb703345?Expires=1715558400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=BssUUP6qPrE2PI0ox9y~Ch3cid5eWM9xGlsLKwkMbb3R-TI0fsasVwNBd5JX0Tgm~KdvSCZnvs~HGqWntS~mQ~qJyWdiv1PClJmrNPEvNInnncQNaOK-3GTCgsAVovVH37P3uaBjI2c-vvla9U4hJykSz~0kp-AWuThKprhARFvON1zUDDO1L5HLqpftg8ZDfif8XYK92OD6rsBugCZfLixYg8B7IVgAGvcfSfolN7g6IhczZNnSe~neEoAUz2nG75l-j6c~ZSBBqrY8~GVF5vjUMLiZI~AIqEcPF-6FRG7MP8Q7TFYQVKHTuedTSNbsoKZNToa4L9k0ydGc4~tjOA__"
+            src="/none.png"
             alt="Image"
             className="w-full h-full object-cover absolute"
           />
-          <div className="lg:ml-32">
-            <svg height="60" width="60" className="ml-10">
-              <circle cx="30" cy="30" r="30" fill="#FFE9EA" />
-            </svg>
-            <svg height="300" width="300" className="ml-16">
-              <circle cx="150" cy="150" r="150" fill="#FFE9EA" />
-            </svg>
-            <svg height="20" width="20" className="ml-72 mt-10 lg:ml-[28rem]">
-              <circle cx="10" cy="10" r="10" fill="#FFE9EA" />
-            </svg>
-          </div>
         </div>
       </div>
 
@@ -78,7 +67,7 @@ function AboutUsPage() {
       <div className="relative my-28 flex justify-center items-center">
         <div className="w-80 h-80 absolute lg:w-[60rem] lg:h-[30rem]">
           <img
-            src="https://s3-alpha-sig.figma.com/img/bf53/61f3/08dd0c5a04f10121bc68f6cb9ff0d63d?Expires=1715558400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=StJyfuyzbEdiEg0CRxmxqWQjpWU2DDwQABBKxXs8f0S3sEvJLsna5WjaO8khAz3yXCt4rWbSMnDbEpEOzifyMvBLiWcync6S3gwfTD3aMGlPmvgWdNOXbd8zH1ep062P1~UvZb-POwNzy4T9hbfMJdywKMAm2kJTslE~VzBmv642ydR2eEfM1hanWiVwegi3tfaQ1YtvJ1d8WyxdC30PTI0uf5SckjZShB46QrnxqXX2WSJs-2ujto8bncaCntXHjLMRPGkfGIl~wtyVqKCY0h6~grjlogL4hMx4YZqI~o0~9te0GSNelgq8DyAz7NzY0tbrjf8hPKC-Bes4fnBC0Q__"
+            src="/unsplash_T_Qe4QlMIvQ.png"
             alt="Image"
             className="w-full h-full object-cover rounded-xl"
           />
@@ -101,7 +90,7 @@ function AboutUsPage() {
           <div className="font-bold">
             <div className="w-72 h-52">
               <img
-                src="https://media.licdn.com/dms/image/D4D03AQHHikjSDQq9xw/profile-displayphoto-shrink_800_800/0/1708951317641?e=1720051200&v=beta&t=rerI4IakEFrJmiHVx6AWgjZsdUaNYbujGVbeMHTOWzA"
+                src="/1708951317641.jfif"
                 alt="Image"
                 className="w-full h-full object-cover object-top"
               />
@@ -118,7 +107,7 @@ function AboutUsPage() {
           <div className="font-bold">
             <div className="w-72 h-52">
               <img
-                src="https://media.licdn.com/dms/image/C4D03AQE8uHbxXDXfmw/profile-displayphoto-shrink_800_800/0/1635783306921?e=1720051200&v=beta&t=w060HP238w-3WSIwE7hT4n-zKVbltmFpGClbX0-DNLM"
+                src="/1635783306921.jfif"
                 alt="Image"
                 className="w-full h-full object-cover object-top"
               />
@@ -135,9 +124,9 @@ function AboutUsPage() {
           <div className="font-bold">
             <div className="w-72 h-52">
               <img
-                src="https://media.licdn.com/dms/image/D5603AQFzcOw99FEhQg/profile-displayphoto-shrink_800_800/0/1642683767630?e=1720051200&v=beta&t=O-DqOTIZrFmNDQIjE_La9TRSgaFX9kMBAnrBY6nXljQ"
+                src="/PROFİL FOTO.JPG"
                 alt="Image"
-                className="w-full h-full object-cover object-top"
+                className="w-full h-full object-cover object-middle"
               />
             </div>
             <h5 className="mt-8">Serra Sarıhasan</h5>
@@ -187,7 +176,7 @@ function AboutUsPage() {
         </div>
         <div className="hidden lg:flex lg:w-[35rem] lg:h-[40rem]">
           <img
-            src="https://s3-alpha-sig.figma.com/img/a014/4955/2eeaef7ecedd3954687aefbdb6236bb6?Expires=1715558400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=QweUqTU-qn4jry5Bn7aG460r8bqtuq3qh0K9mUX86DOBLHRfBdJ25HHOTnqd6TUuoss~5fkb5SMLH8IGJhv~PeH2d4wXtQAqG3IKwPD-dk5CRsLr1weVwCWekBPaL2UwVn~yC6Zs2CL8HYDuotVzlvytKI-HsMe7kzI6BBSUnBVQYiUCJdH7cdDYWJAvk18FCB8-0EErZKiDcRWi8nmfgiph-sGgLabMIqSPTFAkVhBFqogrGStLjs58V2FDTuD7osOWMm9YBHgYTx4ucahqEkAX9C88MG8nsAtmBxyV0WHm5wzlqmd~ZfMXV2lOMRg8l1YW9Sdc7f4vZytsjPPYSA__"
+            src="/unsplash_vjMgqUkS8q8.png"
             alt="Image"
             className="w-full h-full object-cover"
           />

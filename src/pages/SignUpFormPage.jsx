@@ -4,6 +4,7 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { setRoles } from "../actions/clientReducerActions";
+import Modal from "../components/Modal";
 
 function SignUpFormPage() {
   const [customer, setCustomer] = useState("");

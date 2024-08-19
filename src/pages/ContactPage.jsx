@@ -45,7 +45,7 @@ function ContactPage() {
 
         <div className="mt-20 w-96 h-96 relative mx-auto lg:w-[45rem] lg:h-[35rem] lg:mt-8">
           <img
-            src="https://s3-alpha-sig.figma.com/img/0bec/d76f/b529bdb1f9ac06ee979d8665aade6757?Expires=1714348800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=B3PWjjtzZLW0~qOzRdm4Ue5lx9hmjJ85yqwtCYdCRgi7ImMCLkfSYUXYTlIX4QWRc~GPS9GqLKbcPA4ZeZkMz04ZrZHtxfQU5wEKw6GJaT~QH0Yh3xpz08cbKTu61ispmfl3fEsCElZEmOq8etm6g5BZElVffTcHWOc266hdB2wLwyXgPkn~YtoSSGei2Y08QQM9qO4GvkxfccQ4Logi5wxKHgTflqYsv4bGrxpZwiB2r5b-5myApzgacRmTY8kh8o821lUSASrnaMPuMUnoDYAUeEl9Wc01J3bTmsQeK8HUnEzegPBnbv8Lt8p4NNLP4s4S-lDmLdIWpP2xIZWTPQ__"
+            src="/technology 1.png"
             alt="ContactImage"
             className="w-full h-full object-cover absolute"
           />
