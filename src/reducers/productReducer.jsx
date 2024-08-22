@@ -55,9 +55,7 @@ const productReducer = (state = initialState, action) => {
         ...state,
         filter: {
           ...state.filter,
-          categoryId: action.payload.categoryId,
-          sort: action.payload.sort,
-          filter: action.payload.filter,
+          ...action.payload,
         },
       };
 
