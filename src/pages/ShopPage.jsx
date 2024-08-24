@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useHistory, useParams } from "react-router-dom";
 import ProductCard from "../components/ProductCard.jsx";
 import ClothsCard from "../components/ClothsCard.jsx";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,17 +12,25 @@ import InfiniteScroll from "react-infinite-scroll-component";
 
 function ShopPage({ productList }) {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const [categorySelected, useCategorySelected] = useState();
 
   let { categoryId } = useParams();
-
-  useEffect(() => {
-    dispatch(fetchSelectedCategory(categoryId));
-  }, [categoryId]);
 
   const categories = useSelector((store) => store.productReducer.categories);
   const fetchState = useSelector((store) => store.productReducer.fetchState);
   const filter = useSelector((store) => store.productReducer.filter);
   const total = useSelector((store) => store.productReducer.total);
+
+  useEffect(() => {
+    const selected = categories.find((category) => {
+      return category.id === +categoryId;
+    });
+    dispatch(fetchSelectedCategory(categoryId));
+    useCategorySelected(selected);
+  }, [categoryId]);
+
+  if (!categoryId) return <Navigate to="/" />;
 
   const topFive = categories
     .sort((a, b) => {
@@ -65,10 +73,6 @@ function ShopPage({ productList }) {
         </div>
       </div>
 
-      <div>{filter.categoryId}</div>
-      <div>{filter.sort}</div>
-      <div>{filter.filter}</div>
-
       <div className="flex flex-col items-center my-10 lg:flex-row lg:justify-between lg:mx-10">
         <h6 className="text-[#737373] font-bold text-base max-[639px]:mb-6">
           Showing all 12 results
@@ -88,15 +92,23 @@ function ShopPage({ productList }) {
           <label className="text-[#737373] bg-[#F9F9F9] w-48 border-2 border-[#DDDDDD] px-1 mr-3 py-3 rounded-md text-sm">
             <select
               defaultValue={filter.sort}
-              onChange={(event) =>
+              onChange={(event) => {
                 dispatch(
                   fetchSelectedSort(
                     event.target.value,
                     filter.categoryId,
                     filter.filter
                   )
-                )
-              }
+                );
+                history.push(
+                  "/shop/kadın/" +
+                    categorySelected.code.substring(2) +
+                    "/" +
+                    categoryId +
+                    "&sort=" +
+                    event.target.value
+                );
+              }}
               className="bg-[#F9F9F9] hover:bg-[#c4c3c3] hover:text-[#FFFFFF] rounded-none"
             >
               <option defaultValue="">Popularity</option>
