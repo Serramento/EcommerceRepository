@@ -8,12 +8,53 @@ import {
   fetchSelectedFilter,
   fetchSelectedSort,
 } from "../actions/productReducerActions.jsx";
-import InfiniteScroll from "react-infinite-scroll-component";
+import ReactPaginate from "react-paginate";
 
 function ShopPage({ productList }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const [categorySelected, useCategorySelected] = useState();
+  const [itemOffset, setItemOffset] = useState(0);
+
+  const endOffset = itemOffset + 12;
+  console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+  const currentItems = productList.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(productList.length / 12);
+
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * 12) % productList.length;
+    console.log(
+      `User requested page number ${event.selected}, which is offset ${newOffset}`
+    );
+    setItemOffset(newOffset);
+    if (filter.filter || filter.sort) {
+      history.push(
+        "/shop/kadın/" +
+          categorySelected.code.substring(2) +
+          "/" +
+          categoryId +
+          "/products?category=" +
+          categoryId +
+          "&filter=" +
+          filter.filter +
+          "&sort=" +
+          filter.sort +
+          "&limit=25&offset=" +
+          newOffset
+      );
+    } else {
+      history.push(
+        "/shop/kadın/" +
+          categorySelected.code.substring(2) +
+          "/" +
+          categoryId +
+          "/products?category=" +
+          categoryId +
+          "&limit=25&offset=" +
+          newOffset
+      );
+    }
+  };
 
   let { categoryId } = useParams();
 
@@ -37,20 +78,6 @@ function ShopPage({ productList }) {
       return b.rating - a.rating;
     })
     .slice(0, 5);
-
-  const fetchMoreData = () => {
-    if (total >= 500) {
-      this.setState({ hasMore: false });
-      return;
-    }
-    // a fake async api call like which sends
-    // 20 more records in .5 secs
-    setTimeout(() => {
-      this.setState({
-        items: productList.concat(Array.from({ length: 20 })),
-      });
-    }, 500);
-  };
 
   return (
     <div className="font-montserrat flex flex-col">
@@ -100,23 +127,39 @@ function ShopPage({ productList }) {
                     filter.filter
                   )
                 );
-                history.push(
-                  "/shop/kadın/" +
-                    categorySelected.code.substring(2) +
-                    "/" +
-                    categoryId +
-                    "&sort=" +
-                    event.target.value
-                );
+                if (filter.filter) {
+                  history.push(
+                    "/shop/kadın/" +
+                      categorySelected.code.substring(2) +
+                      "/" +
+                      categoryId +
+                      "/products?category=" +
+                      categoryId +
+                      "&filter=" +
+                      filter.filter +
+                      "&sort=" +
+                      event.target.value
+                  );
+                } else {
+                  history.push(
+                    "/shop/kadın/" +
+                      categorySelected.code.substring(2) +
+                      "/" +
+                      categoryId +
+                      "/products?category=" +
+                      categoryId +
+                      "&sort=" +
+                      event.target.value
+                  );
+                }
               }}
               className="bg-[#F9F9F9] hover:bg-[#c4c3c3] hover:text-[#FFFFFF] rounded-none"
             >
               <option defaultValue="">Popularity</option>
               <option value="price:desc">Price Descending</option>
               <option value="price:asc">Price Ascending</option>
-              <option value="price:desc">Price Descending</option>
-              <option value="rating:asc">Rating Ascending</option>
               <option value="rating:desc">Rating Descending</option>
+              <option value="rating:asc">Rating Ascending</option>
             </select>
           </label>
           <label>
@@ -133,6 +176,31 @@ function ShopPage({ productList }) {
                       filter.sort
                     )
                   );
+                if (filter.sort) {
+                  history.push(
+                    "/shop/kadın/" +
+                      categorySelected.code.substring(2) +
+                      "/" +
+                      categoryId +
+                      "/products?category=" +
+                      categoryId +
+                      "&sort=" +
+                      filter.sort +
+                      "&filter=" +
+                      event.target.value
+                  );
+                } else {
+                  history.push(
+                    "/shop/kadın/" +
+                      categorySelected.code.substring(2) +
+                      "/" +
+                      categoryId +
+                      "/products?category=" +
+                      categoryId +
+                      "&filter=" +
+                      event.target.value
+                  );
+                }
               }}
             />
           </label>
@@ -145,7 +213,7 @@ function ShopPage({ productList }) {
 
       <div className="flex flex-col items-center mt-28 lg:mt-16">
         <div className="lg:hidden">
-          {productList.slice(0, 4).map((product, index) => (
+          {currentItems.slice(0, 4).map((product, index) => (
             <ProductCard
               key={index}
               product={product}
@@ -155,7 +223,7 @@ function ShopPage({ productList }) {
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-wrap lg:w-[74rem] lg:justify-between">
-          {productList.slice(0, 12).map((product, index) => (
+          {currentItems.slice(0, 12).map((product, index) => (
             <ProductCard
               key={index}
               product={product}
@@ -165,23 +233,20 @@ function ShopPage({ productList }) {
           ))}
         </div>
 
-        <div className="rounded-lg border-2 border-[#BDBDBD] mb-20 mt-3 text-sm font-bold">
-          <button className="bg-[#F3F3F3] px-6 py-6 text-[#BDBDBD] rounded-l-lg rounded-r-none">
-            First
-          </button>
-          <button className="px-4 py-6 text-[#23A6F0] border-2 border-[#E9E9E9] rounded-none">
-            1
-          </button>
-          <button className="px-4 py-6 text-[#FFFFFF] rounded-none bg-[#23A6F0]">
-            2
-          </button>
-          <button className="px-4 py-6 text-[#23A6F0] border-2 border-[#E9E9E9] rounded-none">
-            3
-          </button>
-          <button className="px-6 py-6 text-[#23A6F0] rounded-r-lg rounded-l-none">
-            Next
-          </button>
-        </div>
+        <ReactPaginate
+          breakLabel="..."
+          nextLabel="Next >"
+          onPageChange={handlePageClick}
+          pageRangeDisplayed={5}
+          pageCount={pageCount}
+          previousLabel="< Previous"
+          renderOnZeroPageCount={null}
+          pageClassName="h-20 font-bold flex justify-center items-center px-5"
+          previousClassName="mr-5 text-[#23A6F0]"
+          nextClassName="ml-5 text-[#23A6F0]"
+          activeClassName="text-[#23A6F0] border-2 border-[#BDBDBD]"
+          className="h-20 px-5 flex flex-row justify-center items-center text-[#BDBDBD] rounded-lg border-2 border-[#BDBDBD] mb-20 mt-10 text-sm"
+        />
       </div>
 
       <div className="text-[#737373]  py-24 lg:py-16 bg-[#FAFAFA] mb-5">
