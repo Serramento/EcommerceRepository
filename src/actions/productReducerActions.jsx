@@ -22,9 +22,10 @@ export const setProductList = (productList) => {
   };
 };
 
-export const setTotal = () => {
+export const setTotal = (total) => {
   return {
     type: SET_TOTAL,
+    payload: total,
   };
 };
 
@@ -70,6 +71,8 @@ export const fetchProducts = () => (dispatch) => {
     .then((res) => {
       console.log(res.data);
       dispatch(setFetchState("FETCHED"));
+      dispatch(setProductList(res.data.products));
+      dispatch(setTotal(res.data.total));
     })
     .catch((err) => {
       console.log(err.response.message);
@@ -172,3 +175,44 @@ export const fetchSelectedFilter = (value, categoryId, sort) => (dispatch) => {
       });
   }
 };
+
+export const fetchSelectedPage =
+  (offset, categoryId, sort, filter) => (dispatch) => {
+    if (sort || filter) {
+      axios
+        .get(
+          "https://workintech-fe-ecommerce.onrender.com/products?category=" +
+            categoryId +
+            "&sort=" +
+            sort +
+            "&filter=" +
+            filter +
+            "&limit=25&offset=" +
+            offset
+        )
+        .then((res) => {
+          console.log(res.data);
+          dispatch(setProductList(res.data.products));
+          dispatch(setTotal(res.data.total));
+        })
+        .catch((err) => {
+          console.log(err.response.message);
+        });
+    } else {
+      axios
+        .get(
+          "https://workintech-fe-ecommerce.onrender.com/products?category=" +
+            categoryId +
+            "&limit=25&offset=" +
+            offset
+        )
+        .then((res) => {
+          console.log(res.data);
+          dispatch(setProductList(res.data.products));
+          dispatch(setTotal(res.data.total));
+        })
+        .catch((err) => {
+          console.log(err.response.message);
+        });
+    }
+  };

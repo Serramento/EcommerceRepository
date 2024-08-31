@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ImageSlider from "../components/ImageSlider.jsx";
 import { SliderData } from "../data/SliderData.jsx";
 import ProductCard from "../components/ProductCard.jsx";
 import BlogContent from "../components/BlogContent.jsx";
 import { BlogData } from "../data/BlogData.jsx";
+import { useDispatch } from "react-redux";
+import {
+  fetchProducts,
+  fetchSelectedCategory,
+} from "../actions/productReducerActions.jsx";
 
 function HomePage({ productList }) {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+    dispatch(fetchSelectedCategory(1));
+  }, []);
+
   return (
     <div className="font-montserrat flex flex-col">
       <ImageSlider slides={SliderData} />
@@ -101,7 +113,7 @@ function HomePage({ productList }) {
             />
           ))}
         </div>
-        <div className="hidden lg:flex lg:flex-wrap lg:w-[57rem] lg:justify-evenly">
+        <div className="hidden lg:grid lg:grid-wrap lg:grid-cols-5 lg:w-[57rem] lg:justify-evenly">
           {productList.slice(0, 10).map((product, index) => (
             <ProductCard
               key={index}

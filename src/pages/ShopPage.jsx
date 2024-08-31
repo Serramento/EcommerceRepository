@@ -6,7 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   fetchSelectedCategory,
   fetchSelectedFilter,
+  fetchSelectedPage,
   fetchSelectedSort,
+  setOffset,
 } from "../actions/productReducerActions.jsx";
 import ReactPaginate from "react-paginate";
 
@@ -14,19 +16,34 @@ function ShopPage({ productList }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const [categorySelected, useCategorySelected] = useState();
-  const [itemOffset, setItemOffset] = useState(0);
 
-  const endOffset = itemOffset + 12;
-  console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-  const currentItems = productList.slice(itemOffset, endOffset);
-  const pageCount = Math.ceil(productList.length / 12);
+  let { categoryId } = useParams();
+
+  const categories = useSelector((store) => store.productReducer.categories);
+  const fetchState = useSelector((store) => store.productReducer.fetchState);
+  const filter = useSelector((store) => store.productReducer.filter);
+  const total = useSelector((store) => store.productReducer.total);
+  const limit = useSelector((store) => store.productReducer.limit);
+  const offset = useSelector((store) => store.productReducer.offset);
+
+  const endOffset = offset + limit;
+  console.log(`Loading items from ${offset} to ${endOffset}`);
+  const pageCount = Math.ceil(total / limit);
 
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * 12) % productList.length;
+    const newOffset = event.selected * limit;
     console.log(
       `User requested page number ${event.selected}, which is offset ${newOffset}`
     );
-    setItemOffset(newOffset);
+    dispatch(setOffset(newOffset));
+    dispatch(
+      fetchSelectedPage(
+        newOffset,
+        filter.categoryId,
+        filter.sort,
+        filter.filter
+      )
+    );
     if (filter.filter || filter.sort) {
       history.push(
         "/shop/kadın/" +
@@ -39,7 +56,9 @@ function ShopPage({ productList }) {
           filter.filter +
           "&sort=" +
           filter.sort +
-          "&limit=25&offset=" +
+          "&limit=" +
+          limit +
+          "&offset=" +
           newOffset
       );
     } else {
@@ -48,20 +67,13 @@ function ShopPage({ productList }) {
           categorySelected.code.substring(2) +
           "/" +
           categoryId +
-          "/products?category=" +
-          categoryId +
-          "&limit=25&offset=" +
+          "/products?&limit=" +
+          limit +
+          "&offset=" +
           newOffset
       );
     }
   };
-
-  let { categoryId } = useParams();
-
-  const categories = useSelector((store) => store.productReducer.categories);
-  const fetchState = useSelector((store) => store.productReducer.fetchState);
-  const filter = useSelector((store) => store.productReducer.filter);
-  const total = useSelector((store) => store.productReducer.total);
 
   useEffect(() => {
     const selected = categories.find((category) => {
@@ -213,7 +225,7 @@ function ShopPage({ productList }) {
 
       <div className="flex flex-col items-center mt-28 lg:mt-16">
         <div className="lg:hidden">
-          {currentItems.slice(0, 4).map((product, index) => (
+          {productList.slice(0, 4).map((product, index) => (
             <ProductCard
               key={index}
               product={product}
@@ -223,7 +235,7 @@ function ShopPage({ productList }) {
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-wrap lg:w-[74rem] lg:justify-between">
-          {currentItems.slice(0, 12).map((product, index) => (
+          {productList.slice(0, 25).map((product, index) => (
             <ProductCard
               key={index}
               product={product}
@@ -241,11 +253,11 @@ function ShopPage({ productList }) {
           pageCount={pageCount}
           previousLabel="< Previous"
           renderOnZeroPageCount={null}
-          pageClassName="h-20 font-bold flex justify-center items-center px-5"
-          previousClassName="mr-5 text-[#23A6F0]"
-          nextClassName="ml-5 text-[#23A6F0]"
+          pageClassName="h-16 lg:h-20 font-bold flex justify-center items-center px-1 lg:px-5"
+          previousClassName="mr-1 lg:mr-5 text-[#23A6F0]"
+          nextClassName="ml-1 lg:ml-5 text-[#23A6F0]"
           activeClassName="text-[#23A6F0] border-2 border-[#BDBDBD]"
-          className="h-20 px-5 flex flex-row justify-center items-center text-[#BDBDBD] rounded-lg border-2 border-[#BDBDBD] mb-20 mt-10 text-sm"
+          className="h-16 lg:h-20 px-1 lg:px-5 flex flex-row justify-center items-center text-[#BDBDBD] rounded-lg border-2 border-[#BDBDBD] mb-20 mt-10 text-sm"
         />
       </div>
 

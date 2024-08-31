@@ -88,7 +88,7 @@ function Header() {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
-            <div className="text-[#737373] mt-20 text-3xl">Shop</div>
+            <div className="text-[#737373] text-3xl">Shop</div>
             {isDropdownVisible && <NavBar className="absolute" />}
           </div>
 

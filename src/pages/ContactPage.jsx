@@ -43,20 +43,31 @@ function ContactPage() {
           </div>
         </div>
 
-        <div className="mt-20 w-96 h-96 relative mx-auto lg:w-[45rem] lg:h-[35rem] lg:mt-8">
+        <div className="mt-20 w-[22rem] h-[30rem] relative mx-auto lg:w-[25rem] lg:h-[35rem] lg:mt-5">
           <img
-            src="/technology 1.png"
+            src="/technology1.png"
             alt="ContactImage"
             className="w-full h-full object-cover absolute"
           />
-          <div className="lg:ml-32">
+          <div className="lg:hidden">
             <svg height="50" width="50" className="ml-10">
               <circle cx="25" cy="25" r="25" fill="#FFE9EA" />
             </svg>
             <svg height="260" width="260" className="ml-16">
               <circle cx="130" cy="130" r="130" fill="#FFE9EA" />
             </svg>
-            <svg height="20" width="20" className="ml-72 mt-5 lg:ml-[28rem]">
+            <svg height="20" width="20" className="ml-72 mt-20 lg:ml-[28rem]">
+              <circle cx="10" cy="10" r="10" fill="#FFE9EA" />
+            </svg>
+          </div>
+          <div className="hidden lg:block">
+            <svg height="50" width="50" className="mt-5">
+              <circle cx="25" cy="25" r="25" fill="#FFE9EA" />
+            </svg>
+            <svg height="400" width="400" className="">
+              <circle cx="200" cy="200" r="200" fill="#FFE9EA" />
+            </svg>
+            <svg height="20" width="20" className="ml-80 mt-12">
               <circle cx="10" cy="10" r="10" fill="#FFE9EA" />
             </svg>
           </div>
