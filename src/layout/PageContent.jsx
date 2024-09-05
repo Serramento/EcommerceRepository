@@ -22,7 +22,7 @@ function PageContent() {
         <Route path="/shop/:gender/:categoryName/:categoryId">
           <ShopPage productList={productList} />
         </Route>
-        <Route path="/productPage/:productId">
+        <Route path="/shop/:gender/:categoryName/:categoryId/:productNameSlug/:productId">
           <ProductPage productList={productList} />
         </Route>
         <Route path="/contact">

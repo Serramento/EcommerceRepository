@@ -1,10 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const ProductCard = (props) => {
-  const { id } = props.product;
+  let { gender, categoryName, categoryId } = useParams();
   return (
-    <Link to={`/productPage/${id}`}>
+    <Link
+      to={`/shop/${gender}/${categoryName}/${categoryId}/${props.product.name}/${props.product.id}`}
+    >
       <img
         src={props.product.images[0].url}
         className={`w-80 ${props.additionalClass}`}

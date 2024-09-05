@@ -4,9 +4,12 @@ import ProductCard from "../components/ProductCard.jsx";
 import ImageSlider2 from "../components/ImageSlider2.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { useSelector } from "react-redux";
 
 function ProductPage({ productList }) {
   let { productId } = useParams();
+  const fetchState = useSelector((store) => store.productReducer.fetchState);
+
   let thisProduct = productList.find((prod) => prod.id === parseInt(productId));
   const consoleX = () => {
     console.log(thisProduct);
@@ -25,6 +28,10 @@ function ProductPage({ productList }) {
           </Link>
         </div>
       </div>
+
+      {fetchState === "FETCHING" ? (
+        <i className="fa fa-spinner fa-spin fa-4x my-20 text-[#737373]"></i>
+      ) : null}
 
       <div className="bg-[#FAFAFA] lg:flex lg:flex-row lg:justify-center pb-16">
         <ImageSlider2 slides={thisProduct.images} />
