@@ -1,19 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import ProductCard from "../components/ProductCard.jsx";
 import ImageSlider2 from "../components/ImageSlider2.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
+import { fetchProduct } from "../actions/productReducerActions.jsx";
 
 function ProductPage({ productList }) {
   let { productId } = useParams();
   const fetchState = useSelector((store) => store.productReducer.fetchState);
+  const product = useSelector((store) => store.productReducer.product);
 
   let thisProduct = productList.find((prod) => prod.id === parseInt(productId));
   const consoleX = () => {
     console.log(thisProduct);
   };
+
+  useEffect(() => {
+    dispatch(fetchProduct(productId));
+  }, [productId]);
 
   return (
     <div className="font-montserrat flex flex-col">
@@ -34,17 +40,14 @@ function ProductPage({ productList }) {
       ) : null}
 
       <div className="bg-[#FAFAFA] lg:flex lg:flex-row lg:justify-center pb-16">
-        <ImageSlider2 slides={thisProduct.images} />
+        <ImageSlider2 slides={product.images} />
         <div className="flex flex-row lg:flex-col w-60 h-60 ml-10 mt-10 pb-10 lg:mt-1 lg:w-20 lg:h-20 lg:mr-10">
-          <img src={thisProduct.images[0].url} className="lg:pl-1" />
-          <img
-            src={thisProduct.images[0].url}
-            className="pl-5 lg:mt-5 lg:pl-1"
-          />
+          <img src={product.images[0].url} className="lg:pl-1" />
+          <img src={product.images[0].url} className="pl-5 lg:mt-5 lg:pl-1" />
         </div>
 
         <div className="flex flex-col items-start w-80 max-[639px]:mx-auto lg:w-[35rem]">
-          <h3 className="text-xl font-semibold mb-3">{thisProduct.name}</h3>
+          <h3 className="text-xl font-semibold mb-3">{product.name}</h3>
           <div className="flex flex-row text-[#F3CD03] justify-between w-[13rem]">
             <i className="fa-solid fa-star mt-1"></i>
             <i className="fa-solid fa-star mt-1"></i>
@@ -56,14 +59,14 @@ function ProductPage({ productList }) {
           <div>{consoleX()}</div>
           <h5 className="font-bold mt-8 mb-3 text-2xl">
             <span className="text-[#BDBDBD]">$200</span>{" "}
-            <span className="text-[#23856D]">${thisProduct.price}</span>
+            <span className="text-[#23856D]">${product.price}</span>
           </h5>
           <h5 className="font-bold mb-10">
             <span className="text-[#737373]">Availability : </span>{" "}
             <span className="text-[#23A6F0]">In Stock</span>
           </h5>
           <p className="text-[#858585] font-semibold text-left">
-            {thisProduct.description}
+            {product.description}
           </p>
           <div className="h-[1px] w-80 bg-[#BDBDBD] my-5 lg:w-[29rem]" />
           <div className="flex mb-10">

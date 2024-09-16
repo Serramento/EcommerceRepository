@@ -7,6 +7,7 @@ export const SET_FETCHSTATE = "SET_FETCHSTATE";
 export const SET_LIMIT = "SET_LIMIT";
 export const SET_OFFSET = "SET_OFFSET";
 export const SET_FILTER = "SET_FILTER";
+export const SET_PRODUCT = "SET_PRODUCT";
 
 export const setCategories = (category) => {
   return {
@@ -52,6 +53,13 @@ export const setFilter = (filter) => {
   return {
     type: SET_FILTER,
     payload: filter,
+  };
+};
+
+export const setProduct = (product) => {
+  return {
+    type: SET_PRODUCT,
+    payload: product,
   };
 };
 
@@ -216,3 +224,15 @@ export const fetchSelectedPage =
         });
     }
   };
+
+export const fetchProduct = (productId) => (dispatch) => {
+  axios
+    .get("https://workintech-fe-ecommerce.onrender.com/products/" + productId)
+    .then((res) => {
+      console.log(res.data);
+      dispatch(setProduct(res.data));
+    })
+    .catch((err) => {
+      console.log(err.response.message);
+    });
+};
