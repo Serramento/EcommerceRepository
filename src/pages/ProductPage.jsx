@@ -4,15 +4,18 @@ import ProductCard from "../components/ProductCard.jsx";
 import ImageSlider2 from "../components/ImageSlider2.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchProduct } from "../actions/productReducerActions.jsx";
 
 function ProductPage({ productList }) {
   let { productId } = useParams();
+  const dispatch = useDispatch();
   const fetchState = useSelector((store) => store.productReducer.fetchState);
   const product = useSelector((store) => store.productReducer.product);
 
-  let thisProduct = productList.find((prod) => prod.id === parseInt(productId));
+  let thisProduct = productList?.find(
+    (prod) => prod.id === parseInt(productId)
+  );
   const consoleX = () => {
     console.log(thisProduct);
   };

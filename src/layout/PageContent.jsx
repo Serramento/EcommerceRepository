@@ -22,7 +22,10 @@ function PageContent() {
         <Route path="/shop/:gender/:categoryName/:categoryId">
           <ShopPage productList={productList} />
         </Route>
-        <Route path="/shop/:gender/:categoryName/:categoryId/:productNameSlug/:productId">
+        <Route
+          path="/shop/:gender/:categoryName/:categoryId/:productNameSlug/:productId"
+          component={ProductPage}
+        >
           <ProductPage productList={productList} />
         </Route>
         <Route path="/contact">

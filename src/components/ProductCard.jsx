@@ -1,11 +1,13 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
+import ProductPage from "../pages/ProductPage";
 
 const ProductCard = (props) => {
   let { gender, categoryName, categoryId } = useParams();
   return (
     <Link
       to={`/shop/${gender}/${categoryName}/${categoryId}/${props.product.name}/${props.product.id}`}
+      component={ProductPage}
     >
       <img
         src={props.product.images[0].url}
