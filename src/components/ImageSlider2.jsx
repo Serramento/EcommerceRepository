@@ -7,7 +7,7 @@ import {
 
 const ImageSlider2 = ({ slides }) => {
   const [current, setCurrent] = useState(0);
-  const length = slides.length;
+  const length = slides?.length;
 
   const nextSlide = () => {
     setCurrent((current + 1) % length);

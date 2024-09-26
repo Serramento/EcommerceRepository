@@ -182,7 +182,7 @@ function ProductPage({ productList }) {
         </h3>
         <div className="h-[1px] w-[20rem] mb-8 bg-[#ECECEC] lg:w-[70rem]" />
         <div className="lg:hidden">
-          {productList.slice(0, 4).map((product, index) => (
+          {productList?.slice(0, 4).map((product, index) => (
             <ProductCard
               key={index}
               product={product}
@@ -191,7 +191,7 @@ function ProductPage({ productList }) {
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-wrap lg:w-[70rem] lg:justify-between">
-          {productList.slice(0, 8).map((product, index) => (
+          {productList?.slice(0, 8).map((product, index) => (
             <ProductCard
               key={index}
               product={product}
