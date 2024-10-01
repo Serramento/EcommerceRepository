@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ImageSlider from "../components/ImageSlider.jsx";
 import { SliderData } from "../data/SliderData.jsx";
 import ProductCard from "../components/ProductCard.jsx";
 import BlogContent from "../components/BlogContent.jsx";
 import { BlogData } from "../data/BlogData.jsx";
+import { useDispatch } from "react-redux";
+import {
+  fetchProducts,
+  fetchSelectedCategory,
+} from "../actions/productReducerActions.jsx";
 
 function HomePage({ productList }) {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+    dispatch(fetchSelectedCategory(1));
+  }, []);
+
   return (
     <div className="font-montserrat flex flex-col">
       <ImageSlider slides={SliderData} />
@@ -23,7 +35,7 @@ function HomePage({ productList }) {
         <div className="relative">
           <div className="w-96 h-[38rem] lg:w-[28rem] lg:h-[28rem]">
             <img
-              src="https://s3-alpha-sig.figma.com/img/812e/3845/7d0cc7c0071c4e5eb3752a437fda3d0d?Expires=1711324800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=TR8fwEcp0kk4cFLX8mxSgxAb22QPpK38cv-4tq3rZHxqtwlwBkCN9bydzBFbLvAs9ZwzY3YSKXvJmHHsPD-Dc08fzraK5p4vCqZiy-e-LJI-HKp8rvuTxXKScoZ4CftbHn0NJUOAhXgukh7u2JxlWyY4E6kmwaYPh2l7cenOrqltvSKhYB1RySTHMJakZtjcVW34WNslZAi5J~bKvIyD-vNMSI0uNoIz8ZaCmmts7OErgt3D88mQWI5fyOoyfkDF47KL8fnvYYOuVz~X6mBCcPseXpuwKQIlr9MJFUnPxKe-fvF29pOWvSXN9vJkYlfIyEb8XHoW1HS4wIDYR1cIBA__"
+              src="/media bg-cover.png"
               alt="Image3"
               className="w-full h-full object-cover"
             />
@@ -43,7 +55,7 @@ function HomePage({ productList }) {
           <div className="relative">
             <div className="w-96 h-[30rem] lg:h-56 lg:w-[27rem]">
               <img
-                src="https://s3-alpha-sig.figma.com/img/4587/86e9/d5e9865170a32e0687f0a17d8581b9c8?Expires=1711324800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=R56gWRsJCUqe2H5IbwCBk9VuLffXBuqRRs7S32yUfXmwKG88JCMT6E2s6b8yINBfq-aR4C~DmJiuas8ZPirTgPhM1paGMRgK5so1HgdWab~OSMI7xNMjW3DwDCf2w9tzMsRQKd507pmTRSqG-V7g1YhTioOZeAjrWwkmedk4T8kEfqJVfBnpEAbedbBzW7ifNs6fFujjFEWFEY4KqG-QQWEEmAn8zF1LHT41JriqQkcVQTPx6jFnMC9RlO4INv75ED4UdR36IN3wWjYoWAEWdo0rsU395VmAaoYRcMmv584jYhFCdyUxFStTm2I5h~jQ4vt6Nbej7cKuSVMXpiXdbQ__"
+                src="/unsplash_muOHbrFGEQY.jpg"
                 alt="Image4"
                 className="max-[639px]:pt-5 w-full h-full object-cover"
               />
@@ -62,7 +74,7 @@ function HomePage({ productList }) {
           <div className="relative">
             <div className="w-96 h-[30rem] lg:h-56 lg:w-[27rem]">
               <img
-                src="https://s3-alpha-sig.figma.com/img/81b4/0a6b/ad298edf330ec5747ae93edc6118ce4a?Expires=1711324800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=XRuxMoJZk5nzO8wU1zPqjCt8ZmpLL50fRbuoIgqr3oNxugUWOuyAliTYpNbpL1E9r6lpO8qom9~ddFvd4BmIPbJPheBmiF6eOipfdT52VUGMYqmhko6c0-tBvbq-~hU6nzZrsLYgPO8iMHxUpAn92sji5hAePLHp1IRrPYSXzWUNJaItGA6Hf6efnUxoLHSF8JBUgOB7tr-GhJXEJaiibqLM-Dvmof1FkDAJncS5Fis3J10W8BNwZRdRWxEqDQdSkQwTg2bR-1Zft8xwc3fTaDIbNLrv87qvG1mf5hY-TyI85NHr-04YUVGgKLShLP5Pa045IRE3TbkfxFkpbl~2qw__"
+                src="/unsplash_MKvjc2kar7Q.jpg"
                 alt="Image5"
                 className="pt-5 w-full h-full object-cover"
               />
@@ -101,7 +113,7 @@ function HomePage({ productList }) {
             />
           ))}
         </div>
-        <div className="hidden lg:flex lg:flex-wrap lg:w-[57rem] lg:justify-evenly">
+        <div className="hidden lg:grid lg:grid-wrap lg:grid-cols-5 lg:w-[57rem] lg:justify-evenly">
           {productList.slice(0, 10).map((product, index) => (
             <ProductCard
               key={index}
@@ -137,7 +149,7 @@ function HomePage({ productList }) {
         <div className="flex flex-row justify-center max-[639px]:pt-12">
           <div className="w-[10rem] h-[22rem] lg:w-[12rem] lg:h-[26rem]">
             <img
-              src="https://s3-alpha-sig.figma.com/img/7e90/2282/946c71109661dfcd96fe9458abbd0e5b?Expires=1711929600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=qvSjZtnRdRWMlmqiePnGbGlkjXRTbSHKI0zu4l-rA8q3I3W3THWiqGQklQvHy1F7C6~lNoYVgOU9vdfRjBeO~9e9xVI5f-hxCYFaYnzuekgMVLzJNtTUyQuwtP3gJTZ2e9eRKIAjuHz4MhCMkNILPWJStcTeiGbnpuLqR3tTrt5lpcFKN-SWn2gWfdNT8zZr-VUCNGhVkCUdcH7tJDzq6zpjIure5zWLMOCVkd0O9PZ61wf5d03LzF0Z9K5lLVuUZ22FvDMFRSbQ3f1icDUMu6tmFRGmacr8ZU874l7tPOzGk6b04pAt727EjEGuiBkZ6IFFrYRy2DqFjtMwAy1XxQ__"
+              src="/unsplash_Lks7vei-eAg (2).png"
               alt="image1"
               className="w-full h-full object-cover"
             />
@@ -145,7 +157,7 @@ function HomePage({ productList }) {
 
           <div className="w-[14rem] h-[22rem] lg:w-[16rem] lg:h-[26rem]">
             <img
-              src="https://s3-alpha-sig.figma.com/img/ca34/28bb/b53263f3cb265f6e0a1129f5afc25e74?Expires=1711929600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=GGjJGLvyXlzu73uL-OYm-Om3McKFMruECX6ooegDJE5eukhQcy3NmO2ep~AxLX6wejNZPVg2ZGL~5XeWcavcVTlgk~2u~VGWfRKsUj4rCr~r5G43nl6o~wgAKEMqZi0gQPkVHTC1cP40XFI1q4vfgIUtm2o30gkbOegaWEBQZKI119nnI8cQ-s4XfY4KUHPcIMIqtGnJ92K8nsYtoLP42Gq0ifGMvRCySv9j9XJjrWtHlrcN9ENWLV8CadqgMQM9yEq1VgLqvLAPJ5ZsCHnR-pPvjip4KoCzDAUsNTrU02u1H6mTwednjsjXh~2pj5JW2VW5ZrZDuuTYau5pmya3vA__"
+              src="/unsplash_Lks7vei-eAg (3).png"
               alt="image2"
               className="pl-3 w-full h-full object-cover"
             />

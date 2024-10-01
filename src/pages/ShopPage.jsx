@@ -1,26 +1,89 @@
-import React, { useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useHistory, useParams } from "react-router-dom";
 import ProductCard from "../components/ProductCard.jsx";
 import ClothsCard from "../components/ClothsCard.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchSelectedCategory,
   fetchSelectedFilter,
+  fetchSelectedPage,
   fetchSelectedSort,
+  setOffset,
 } from "../actions/productReducerActions.jsx";
+import ReactPaginate from "react-paginate";
 
 function ShopPage({ productList }) {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const [categorySelected, useCategorySelected] = useState();
 
   let { categoryId } = useParams();
-
-  useEffect(() => {
-    dispatch(fetchSelectedCategory(categoryId));
-  }, [categoryId]);
 
   const categories = useSelector((store) => store.productReducer.categories);
   const fetchState = useSelector((store) => store.productReducer.fetchState);
   const filter = useSelector((store) => store.productReducer.filter);
+  const total = useSelector((store) => store.productReducer.total);
+  const limit = useSelector((store) => store.productReducer.limit);
+  const offset = useSelector((store) => store.productReducer.offset);
+
+  const endOffset = offset + limit;
+  console.log(`Loading items from ${offset} to ${endOffset}`);
+  const pageCount = Math.ceil(total / limit);
+
+  const handlePageClick = (event) => {
+    const newOffset = event.selected * limit;
+    console.log(
+      `User requested page number ${event.selected}, which is offset ${newOffset}`
+    );
+    dispatch(setOffset(newOffset));
+    dispatch(
+      fetchSelectedPage(
+        newOffset,
+        filter.categoryId,
+        filter.sort,
+        filter.filter
+      )
+    );
+    if (filter.filter || filter.sort) {
+      history.push(
+        "/shop/kadın/" +
+          categorySelected.code.substring(2) +
+          "/" +
+          categoryId +
+          "/products?category=" +
+          categoryId +
+          "&filter=" +
+          filter.filter +
+          "&sort=" +
+          filter.sort +
+          "&limit=" +
+          limit +
+          "&offset=" +
+          newOffset
+      );
+    } else {
+      history.push(
+        "/shop/kadın/" +
+          categorySelected.code.substring(2) +
+          "/" +
+          categoryId +
+          "/products?&limit=" +
+          limit +
+          "&offset=" +
+          newOffset
+      );
+    }
+  };
+
+  useEffect(() => {
+    const selected = categories.find((category) => {
+      return category.id === +categoryId;
+    });
+    dispatch(fetchSelectedCategory(categoryId));
+    useCategorySelected(selected);
+  }, [categoryId]);
+
+  if (!categoryId) return <Navigate to="/" />;
 
   const topFive = categories
     .sort((a, b) => {
@@ -49,10 +112,6 @@ function ShopPage({ productList }) {
         </div>
       </div>
 
-      <div>{filter.categoryId}</div>
-      <div>{filter.sort}</div>
-      <div>{filter.filter}</div>
-
       <div className="flex flex-col items-center my-10 lg:flex-row lg:justify-between lg:mx-10">
         <h6 className="text-[#737373] font-bold text-base max-[639px]:mb-6">
           Showing all 12 results
@@ -72,23 +131,47 @@ function ShopPage({ productList }) {
           <label className="text-[#737373] bg-[#F9F9F9] w-48 border-2 border-[#DDDDDD] px-1 mr-3 py-3 rounded-md text-sm">
             <select
               defaultValue={filter.sort}
-              onChange={(event) =>
+              onChange={(event) => {
                 dispatch(
                   fetchSelectedSort(
                     event.target.value,
                     filter.categoryId,
                     filter.filter
                   )
-                )
-              }
+                );
+                if (filter.filter) {
+                  history.push(
+                    "/shop/kadın/" +
+                      categorySelected.code.substring(2) +
+                      "/" +
+                      categoryId +
+                      "/products?category=" +
+                      categoryId +
+                      "&filter=" +
+                      filter.filter +
+                      "&sort=" +
+                      event.target.value
+                  );
+                } else {
+                  history.push(
+                    "/shop/kadın/" +
+                      categorySelected.code.substring(2) +
+                      "/" +
+                      categoryId +
+                      "/products?category=" +
+                      categoryId +
+                      "&sort=" +
+                      event.target.value
+                  );
+                }
+              }}
               className="bg-[#F9F9F9] hover:bg-[#c4c3c3] hover:text-[#FFFFFF] rounded-none"
             >
               <option defaultValue="">Popularity</option>
               <option value="price:desc">Price Descending</option>
               <option value="price:asc">Price Ascending</option>
-              <option value="price:desc">Price Descending</option>
-              <option value="rating:asc">Rating Ascending</option>
               <option value="rating:desc">Rating Descending</option>
+              <option value="rating:asc">Rating Ascending</option>
             </select>
           </label>
           <label>
@@ -105,6 +188,31 @@ function ShopPage({ productList }) {
                       filter.sort
                     )
                   );
+                if (filter.sort) {
+                  history.push(
+                    "/shop/kadın/" +
+                      categorySelected.code.substring(2) +
+                      "/" +
+                      categoryId +
+                      "/products?category=" +
+                      categoryId +
+                      "&sort=" +
+                      filter.sort +
+                      "&filter=" +
+                      event.target.value
+                  );
+                } else {
+                  history.push(
+                    "/shop/kadın/" +
+                      categorySelected.code.substring(2) +
+                      "/" +
+                      categoryId +
+                      "/products?category=" +
+                      categoryId +
+                      "&filter=" +
+                      event.target.value
+                  );
+                }
               }}
             />
           </label>
@@ -127,7 +235,7 @@ function ShopPage({ productList }) {
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-wrap lg:w-[74rem] lg:justify-between">
-          {productList.slice(0, 12).map((product, index) => (
+          {productList.slice(0, 25).map((product, index) => (
             <ProductCard
               key={index}
               product={product}
@@ -137,23 +245,20 @@ function ShopPage({ productList }) {
           ))}
         </div>
 
-        <div className="rounded-lg border-2 border-[#BDBDBD] mb-20 mt-3 text-sm font-bold">
-          <button className="bg-[#F3F3F3] px-6 py-6 text-[#BDBDBD] rounded-l-lg rounded-r-none">
-            First
-          </button>
-          <button className="px-4 py-6 text-[#23A6F0] border-2 border-[#E9E9E9] rounded-none">
-            1
-          </button>
-          <button className="px-4 py-6 text-[#FFFFFF] rounded-none bg-[#23A6F0]">
-            2
-          </button>
-          <button className="px-4 py-6 text-[#23A6F0] border-2 border-[#E9E9E9] rounded-none">
-            3
-          </button>
-          <button className="px-6 py-6 text-[#23A6F0] rounded-r-lg rounded-l-none">
-            Next
-          </button>
-        </div>
+        <ReactPaginate
+          breakLabel="..."
+          nextLabel="Next >"
+          onPageChange={handlePageClick}
+          pageRangeDisplayed={5}
+          pageCount={pageCount}
+          previousLabel="< Previous"
+          renderOnZeroPageCount={null}
+          pageClassName="h-16 lg:h-20 font-bold flex justify-center items-center px-1 lg:px-5"
+          previousClassName="mr-1 lg:mr-5 text-[#23A6F0]"
+          nextClassName="ml-1 lg:ml-5 text-[#23A6F0]"
+          activeClassName="text-[#23A6F0] border-2 border-[#BDBDBD]"
+          className="h-16 lg:h-20 px-1 lg:px-5 flex flex-row justify-center items-center text-[#BDBDBD] rounded-lg border-2 border-[#BDBDBD] mb-20 mt-10 text-sm"
+        />
       </div>
 
       <div className="text-[#737373]  py-24 lg:py-16 bg-[#FAFAFA] mb-5">

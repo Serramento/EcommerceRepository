@@ -24,7 +24,7 @@ function TeamPage() {
       <div className="bg-[#FAFAFA] lg:flex max-[639px]:mx-auto">
         <div className="h-[34rem] w-[26.5rem] lg:w-[50rem] lg:h-[28.5rem] lg:mr-2.5 lg:mt-2">
           <img
-            src="https://s3-alpha-sig.figma.com/img/e98c/6914/973e6a41dfef7ffabf70f468edcc4107?Expires=1714953600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=X6HKsNW7wqMUkyB2rg3delSVbEbSJUnY8WzlQBIhiNiR31Ht~T8a67dz~xfsP0ITqtEdV6mqO2TPYcrz-aMZr5XV1nKlBDUTNdKgVvyRcx4i6xZtsyd1HdbHPLCbNf7LO-3At1EjaSIpG3RnIDSnQxIa3YlbG4ZWV7MRfFybgD-G2fxOIp66CaFO~rkwGZulqQqYE3cLV34szokRxCT3qL6uZnCQ66b6xvdc8xajgvRxK6Rk6IZ-bZDpU0cjhipC1LJZLazFJaUTLvQO53Oj-tLRV53cQGicN2UhZXq5VKq~QCv7YJzQ1VOk2dQ4aG6UsCrC5Nw5nLDQzhMbeFwCJw__"
+            src="/unsplash_Lks7vei-eAg (4).png"
             alt="Image"
             className="w-full h-full object-cover"
           />
@@ -53,7 +53,7 @@ function TeamPage() {
           <div className="font-bold">
             <div className="w-72 h-52">
               <img
-                src="https://media.licdn.com/dms/image/D4D03AQHHikjSDQq9xw/profile-displayphoto-shrink_800_800/0/1708951317641?e=1720051200&v=beta&t=rerI4IakEFrJmiHVx6AWgjZsdUaNYbujGVbeMHTOWzA"
+                src="/1708951317641.jfif"
                 alt="Image"
                 className="w-full h-full object-cover object-top"
               />
@@ -70,7 +70,7 @@ function TeamPage() {
           <div className="font-bold">
             <div className="w-72 h-52">
               <img
-                src="https://media.licdn.com/dms/image/C4D03AQE8uHbxXDXfmw/profile-displayphoto-shrink_800_800/0/1635783306921?e=1720051200&v=beta&t=w060HP238w-3WSIwE7hT4n-zKVbltmFpGClbX0-DNLM"
+                src="/1635783306921.jfif"
                 alt="Image"
                 className="w-full h-full object-cover object-top"
               />
@@ -87,9 +87,9 @@ function TeamPage() {
           <div className="font-bold">
             <div className="w-72 h-52">
               <img
-                src="https://media.licdn.com/dms/image/D5603AQFzcOw99FEhQg/profile-displayphoto-shrink_800_800/0/1642683767630?e=1720051200&v=beta&t=O-DqOTIZrFmNDQIjE_La9TRSgaFX9kMBAnrBY6nXljQ"
+                src="/PROFİL FOTO.JPG"
                 alt="Image"
-                className="w-full h-full object-cover object-top"
+                className="w-full h-full object-cover object-middle"
               />
             </div>
             <h5 className="mt-8">Serra Sarıhasan</h5>

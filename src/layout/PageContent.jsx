@@ -8,16 +8,9 @@ import TeamPage from "../pages/TeamPage";
 import AboutUsPage from "../pages/AboutUsPage";
 import SignUpFormPage from "../pages/SignUpFormPage";
 import LoginPage from "../pages/LoginPage";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "../actions/productReducerActions";
+import { useSelector } from "react-redux";
 
 function PageContent() {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchProducts());
-  }, []);
-
   const productList = useSelector((store) => store.productReducer.productList);
 
   return (
