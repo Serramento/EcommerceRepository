@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 const MenuItems = ({ value }) => {
   const categories = useSelector((store) => store.productReducer.categories);
+
   const categoriesArray = categories.filter((category) =>
     category.code.startsWith(value)
   );
@@ -16,11 +17,19 @@ const MenuItems = ({ value }) => {
           className="w-60 h-12 bg-[#FFFFFF] hover:bg-[#c4c3c3] hover:text-[#FFFFFF] rounded-none text-2xl lg:text-sm flex items-center justify-center"
         >
           {value === "k" ? (
-            <Link to={"/shop/kadın/" + category.code.substring(2)}>
+            <Link
+              to={
+                "/shop/kadın/" + category.code.substring(2) + "/" + category.id
+              }
+            >
               {category.title}
             </Link>
           ) : (
-            <Link to={"/shop/erkek/" + category.code.substring(2)}>
+            <Link
+              to={
+                "/shop/erkek/" + category.code.substring(2) + "/" + category.id
+              }
+            >
               {category.title}
             </Link>
           )}

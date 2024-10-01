@@ -10,13 +10,13 @@ const ProductCard = (props) => {
         className={`w-80 ${props.additionalClass}`}
       />
       <div>
-        <h5 className="font-bold mt-10">Graphic Design</h5>
+        <h5 className="font-bold mt-10">{props.product.name}</h5>
         <h6 className="font-bold text-sm text-[#737373] mt-3">
           English Department
         </h6>
         <h5 className="font-bold mt-5 mb-3">
-          <span className="text-[#BDBDBD]">$16.48</span>{" "}
-          <span className="text-[#23856D]">$6.48</span>
+          <span className="text-[#BDBDBD]">$200</span>{" "}
+          <span className="text-[#23856D]">${props.product.price}</span>
         </h5>
       </div>
 

@@ -14,7 +14,7 @@ const initialState = {
   total: null,
   limit: 25,
   offset: 0,
-  filter: "",
+  filter: { categoryId: "", sort: "", filter: "" },
   fetchState: "NOT_FETCHED",
 };
 
@@ -53,7 +53,12 @@ const productReducer = (state = initialState, action) => {
     case SET_FILTER:
       return {
         ...state,
-        filter: action.payload,
+        filter: {
+          ...state.filter,
+          categoryId: action.payload.categoryId,
+          sort: action.payload.sort,
+          filter: action.payload.filter,
+        },
       };
 
     case SET_FETCHSTATE:

@@ -1,25 +1,32 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import ProductCard from "../components/ProductCard.jsx";
 import ClothsCard from "../components/ClothsCard.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "../actions/productReducerActions.jsx";
+import {
+  fetchSelectedCategory,
+  fetchSelectedFilter,
+  fetchSelectedSort,
+} from "../actions/productReducerActions.jsx";
 
 function ShopPage({ productList }) {
+  const dispatch = useDispatch();
+
+  let { categoryId } = useParams();
+
+  useEffect(() => {
+    dispatch(fetchSelectedCategory(categoryId));
+  }, [categoryId]);
+
   const categories = useSelector((store) => store.productReducer.categories);
   const fetchState = useSelector((store) => store.productReducer.fetchState);
+  const filter = useSelector((store) => store.productReducer.filter);
 
   const topFive = categories
     .sort((a, b) => {
       return b.rating - a.rating;
     })
     .slice(0, 5);
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchProducts());
-  }, []);
 
   return (
     <div className="font-montserrat flex flex-col">
@@ -31,18 +38,20 @@ function ShopPage({ productList }) {
               Home
             </Link>
             <i className="fa-solid fa-chevron-right text-[#BDBDBD] pt-1"></i>
-            <Link to="/shop" className="text-[#737373] font-bold">
-              Shop
-            </Link>
+            <div className="text-[#737373] font-bold">Shop</div>
           </div>
         </div>
 
         <div className="mt-16 lg:flex lg:flex-row lg:justify-between lg:pl-5 lg:mt-10">
-          {topFive.map((category) => (
-            <ClothsCard category={category} />
+          {topFive.map((category, index) => (
+            <ClothsCard key={index} category={category} />
           ))}
         </div>
       </div>
+
+      <div>{filter.categoryId}</div>
+      <div>{filter.sort}</div>
+      <div>{filter.filter}</div>
 
       <div className="flex flex-col items-center my-10 lg:flex-row lg:justify-between lg:mx-10">
         <h6 className="text-[#737373] font-bold text-base max-[639px]:mb-6">
@@ -59,15 +68,46 @@ function ShopPage({ productList }) {
             </Link>
           </div>
         </div>
-        <div className="flex flex-row items-center justify-between w-60">
-          <label className="text-[#737373] bg-[#F9F9F9] border-2 border-[#DDDDDD] px-5 py-3 rounded-md text-sm">
-            <select className="bg-[#F9F9F9]">
-              <option value="popularity">Popularity</option>
+        <div className="flex flex-row items-center justify-between w-72">
+          <label className="text-[#737373] bg-[#F9F9F9] w-48 border-2 border-[#DDDDDD] px-1 mr-3 py-3 rounded-md text-sm">
+            <select
+              defaultValue={filter.sort}
+              onChange={(event) =>
+                dispatch(
+                  fetchSelectedSort(
+                    event.target.value,
+                    filter.categoryId,
+                    filter.filter
+                  )
+                )
+              }
+              className="bg-[#F9F9F9] hover:bg-[#c4c3c3] hover:text-[#FFFFFF] rounded-none"
+            >
+              <option defaultValue="">Popularity</option>
+              <option value="price:desc">Price Descending</option>
+              <option value="price:asc">Price Ascending</option>
+              <option value="price:desc">Price Descending</option>
+              <option value="rating:asc">Rating Ascending</option>
+              <option value="rating:desc">Rating Descending</option>
             </select>
           </label>
-          <button className="bg-[#23A6F0] text-[#FFFFFF] text-sm font-semibold px-7 py-3 rounded-md">
-            Filter
-          </button>
+          <label>
+            <input
+              className="bg-[#23A6F0] text-[#FFFFFF] w-32 text-sm font-semibold px-7 py-3 rounded-md"
+              placeholder="Filter"
+              defaultValue={filter.filter}
+              onKeyDown={(event) => {
+                if (event.key === "Enter")
+                  dispatch(
+                    fetchSelectedFilter(
+                      event.target.value,
+                      filter.categoryId,
+                      filter.sort
+                    )
+                  );
+              }}
+            />
+          </label>
         </div>
       </div>
 
@@ -77,19 +117,21 @@ function ShopPage({ productList }) {
 
       <div className="flex flex-col items-center mt-28 lg:mt-16">
         <div className="lg:hidden">
-          {productList.slice(0, 4).map((product) => (
+          {productList.slice(0, 4).map((product, index) => (
             <ProductCard
-              key={product.id}
+              key={index}
               product={product}
+              categories={categories}
               additionalClass="lg:w-60"
             />
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-wrap lg:w-[74rem] lg:justify-between">
-          {productList.slice(0, 12).map((product) => (
+          {productList.slice(0, 12).map((product, index) => (
             <ProductCard
-              key={product.id}
+              key={index}
               product={product}
+              categories={categories}
               additionalClass="lg:w-60"
             />
           ))}

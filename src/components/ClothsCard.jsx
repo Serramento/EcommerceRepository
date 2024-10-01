@@ -12,7 +12,7 @@ const ClothsCard = (props) => {
         />
       </div>
       <div className="absolute text-[#FFFFFF] mt-8">
-        <h5 className="font-bold mb-8">CLOTHS</h5>
+        <h5 className="font-bold mb-8">{props.category.title}</h5>
         <h6 className="font-bold text-sm">5 Items</h6>
       </div>
     </Link>

@@ -31,8 +31,11 @@ function TeamPage() {
         </div>
 
         <div className="flex flex-wrap justify-between w-[26.5rem] lg:w-[55rem] ">
-          {ClothsCardData.slice(0, 4).map((cloths) => (
-            <div className="w-52 h-72 lg:w-[20.5rem] lg:h-[14.5rem] lg:pt-2">
+          {ClothsCardData.slice(0, 4).map((cloths, index) => (
+            <div
+              key={index}
+              className="w-52 h-72 lg:w-[20.5rem] lg:h-[14.5rem] lg:pt-2"
+            >
               <img
                 src={cloths.image}
                 className="w-full h-full object-cover max-[639px]:pt-2.5"

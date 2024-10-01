@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { setUser } from "../actions/clientReducerActions";
@@ -147,11 +147,20 @@ function LoginPage() {
       </div>
 
       <button
-        className="w-80 mx-auto lg:w-96 h-16 bg-[#23A6F0] rounded-md text-[#FFFFFF] mb-20 font-semibold"
+        className="w-80 mx-auto lg:w-96 h-16 bg-[#23A6F0] rounded-md text-[#FFFFFF] font-semibold"
         type="login"
       >
         Submit
       </button>
+
+      <div className="text-[#737373] text-sm mb-20 mt-8 font-semibold">
+        <p>
+          Don't have an account? Click to{" "}
+          <Link className="text-[#23A6F0] underline font-semibold" to="/signup">
+            Sign Up!
+          </Link>
+        </p>
+      </div>
     </form>
   );
 }

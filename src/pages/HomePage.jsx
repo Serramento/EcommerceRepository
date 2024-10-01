@@ -93,13 +93,21 @@ function HomePage({ productList }) {
           </p>
         </div>
         <div className="lg:hidden">
-          {productList.slice(0, 5).map((product) => (
-            <ProductCard product={product} additionalClass="lg:w-40" />
+          {productList.slice(0, 5).map((product, index) => (
+            <ProductCard
+              key={index}
+              product={product}
+              additionalClass="lg:w-40"
+            />
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-wrap lg:w-[57rem] lg:justify-evenly">
-          {productList.slice(0, 10).map((product) => (
-            <ProductCard product={product} additionalClass="lg:w-40" />
+          {productList.slice(0, 10).map((product, index) => (
+            <ProductCard
+              key={index}
+              product={product}
+              additionalClass="lg:w-40"
+            />
           ))}
         </div>
         <button className="text-bluex font-bold text-sm py-4 px-12 outline outline-2 lg:mb-10 lg:mt-10">
@@ -192,13 +200,13 @@ function HomePage({ productList }) {
         </div>
 
         <div className="lg:hidden">
-          {BlogData.slice(0, 2).map((blog) => (
-            <BlogContent blog={blog} />
+          {BlogData.slice(0, 2).map((blog, index) => (
+            <BlogContent key={index} blog={blog} />
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-row lg:w-[65rem] lg:justify-evenly lg:my-20">
-          {BlogData.map((blog) => (
-            <BlogContent blog={blog} />
+          {BlogData.map((blog, index) => (
+            <BlogContent key={index} blog={blog} />
           ))}
         </div>
       </div>

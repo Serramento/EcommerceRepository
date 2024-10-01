@@ -7,9 +7,10 @@ import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 function ProductPage({ productList }) {
   let { productId } = useParams();
-  let thisProduct = productList[0].find(
-    (prod) => prod.id === parseInt(productId)
-  );
+  let thisProduct = productList.find((prod) => prod.id === parseInt(productId));
+  const consoleX = () => {
+    console.log(thisProduct);
+  };
 
   return (
     <div className="font-montserrat flex flex-col">
@@ -25,15 +26,18 @@ function ProductPage({ productList }) {
         </div>
       </div>
 
-      <div className="bg-[#FAFAFA] lg:flex lg:flex-row lg:justify-center">
-        <ImageSlider2 slides={thisProduct.image} />
-        <div className="flex flex-row lg:flex-col w-40 h-40 ml-10 mt-10 pb-10 lg:mt-1 lg:w-20 lg:h-20 lg:mr-10">
-          <img src={thisProduct.images[0]} className="lg:pl-1" />
-          <img src={thisProduct.images[1]} className="pl-5 lg:mt-5 lg:pl-1" />
+      <div className="bg-[#FAFAFA] lg:flex lg:flex-row lg:justify-center pb-16">
+        <ImageSlider2 slides={thisProduct.images} />
+        <div className="flex flex-row lg:flex-col w-60 h-60 ml-10 mt-10 pb-10 lg:mt-1 lg:w-20 lg:h-20 lg:mr-10">
+          <img src={thisProduct.images[0].url} className="lg:pl-1" />
+          <img
+            src={thisProduct.images[0].url}
+            className="pl-5 lg:mt-5 lg:pl-1"
+          />
         </div>
 
         <div className="flex flex-col items-start w-80 max-[639px]:mx-auto lg:w-[35rem]">
-          <h3 className="text-xl font-semibold mb-3">Graphic Design</h3>
+          <h3 className="text-xl font-semibold mb-3">{thisProduct.name}</h3>
           <div className="flex flex-row text-[#F3CD03] justify-between w-[13rem]">
             <i className="fa-solid fa-star mt-1"></i>
             <i className="fa-solid fa-star mt-1"></i>
@@ -42,18 +46,17 @@ function ProductPage({ productList }) {
             <i className="fa-regular fa-star mt-1"></i>
             <h6 className="text-[#737373] font-bold ml-2">10 Reviews</h6>
           </div>
+          <div>{consoleX()}</div>
           <h5 className="font-bold mt-8 mb-3 text-2xl">
-            <span className="text-[#BDBDBD]">$16.48</span>{" "}
-            <span className="text-[#23856D]">$6.48</span>
+            <span className="text-[#BDBDBD]">$200</span>{" "}
+            <span className="text-[#23856D]">${thisProduct.price}</span>
           </h5>
           <h5 className="font-bold mb-10">
             <span className="text-[#737373]">Availability : </span>{" "}
             <span className="text-[#23A6F0]">In Stock</span>
           </h5>
           <p className="text-[#858585] font-semibold text-left">
-            Met minim Mollie non desert Alamo est sit cliquey dolor do met sent.
-            RELIT official consequent door ENIM RELIT Mollie. Excitation venial
-            consequent sent nostrum met.
+            {thisProduct.description}
           </p>
           <div className="h-[1px] w-80 bg-[#BDBDBD] my-5 lg:w-[29rem]" />
           <div className="flex mb-10">
@@ -64,7 +67,7 @@ function ProductPage({ productList }) {
           </div>
 
           <div className="flex justify-between w-[20rem]">
-            <button className="bg-[#23A6F0] text-[#FFFFFF] font-semibold px-5 py-3 mb-20">
+            <button className="bg-[#23A6F0] text-[#FFFFFF] font-semibold px-5 py-3">
               Select Options
             </button>
             <i className="fa-regular fa-heart fa-lg fa-lg bg-[#FFFFFF] w-10 h-10 rounded-3xl border-2 border-[#E8E8E8] pt-5"></i>
@@ -166,13 +169,21 @@ function ProductPage({ productList }) {
         </h3>
         <div className="h-[1px] w-[20rem] mb-8 bg-[#ECECEC] lg:w-[70rem]" />
         <div className="lg:hidden">
-          {productList[0].slice(0, 4).map((product) => (
-            <ProductCard product={product} additionalClass="lg:w-[15rem]" />
+          {productList.slice(0, 4).map((product, index) => (
+            <ProductCard
+              key={index}
+              product={product}
+              additionalClass="lg:w-[15rem]"
+            />
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-wrap lg:w-[70rem] lg:justify-between">
-          {productList[0].slice(0, 8).map((product) => (
-            <ProductCard product={product} additionalClass="lg:w-[15rem]" />
+          {productList.slice(0, 8).map((product, index) => (
+            <ProductCard
+              key={index}
+              product={product}
+              additionalClass="lg:w-[15rem]"
+            />
           ))}
         </div>
       </div>

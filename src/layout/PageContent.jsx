@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import HomePage from "../pages/HomePage";
 import { Route, Switch } from "react-router-dom";
 import ShopPage from "../pages/ShopPage";
@@ -8,9 +8,16 @@ import TeamPage from "../pages/TeamPage";
 import AboutUsPage from "../pages/AboutUsPage";
 import SignUpFormPage from "../pages/SignUpFormPage";
 import LoginPage from "../pages/LoginPage";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProducts } from "../actions/productReducerActions";
 
 function PageContent() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, []);
+
   const productList = useSelector((store) => store.productReducer.productList);
 
   return (
@@ -19,7 +26,7 @@ function PageContent() {
         <Route exact path="/">
           <HomePage productList={productList} />
         </Route>
-        <Route path="/shop">
+        <Route path="/shop/:gender/:categoryName/:categoryId">
           <ShopPage productList={productList} />
         </Route>
         <Route path="/productPage/:productId">

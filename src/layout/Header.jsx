@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useHistory } from "react-router-dom";
 import Gravatar from "react-gravatar";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  fetchCategories,
-  setCategories,
-} from "../actions/productReducerActions";
+import { fetchCategories } from "../actions/productReducerActions";
 import NavBar from "../components/NavBar";
+import { setUser } from "../actions/clientReducerActions";
+import axios from "axios";
 
 function Header() {
   const userInfo = useSelector((store) => store.clientReducer.user);
@@ -18,6 +17,30 @@ function Header() {
       setUser(user);
     }
   }, []);
+
+  const history = useHistory();
+
+  const axiosWithAuth = () => {
+    return axios.create({
+      baseURL: "https://workintech-fe-ecommerce.onrender.com/",
+      headers:
+        user && user.token
+          ? {
+              Authorization: authUser.token,
+            }
+          : {},
+    });
+  };
+
+  const logOut = () => {
+    axiosWithAuth()
+      .get("logout")
+      .catch((err) => console.error(err.response.message))
+      .finally(() => {
+        setUser();
+        history.push("/login");
+      });
+  };
 
   const [isDropdownVisible, setDropdownVisible] = useState(false);
 
@@ -65,9 +88,7 @@ function Header() {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
-            <NavLink to="/shop" className="text-[#737373] mt-20 text-3xl">
-              Shop
-            </NavLink>
+            <div className="text-[#737373] mt-20 text-3xl">Shop</div>
             {isDropdownVisible && <NavBar className="absolute" />}
           </div>
 
@@ -86,15 +107,20 @@ function Header() {
         </nav>
         <div className="text-bluex flex flex-col text-3xl">
           {userInfo.email || user ? (
-            <div className="flex flex-row justify-center mt-5">
-              <Gravatar
-                email={userInfo.email || user.email}
-                size={45}
-                style={{ margin: "10px" }}
-              />
-              <Link to="/profile" className="text-[#737373] pt-4 text-xl">
-                {userInfo.email || user.email}
-              </Link>
+            <div>
+              <div className="flex flex-row justify-center mt-5">
+                <Gravatar
+                  email={userInfo.email || user.email}
+                  size={45}
+                  style={{ margin: "10px" }}
+                />
+                <Link to="/profile" className="text-[#737373] pt-4 text-xl">
+                  {userInfo.email || user.email}
+                </Link>
+              </div>
+              <button onClick={() => logOut()} className="text-bluex px-2 mt-7">
+                Logout
+              </button>
             </div>
           ) : (
             <div>
@@ -163,12 +189,7 @@ function Header() {
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
               >
-                <NavLink
-                  to="/shop"
-                  className="text-[#737373] text-xs font-bold"
-                >
-                  Shop
-                </NavLink>
+                <div className="text-[#737373] text-xs font-bold">Shop</div>
                 {isDropdownVisible && <NavBar className="absolute" />}
               </div>
 
@@ -207,6 +228,12 @@ function Header() {
                   <Link to="/profile" className="text-[#737373] font-bold ml-2">
                     {userInfo.email || user.email}
                   </Link>
+                  <button
+                    onClick={() => logOut()}
+                    className="text-bluex px-2 font-semibold"
+                  >
+                    / Logout
+                  </button>
                 </div>
               ) : (
                 <div>
