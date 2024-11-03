@@ -1,28 +1,14 @@
-import React, { useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 import ProductCard from "../components/ProductCard.jsx";
 import ImageSlider2 from "../components/ImageSlider2.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchProduct } from "../actions/productReducerActions.jsx";
+import { useSelector } from "react-redux";
 
 function ProductPage({ productList }) {
-  let { productId } = useParams();
-  const dispatch = useDispatch();
   const fetchState = useSelector((store) => store.productReducer.fetchState);
   const product = useSelector((store) => store.productReducer.product);
-
-  let thisProduct = productList?.find(
-    (prod) => prod.id === parseInt(productId)
-  );
-  const consoleX = () => {
-    console.log(thisProduct);
-  };
-
-  useEffect(() => {
-    dispatch(fetchProduct(productId));
-  }, [productId]);
 
   return (
     <div className="font-montserrat flex flex-col">
@@ -59,7 +45,6 @@ function ProductPage({ productList }) {
             <i className="fa-regular fa-star mt-1"></i>
             <h6 className="text-[#737373] font-bold ml-2">10 Reviews</h6>
           </div>
-          <div>{consoleX()}</div>
           <h5 className="font-bold mt-8 mb-3 text-2xl">
             <span className="text-[#BDBDBD]">$200</span>{" "}
             <span className="text-[#23856D]">${product.price}</span>

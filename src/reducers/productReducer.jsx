@@ -17,7 +17,7 @@ const initialState = {
   offset: 0,
   filter: { categoryId: "", sort: "", filter: "" },
   fetchState: "NOT_FETCHED",
-  product: {},
+  product: null,
 };
 
 const productReducer = (state = initialState, action) => {

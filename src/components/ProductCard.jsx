@@ -1,13 +1,19 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
+import { fetchProduct } from "../actions/productReducerActions";
+import { useDispatch } from "react-redux";
 
 const ProductCard = (props) => {
   let { gender, categoryName, categoryId } = useParams();
+  const dispatch = useDispatch();
 
   return (
     <Link
       to={`/shop/${gender}/${categoryName}/${categoryId}/${props.product.name}/${props.product.id}`}
       className="cursor-pointer hover:shadow-2xl"
+      onClick={() => {
+        dispatch(fetchProduct(props.product.id));
+      }}
     >
       <img
         src={props.product.images[0].url}

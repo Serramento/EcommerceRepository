@@ -4,6 +4,7 @@ import ProductCard from "../components/ProductCard.jsx";
 import ClothsCard from "../components/ClothsCard.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  fetchProduct,
   fetchSelectedCategory,
   fetchSelectedFilter,
   fetchSelectedPage,
